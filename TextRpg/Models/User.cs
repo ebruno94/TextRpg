@@ -86,7 +86,9 @@ namespace TextRpg.Models
                 int lck = rdr.GetInt32(8);
                 int charisma = rdr.GetInt32(9);
             }
-            Character
+            Character thisCharacter = new Character(name, level, exp, hp, ad, iq, dex, lck, charisma, id);
+            thisCharacter.SetId(id);
+            return thisCharacter;
 
         }
     }

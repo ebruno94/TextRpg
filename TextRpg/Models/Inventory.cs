@@ -64,6 +64,19 @@ namespace TextRpg.Models
             conn.Dispose();
         }
 
+        public void UpdateInventoryStats()
+        {
+            foreach (Item equippable in _equippables)
+            {
+                _health += equippable.GetHP();
+                _attackDamage += equippable.GetAD();
+                _intelligence += equippable.GetIQ();
+                _luck += equippable.GetLCK();
+                _charisma += equippable.GetCHR();
+                _dexterity += equippable.GetDEX();
+            }
+        }
+
         public int GetHP()
         {
             return _health;
@@ -116,6 +129,7 @@ namespace TextRpg.Models
             cmd.Parameters.Add(itemIdPara);
             cmd.ExecuteNonQuery();
             conn.Dispose();
+            this.UpdateInventoryStats();
         }
 
         public void RemoveItem(int itemId)
@@ -130,6 +144,7 @@ namespace TextRpg.Models
             cmd.Parameters.Add(itemIdPara);
             cmd.ExecuteNonQuery();
             conn.Dispose();
+            this.UpdateInventoryStats();
         }
     }
 }
