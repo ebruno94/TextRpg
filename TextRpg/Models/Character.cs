@@ -11,6 +11,7 @@ namespace TextRpg.Models
         private int _level;
         private int _experience;
         private double _health;
+        private double _maxHealth;
         private double _attackDamage;
         private int _intelligence;
         private double _dexterity;
@@ -23,6 +24,7 @@ namespace TextRpg.Models
             _level = 1;
             _experience = 0;
             _health = 500;
+            maxHealth = 500;
             _attackDamage = 66;
             _intelligence = 1;
             _dexterity = 1;
@@ -64,6 +66,10 @@ namespace TextRpg.Models
         {
             _experience += experience;
         }
+        public void ChangeMaxHealth(double health)
+        {
+            _maxHealth += health;
+        }
         public void ChangeHealth(double health)
         {
             _health += health;
@@ -97,6 +103,10 @@ namespace TextRpg.Models
         {
             return _experience;
         }
+        public double GetMaxHealth()
+        {
+            return _maxHealth;
+        }
         public double GetHealth()
         {
             return _health;
@@ -121,7 +131,7 @@ namespace TextRpg.Models
         public void StatUpdate()
         {
             //Level Adjustment
-            _health = 500 + _level*25;
+            _maxHealth = 500 + _level*25;
             _attackDamage = 66 + _level*25;
             _dexterity = 1 + _level;
 
