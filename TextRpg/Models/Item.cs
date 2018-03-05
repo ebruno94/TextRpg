@@ -17,6 +17,7 @@ namespace TextRpg.Models
         private int _charisma;
         private int _dexterity;
         private int _equippable;
+        private string _action;
 
         public Item (string name, string imgUrl, int hp, int ad, int iq, int luck, int charisma, int dex, int equippable)
         {
