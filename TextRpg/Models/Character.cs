@@ -7,6 +7,7 @@ namespace TextRpg.Models
 {
     public class Character
     {
+        private int _id;
         private int _level;
         private int _experience;
         private double _health;
@@ -28,6 +29,30 @@ namespace TextRpg.Models
             _luck = 1;
             _charisma = 1;
             _inventory = null;
+        }
+
+        public Character(string name, int level, int exp, int hp, int ad, int iq, int dex, int lck, int charisma, int charId)
+        {
+            _level = level;
+            _experience = exp;
+            _health = hp;
+            _attackDamage = ad;
+            _intelligence = iq;
+            _dexterity = dex;
+            _luck = lck;
+            _charisma = charisma;
+            _inventory = new Inventory(charId);
+            _inventory.UpdateInventoryStats();
+        }
+
+        public int GetId()
+        {
+            return _id;
+        }
+
+        public void SetId(int id)
+        {
+            _id = id;
         }
 
         //Change functions
