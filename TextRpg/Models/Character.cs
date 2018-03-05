@@ -29,6 +29,7 @@ namespace TextRpg.Models
             _charisma = 1;
             _inventory = null;
         }
+
         //Change functions
         public void ChangeLevel(int level)
         {

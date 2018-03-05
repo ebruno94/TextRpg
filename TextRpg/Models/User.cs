@@ -62,6 +62,17 @@ namespace TextRpg.Models
             cmd.Parameters.Add(userIdPara);
 
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            int id =  0;
+            string name = "";
+            int level = 0;
+            int exp = 0;
+            int hp = 0;
+            int ad = 0;
+            int iq = 0;
+            int dex = 0;
+            int lck = 0;
+            int charisma = 0;
+
             while (rdr.Read())
             {
                 int id =  rdr.GetInt32(0);
@@ -75,6 +86,8 @@ namespace TextRpg.Models
                 int lck = rdr.GetInt32(8);
                 int charisma = rdr.GetInt32(9);
             }
+            Character
+
         }
     }
 }
