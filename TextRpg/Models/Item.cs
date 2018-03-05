@@ -19,7 +19,7 @@ namespace TextRpg.Models
         private int _equippable;
         private string _action;
 
-        public Item (string name, string imgUrl, int hp, int ad, int iq, int luck, int charisma, int dex, int equippable)
+        public Item (string name, string imgUrl, int hp, int ad, int iq, int luck, int charisma, int dex, int equippable, string action)
         {
             _name = name;
             _url = url;
@@ -30,6 +30,7 @@ namespace TextRpg.Models
             _charisma = charisma;
             _dexterity = dex;
             _equippable = equippable;
+            _action = action;
         }
 
         public void SetId(int id)
@@ -40,6 +41,11 @@ namespace TextRpg.Models
         public int GetId()
         {
             return _id;
+        }
+
+        public string GetAction()
+        {
+            return _action;
         }
 
         public string GetName()

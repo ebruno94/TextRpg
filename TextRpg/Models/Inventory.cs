@@ -49,7 +49,8 @@ namespace TextRpg.Models
                 int charisma = rdr.GetInt32(7);
                 int dex = rdr.GetInt32(8);
                 int equippable = rdr.GetInt32(9);
-                Item thisItem = new Item(name, imgUrl, hp, ad, iq, luck, charisma, dex, equippable);
+                string action = rdr.GetString(10);
+                Item thisItem = new Item(name, imgUrl, hp, ad, iq, luck, charisma, dex, equippable, action);
                 thisItem.SetId(id);
 
                 if (equippable != -1)
