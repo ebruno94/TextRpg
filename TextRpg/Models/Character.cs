@@ -92,7 +92,7 @@ namespace TextRpg.Models
         {
             return _luck;
         }
-        //EXPERIENCE/LEVEL FUNCTIONS BEGIN HERE ------------------------------------------------------------->
+        //EXPERIENCE/LEVEL UPDATE FUNCTIONS BEGIN HERE ------------------------------------------------------------->
         public void StatUpdate()
         {
             //Level Adjustment
@@ -101,10 +101,18 @@ namespace TextRpg.Models
             _dexterity = 1 + _level;
 
             //Inventory Adjustment
-
-
-
-
+        }
+        public void LevelFunction()
+        {
+            if(ExperienceForLevel(_level+1) - ExperienceForLevel(_level) =< experience)
+            {
+                _level += _level + 1;
+            }
+        }
+        public void ExperienceForLevel(int inputLevel)
+        {
+            double experienceRequiredForLevel = Math.Pow(2, (inputLevel+1)/2.5)
+            return experienceRequiredForLevel;
 
         }
         //EXPERIENCE/LEVEL FUNCTIONS END HERE ------------------------------------------------------------->
@@ -152,7 +160,7 @@ namespace TextRpg.Models
 
             for(int i = 0; i < _inventory.Count; i ++)
             {
-                total += _inventory[i].GetArmor();
+                totalArmor += _inventory[i].GetArmor();
             }
             return totalArmor;
         }
