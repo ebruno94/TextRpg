@@ -8,7 +8,7 @@ namespace TextRpg
 {
     public static class DBConfiguration
     {
-        public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=ernest_bruno;";
+        public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=text_rpg;";
     }
     public class Startup
     {
