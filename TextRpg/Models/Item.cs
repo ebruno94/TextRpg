@@ -49,29 +49,29 @@ namespace TextRpg.Models
         {
             return _imgUrl;
         }
-        public int GetHP()
+        public int GetHealth()
         {
             return _health;
         }
-        public int GetAD()
+        public int GetAttackDamage()
         {
             return _attackDamage;
         }
-        public int GetIQ()
+        public int GetIntelligence()
         {
             return _intelligence;
         }
-        public int GetLCK()
+        public int GetLuck()
         {
             return _luck;
         }
-        public int GetCHR()
+        public int GetCharisma()
         {
             return _charisma;
         }
-        public int GetDEX()
+        public int GetDexterity()
         {
-            return _dex;
+            return _dexterity;
         }
         public int GetEquippable()
         {
