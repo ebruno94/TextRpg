@@ -12,14 +12,16 @@ namespace TextRpg.Models
         private string _username;
         private string _password;
         private string _email;
+        private int _roomNumber;
         private static Character _character;
 
-        public GameUser(string name, string username, string password, string email, int Id = 0)
+        public GameUser(string name, string username, string password, string email, int roomNumber)
         {
             _name = name;
             _username = username;
             _password = password;
             _email = email;
+            _roomNumber = roomNumber;
         }
 
         public int GetId()
@@ -30,6 +32,16 @@ namespace TextRpg.Models
         public void SetId(int id)
         {
             _id = id;
+        }
+
+        public int GetRoomNumber()
+        {
+            return _roomNumber;
+        }
+
+        public void SetRoomNumber(int num)
+        {
+            _roomNumber = num;
         }
 
         public string GetName()
@@ -66,6 +78,7 @@ namespace TextRpg.Models
             string name = "";
             int level = 0;
             int exp = 0;
+            int maxHp = 0;
             int hp = 0;
             int ad = 0;
             int iq = 0;
