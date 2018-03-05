@@ -21,8 +21,8 @@ namespace TextRpg.Models
         {
             _level = 1;
             _experience = 0;
-            _health = 100;
-            _attackDamage = 1;
+            _health = 500;
+            _attackDamage = 66;
             _intelligence = 1;
             _dexterity = 1;
             _luck = 1;
@@ -91,20 +91,84 @@ namespace TextRpg.Models
         {
             return _luck;
         }
-
-        public int Attack()
+        //EXPERIENCE/LEVEL FUNCTIONS BEGIN HERE ------------------------------------------------------------->
+        public void StatUpdate()
         {
-            int outputDamage = 0;
+            //Level Adjustment
+            _health = 500 + _level*25;
+            _attackDamage = 66 + _level*25;
+            _dexterity = 1 + _level;
 
+            //Inventory Adjustment
+
+
+
+
+
+        }
+        //EXPERIENCE/LEVEL FUNCTIONS END HERE ------------------------------------------------------------->
+
+        //ATTACK FUNCTIONS BEGIN HERE ------------------------------------------------------------->
+        public double Attack()
+        {
+            int outputDamage = 1*_level + (_attackDamage/100)*_level;
             return outputDamage;
         }
-        public int Defend(int inputDamage)
+        //ATTACK FUNCTIONS END HERE ------------------------------------------------------------->
+
+        //DEFEND FUNCTIONS BEGIN HERE ------------------------------------------------------------->
+        public void Defend(int inputDamage)
         {
-            int damageTaken = inputDamage;
-
-            return damageTaken;
+            int outputDamage = 0;
+            if(Dodge() == true)
+            {
+                //Nice dodge
+            } else {
+                outputDamage = this.ArmorDamageReduction(inputDamage);
+                _health = _health - outputDamage;
+            }
         }
+        //
+        public double ArmorDamageReduction(double inputDamage)
+        {
+            double outputDamage = inputDamage;
+            double damageMultiplier = 1;
+            double totalArmor = GetCharacterTotalArmor;
 
+            if(totalArmor >= 0)
+            {
+                damageMultiplier = (100/(100+totalArmor));
+            } else {
+                damageMultiplier = 1;
+            }
+
+            return outputDamage*damageMultiplier;
+        }
+        //Used with ArmorDamage Reduction to calculate how much damage one swing does.
+        public double GetCharacterTotalArmor()
+        {
+            totalArmor = 0;
+
+            for(int i = 0; i < _inventory.Count; i ++)
+            {
+                total += _inventory[i].GetArmor();
+            }
+            return totalArmor;
+        }
+        public bool Dodge()
+        {
+            int baseDodgeChance = 10; //10%
+            int totalDodgeChance = baseDodgeChance + this.GetDexterity()*2;
+            Random random = new Random();
+            int dodge = random.Next(1,101);
+            if(dodge <= totalDodgeChance)
+            {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        //DEFEND FUNCTIONS END HERE ------------------------------------------------------------->
     }
 
 }
