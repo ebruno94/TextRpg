@@ -7,7 +7,7 @@ namespace TextRpg.Models
 {
     public class Game
     {
-        private static User _currentUser;
+        private static GameUser _currentUser;
         private static Room _currentRoom;
         private static GameDisplay _gameDisplay;
 
