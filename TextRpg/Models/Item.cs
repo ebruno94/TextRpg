@@ -11,6 +11,7 @@ namespace TextRpg.Models
         private string _name;
         private string _url;
         private int _health;
+        private int _armor;
         private int _attackDamage;
         private int _intelligence;
         private int _luck;
@@ -19,11 +20,12 @@ namespace TextRpg.Models
         private int _equippable;
         private string _action;
 
-        public Item (string name, string imgUrl, int hp, int ad, int iq, int luck, int charisma, int dex, int equippable, string action)
+        public Item (string name, string imgUrl, int hp, int armor, int ad, int iq, int luck, int charisma, int dex, int equippable, string action)
         {
             _name = name;
             _url = url;
             _health = hp;
+            _armor = armor;
             _attackDamage = ad;
             _intelligence = iq;
             _luck = luck;
@@ -41,6 +43,11 @@ namespace TextRpg.Models
         public int GetId()
         {
             return _id;
+        }
+
+        public int GetArmor()
+        {
+            return _armor;
         }
 
         public string GetAction()

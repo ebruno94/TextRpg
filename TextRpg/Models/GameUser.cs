@@ -79,14 +79,16 @@ namespace TextRpg.Models
                 string name = rdr.GetString(1);
                 int level = rdr.GetInt32(2);
                 int exp = rdr.GetInt32(3);
-                int hp = rdr.GetInt32(4);
-                int ad = rdr.GetInt32(5);
-                int iq = rdr.GetInt32(6);
-                int dex = rdr.GetInt32(7);
-                int lck = rdr.GetInt32(8);
-                int charisma = rdr.GetInt32(9);
+                int maxHp = rdr.GetInt32(4);
+                int hp = rdr.GetInt32(5);
+                int armor = rdr.GetInt32(6);
+                int ad = rdr.GetInt32(7);
+                int iq = rdr.GetInt32(8);
+                int dex = rdr.GetInt32(9);
+                int lck = rdr.GetInt32(10);
+                int charisma = rdr.GetInt32(11);
             }
-            Character thisCharacter = new Character(name, level, exp, hp, ad, iq, dex, lck, charisma, id);
+            Character thisCharacter = new Character(name, level, exp, maxHp, hp, armor, ad, iq, dex, lck, charisma, id);
             thisCharacter.SetId(id);
             return thisCharacter;
 

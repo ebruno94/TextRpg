@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 05, 2018 at 08:31 PM
+-- Generation Time: Mar 05, 2018 at 11:46 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -33,7 +33,9 @@ CREATE TABLE `characters` (
   `name` varchar(255) NOT NULL,
   `level` int(11) NOT NULL,
   `experience` int(11) NOT NULL,
+  `max_hp` int(11) NOT NULL,
   `hp` int(11) NOT NULL,
+  `armor` int(11) NOT NULL,
   `ad` int(11) NOT NULL,
   `iq` int(11) NOT NULL,
   `dexterity` int(11) NOT NULL,
@@ -64,12 +66,14 @@ CREATE TABLE `items` (
   `name` varchar(255) NOT NULL,
   `img_url` varchar(255) NOT NULL,
   `hp` int(11) NOT NULL,
+  `armor` int(11) NOT NULL,
   `ad` int(11) NOT NULL,
   `iq` int(11) NOT NULL,
   `luck` int(11) NOT NULL,
   `charisma` int(11) NOT NULL,
   `dexterity` int(11) NOT NULL,
-  `disposable` int(11) NOT NULL
+  `equippable` int(11) NOT NULL,
+  `action` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
@@ -83,12 +87,15 @@ CREATE TABLE `monsters` (
   `name` varchar(255) NOT NULL,
   `img_url` int(11) NOT NULL,
   `level` int(11) NOT NULL,
+  `max_hp` int(11) NOT NULL,
   `hp` int(11) NOT NULL,
+  `armor` int(11) NOT NULL,
   `ad` int(11) NOT NULL,
   `charisma` int(11) NOT NULL,
   `dexterity` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
-  `experience` int(11) NOT NULL
+  `experience` int(11) NOT NULL,
+  `audio_source` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
