@@ -68,12 +68,12 @@ namespace TextRpg.Models
         {
             foreach (Item equippable in _equippables)
             {
-                _health += equippable.GetHP();
-                _attackDamage += equippable.GetAD();
-                _intelligence += equippable.GetIQ();
-                _luck += equippable.GetLCK();
-                _charisma += equippable.GetCHR();
-                _dexterity += equippable.GetDEX();
+                _health += equippable.GetHealth();
+                _attackDamage += equippable.GetAttackDamage();
+                _intelligence += equippable.GetIntelligence();
+                _luck += equippable.GetLuck();
+                _charisma += equippable.GetCharisma();
+                _dexterity += equippable.GetDexterity();
             }
         }
 
