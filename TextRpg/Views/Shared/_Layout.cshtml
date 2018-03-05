@@ -1,3 +1,5 @@
+@using TextRpg.Models;
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,6 +9,99 @@
     <link rel='stylesheet' href="~/css/styles.css">
   </head>
   <body>
+
+    <!-- Navbar  -->
+    <div class="container" id="navbar">
+      <div class="row">
+        @if (Game.User != null)
+        {
+        <div class="col-md-8">
+        </div>
+        <div class="col-md-2">
+          <a href="/User/Display"><p>@Game.User.GetName()</p></a>
+        </div>
+        <div class="col-md-1">
+          <a href="/Game/Info"><p>Help</p></a>
+        </div>
+        <div class="col-md-1">
+          <a href="/User/Logout"><p>Logout</p></a>
+        </div>
+        }
+        else if (Game.User == null)
+        {
+        <div class="col-md-10">
+        </div>
+        <div class="col-md-1">
+          <a href="/Game/Info"><p>Help</p></a>
+        </div>
+        <div class="col-md-1">
+          <a href="/User/Login"><p>Login</p></a>
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- Jumbotron -->
+    <div class="container" id="jumbotronContainer">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Space X: Mission to Mars</h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Container -->
+    <div class="container" id="gameContainer">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="row" id="characterStats">
+            <div class="col-md-12">
+
+            </div>
+          </div>
+          <div class="row" id="equippableInventory">
+            <div class="col-md-12">
+              <div class="row">
+                @foreach (var item in Game.User.Character.Inventory.GetEquippables())
+                {
+                  <div class="col-md-3 itemCard">
+                    <p class="itemName">@item.GetName()</p>
+                    <a href="@item.GetAction()"><img class="itemImage" src="@item.GetImgUrl()"/></a>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+          <div class="row" id="disposableInventory">
+            <div class="col-md-12">
+              <div class="row">
+                @foreach (var item in Game.User.Character.Inventory.GetDisposibles())
+                {
+                  <div class="col-md-3 itemCard">
+                    <p class="itemName">@item.GetName()</p>
+                    <a href="@item.GetAction()"><img class="itemImage" src="@item.GetImgUrl()"/></a>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" id="eventContainer">
+
+        </div>
+        <div class="col-md-3">
+          <div class="row" id="monsterStats">
+            <p class="monsterName">@Game.Room.Monster.GetName()</p>
+            <img src="@Game.Room.Monster.GetImgUrl()" />
+            <p class="monsterHealthInt"> @Game.Room.Monster.GetHp() / @GAme.Room.Monster.GetMaxHp() </p>
+          </div>
+          <div class="row" id="roomMap">
+
+          </div>
+        </div>
+      </div>
+    </div>
     @RenderBody()
+    <footer>Epicodus (C) Alex, Ernest, Justin, Victor 2018</footer>
   </body>
 </html>
