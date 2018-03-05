@@ -138,18 +138,22 @@ namespace TextRpg.Models
             //Inventory Adjustment
             this.UpdateInventoryStats();
         }
-        public void LevelFunction()
-        {
-            if(ExperienceForLevel(_level+1) - ExperienceForLevel(_level) =< experience)
-            {
-                _level += _level + 1;
-            }
-        }
+
         public void ExperienceForLevel(int inputLevel)
         {
             double experienceRequiredForLevel = Math.Pow(2, (inputLevel+1)/2.5)
             return experienceRequiredForLevel;
-
+        }
+        public double GetExperienceForNextLevel()
+        {
+            return ExperienceForLevel(_level+1);
+        }
+        public void CheckForLevelUp()
+        {
+            if(_experience >= ExperienceForLevel(_level+1))
+            {
+                _level += _level + 1;
+            }
         }
         //EXPERIENCE/LEVEL FUNCTIONS END HERE ------------------------------------------------------------->
 
