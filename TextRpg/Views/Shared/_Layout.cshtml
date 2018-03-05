@@ -61,23 +61,32 @@
               <div class="row">
                 <div class="col-md-12">
                   <p id="characterName">@Game.GetGameUser().GetCharacter().GetName()</p>
+                  <p id="characterLevel">@Game.GetGameUser().GetCharacter().GetLevel()</p>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
-
+                  <p id="characterHealth">@Game.GetGameUser().GetCharacter().GetHealth / @Game.GetGameUser().GetCharacter().GetMaxhealth()</p>
+                  <div id="characterHealthBar">
+                  </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
-
+                  <p id="characterExperience">@Game.GetGameUser().GetCharacter().GetExperience() / @Game.GetGameUser().GetCharacter().GetExperienceForNextLevel()</p>
+                  <div id="characterExperienceBar">
+                  </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
-
+                <div class="col-md-6 characterStats">
+                  <p>Armor: @Game.GetGameUser().GetCharacter().GetArmor()</p>
+                  <p>Attack Damage: @Game.GetGameUser().GetCharacter().GetAttackDamage()</p>
+                  <p>Intelligence: @Game.GetGameUser().GetCharacter().GetIntelligence()</p>
                 </div>
-                <div class="col-md-6">
-
+                <div class="col-md-6 characterStats">
+                  <p>Dexterity: @Game.GetGameUser().GetCharacter().GetDexterity()</p>
+                  <p>Luck: @Game.GetGameUser().GetCharacter().GetLuck()</p>
+                  <p>Charisma: @Game.GetGameUser().GetCharacter().GetCharisma()</p>
                 </div>
               </div>
             </div>
@@ -116,9 +125,17 @@
 
         <!-- Event Container -->
         <div class="col-md-6" id="eventContainer">
+          <div class="row">
+            @RenderBody()
+          </div>
+          <div class="row" id="battleLog">
 
+          </div>
         </div>
+
         <div class="col-md-3">
+
+          <!-- Monster Stats -->
           <div class="row" id="monsterStats">
             <p class="monsterName">@Game.GetRoom().GetMonster().GetName()</p>
             <img src="@Game.Room.Monster.GetImgUrl()" />
@@ -127,13 +144,14 @@
               <!-- Input Monster Health Bar Here -->
             </div>
           </div>
+
+          <!-- Room Map -->
           <div class="row" id="roomMap">
 
           </div>
         </div>
       </div>
     </div>
-    @RenderBody()
     <footer>Epicodus (C) Alex, Ernest, Justin, Victor 2018</footer>
   </body>
 </html>
