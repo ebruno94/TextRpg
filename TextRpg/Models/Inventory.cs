@@ -9,6 +9,7 @@ namespace TextRpg.Models
     {
         private int _characterId;
         private int _health;
+        private int _armor;
         private int _attackDamage;
         private int _intelligence;
         private int _luck;
@@ -21,6 +22,7 @@ namespace TextRpg.Models
         {
             _characterId = charId;
             _health = 0;
+            _armor = 0;
             _attackDamage = 0;
             _intelligence = 0;
             _luck = 0;
@@ -43,14 +45,15 @@ namespace TextRpg.Models
                 string name = rdr.GetString(1);
                 string imgUrl = rdr.GetString(2);
                 int hp = rdr.GetInt32(3);
-                int ad = rdr.GetInt32(4);
-                int iq = rdr.GetInt32(5);
-                int luck = rdr.GetInt32(6);
-                int charisma = rdr.GetInt32(7);
-                int dex = rdr.GetInt32(8);
-                int equippable = rdr.GetInt32(9);
-                string action = rdr.GetString(10);
-                Item thisItem = new Item(name, imgUrl, hp, ad, iq, luck, charisma, dex, equippable, action);
+                int armor = rdr.GetInt32(4)
+                int ad = rdr.GetInt32(5);
+                int iq = rdr.GetInt32(6);
+                int luck = rdr.GetInt32(7);
+                int charisma = rdr.GetInt32(8);
+                int dex = rdr.GetInt32(9);
+                int equippable = rdr.GetInt32(10);
+                string action = rdr.GetString(11);
+                Item thisItem = new Item(name, imgUrl, hp, armor, ad, iq, luck, charisma, dex, equippable, action);
                 thisItem.SetId(id);
 
                 if (equippable != -1)
@@ -70,6 +73,7 @@ namespace TextRpg.Models
             foreach (Item equippable in _equippables)
             {
                 _health += equippable.GetHealth();
+                _armor += equippable.GetArmor();
                 _attackDamage += equippable.GetAttackDamage();
                 _intelligence += equippable.GetIntelligence();
                 _luck += equippable.GetLuck();
@@ -78,27 +82,32 @@ namespace TextRpg.Models
             }
         }
 
-        public int GetHP()
+        public int GetHealth()
         {
             return _health;
         }
 
-        public int GetAD()
+        public int GetArmor()
+        {
+            return _armor;
+        }
+
+        public int GetAttackDamage()
         {
             return _attackDamage;
         }
 
-        public int GetIQ()
+        public int GetIntelligence()
         {
             return _intelligence;
         }
 
-        public int GetLCK()
+        public int GetLuck()
         {
             return _luck;
         }
 
-        public int GetCHR()
+        public int GetCharisma()
         {
             return _charisma;
         }
@@ -143,6 +152,19 @@ namespace TextRpg.Models
             MySqlParameter itemIdPara = new MySqlParameter("@item_id", itemId);
             cmd.Parameters.Add(charIdPara);
             cmd.Parameters.Add(itemIdPara);
+            cmd.ExecuteNonQuery();
+            conn.Dispose();
+            this.UpdateInventoryStats();
+        }
+
+        public void ClearInventory()
+        {
+            MySqlConnector conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"REMOVE FROM inventories WHERE character_id = @character_id;";
+            MySqlParameter charIdPara = new MySqlParameter("@character_id", _charId);
+            cmd.Parameters.Add(charIdPara);
             cmd.ExecuteNonQuery();
             conn.Dispose();
             this.UpdateInventoryStats();
