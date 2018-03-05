@@ -136,6 +136,7 @@ namespace TextRpg.Models
             _dexterity = 1 + _level;
 
             //Inventory Adjustment
+            this.UpdateInventoryStats();
         }
         public void LevelFunction()
         {

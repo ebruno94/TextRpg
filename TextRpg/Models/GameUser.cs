@@ -5,7 +5,7 @@ using System;
 
 namespace TextRpg.Models
 {
-    public class User
+    public class GameUser
     {
         private int _id;
         private string _name;
@@ -14,7 +14,7 @@ namespace TextRpg.Models
         private string _email;
         private static Character _character;
 
-        public User(string name, string username, string password, string email, int Id = 0)
+        public GameUser(string name, string username, string password, string email, int Id = 0)
         {
             _name = name;
             _username = username;
