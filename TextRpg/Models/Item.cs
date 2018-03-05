@@ -10,24 +10,24 @@ namespace TextRpg.Models
         private int _id;
         private string _name;
         private string _url;
-        private int _hp;
-        private int _ad;
-        private int _iq;
+        private int _health;
+        private int _attackDamage;
+        private int _intelligence;
         private int _luck;
         private int _charisma;
-        private int _dex;
+        private int _dexterity;
         private int _equippable;
 
         public Item (string name, string imgUrl, int hp, int ad, int iq, int luck, int charisma, int dex, int equippable)
         {
             _name = name;
             _url = url;
-            _hp = hp;
-            _ad = ad;
-            _iq = iq;
+            _health = hp;
+            _attackDamage = ad;
+            _intelligence = iq;
             _luck = luck;
             _charisma = charisma;
-            _dex = dex;
+            _dexterity = dex;
             _equippable = equippable;
         }
 
@@ -51,15 +51,15 @@ namespace TextRpg.Models
         }
         public int GetHP()
         {
-            return _hp;
+            return _health;
         }
         public int GetAD()
         {
-            return _ad;
+            return _attackDamage;
         }
         public int GetIQ()
         {
-            return _iq;
+            return _intelligence;
         }
         public int GetLCK()
         {
