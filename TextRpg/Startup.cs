@@ -10,6 +10,7 @@ namespace TextRpg
     {
         public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=text_rpg;";
     }
+
     public class Startup
     {
         public Startup(IHostingEnvironment env)
@@ -36,6 +37,7 @@ namespace TextRpg
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
             app.UseStaticFiles();
+            app.UseDeveloperExceptionPage();
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello world");

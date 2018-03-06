@@ -19,8 +19,9 @@ namespace TextRpg.Models
         private int _dexterity;
         private int _equippable;
         private string _action;
+        private string _audio;
 
-        public Item (string name, string imgUrl, int hp, int armor, int ad, int iq, int luck, int charisma, int dex, int equippable, string action)
+        public Item (string name, string imgUrl, int hp, int armor, int ad, int iq, int luck, int charisma, int dex, int equippable, string action, string audio)
         {
             _name = name;
             _imgUrl = imgUrl;
@@ -33,6 +34,7 @@ namespace TextRpg.Models
             _dexterity = dex;
             _equippable = equippable;
             _action = action;
+            _audio = audio;
         }
 
         public void SetId(int id)
@@ -90,6 +92,11 @@ namespace TextRpg.Models
         public int GetEquippable()
         {
             return _equippable;
+        }
+
+        public string GetAudio()
+        {
+            return _audio;
         }
     }
 }
