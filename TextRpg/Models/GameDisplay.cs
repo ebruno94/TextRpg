@@ -47,10 +47,10 @@ namespace TextRpg.Models
         {
             return _monster;
         }
-        public Map GetMap()
-        {
-            
-        }
+        // public Map GetMap()
+        // {
+        //
+        // }
 
     }
 

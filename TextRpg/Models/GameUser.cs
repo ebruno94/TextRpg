@@ -66,7 +66,7 @@ namespace TextRpg.Models
 
         public Character GetCharacter()
         {
-            MySqlConnector = DB.Connection();
+            MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"SELECT * FROM characters WHERE user_id = @user_id;";
@@ -85,21 +85,22 @@ namespace TextRpg.Models
             int dex = 0;
             int lck = 0;
             int charisma = 0;
+            int armor = 0;
 
             while (rdr.Read())
             {
-                int id =  rdr.GetInt32(0);
-                string name = rdr.GetString(1);
-                int level = rdr.GetInt32(2);
-                int exp = rdr.GetInt32(3);
-                int maxHp = rdr.GetInt32(4);
-                int hp = rdr.GetInt32(5);
-                int armor = rdr.GetInt32(6);
-                int ad = rdr.GetInt32(7);
-                int iq = rdr.GetInt32(8);
-                int dex = rdr.GetInt32(9);
-                int lck = rdr.GetInt32(10);
-                int charisma = rdr.GetInt32(11);
+                id =  rdr.GetInt32(0);
+                name = rdr.GetString(1);
+                level = rdr.GetInt32(2);
+                exp = rdr.GetInt32(3);
+                maxHp = rdr.GetInt32(4);
+                hp = rdr.GetInt32(5);
+                armor = rdr.GetInt32(6);
+                ad = rdr.GetInt32(7);
+                iq = rdr.GetInt32(8);
+                dex = rdr.GetInt32(9);
+                lck = rdr.GetInt32(10);
+                charisma = rdr.GetInt32(11);
             }
             Character thisCharacter = new Character(name, level, exp, maxHp, hp, armor, ad, iq, dex, lck, charisma, id);
             thisCharacter.SetId(id);

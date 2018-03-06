@@ -32,25 +32,26 @@ namespace TextRpg.Models
         }
         public Item TreasureChestEvent()
         {
+            return null;
             //Randomly generates an Item and appends it to the user database table.
         }
 
-        public void FightEvent(){
-            while(_character.CheckDeath != true && _monsterAttack != true)
-            {
-                _monster.Defend(_character.Attack());
-                if(_monster.CheckDeath()){
-                    _log += "You killed "+ _monster.GetName() +" with a " + _monster.Attack() + " damage attack. " <br>;
-                } else {
-                    _log += "You attack " + _monster.GetName() " for " + _character.Attack() + " ." <br>;
-                }
-                if(_character.CheckDeath()){
-                    _log += "You died... " + _monster.GetName() + " attacked you for " + _monster.Attack() <br>;
-                } else {
-                    _log += _monster.GetName() + " attacks you for " + _monster.Attack() + " ." <br>;
-                }
-            }
-        }
+        // public void FightEvent(){
+        //     while(_character.CheckDeath() != true && _monster.CheckDeath() != true)
+        //     {
+        //         _monster.Defend(_character.Attack());
+        //         if(_monster.CheckDeath()){
+        //             _log += "You killed "+ _monster.GetName() + " with a " + _monster.Attack() + " damage attack.  <br>";
+        //         } else {
+        //             _log += "You attack " + _monster.GetName() + " for " + _character.Attack() + ". <br>";
+        //         }
+        //         if(_character.CheckDeath()){
+        //             _log += "You died... " + _monster.GetName() + " attacked you for " + _monster.Attack() +"<br>";
+        //         } else {
+        //             _log += _monster.GetName() + " attacks you for " + _monster.Attack() + " . <br>";
+        //         }
+        //     }
+        // }
         public int GetId()
         {
             return _id;

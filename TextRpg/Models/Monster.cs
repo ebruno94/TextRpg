@@ -9,13 +9,15 @@ namespace TextRpg.Models
     {
         private int _level;
         private int _experience;
-        private double _health;
-        private double _attackDamage;
-        private double _dexterity;
+        private int _health;
+        private int _maxHealth;
+        private int _attackDamage;
+        private int _dexterity;
         private int _luck;
         private int _charisma;
         private static Item _monsterItem;
         private string _imgUrl;
+        private int _armor;
 
         public Monster()
         {
@@ -24,11 +26,10 @@ namespace TextRpg.Models
             _health = 100;
             _maxHealth = 100;
             _attackDamage = 1;
-             = 1;
             _dexterity = 1;
             _luck = 1;
             _charisma = 1;
-            _inventory = null;
+            _armor = 0;
         }
         //Change functions
         public void ChangeLevel(int level)
@@ -39,19 +40,19 @@ namespace TextRpg.Models
         {
             _experience += experience;
         }
-        public void ChangeMaxHealth(double health)
+        public void ChangeMaxHealth(int health)
         {
             _maxHealth += health;
         }
-        public void ChangeHealth(double health)
+        public void ChangeHealth(int health)
         {
             _health += health;
         }
-        public void ChangeAttackDamage(double attackDamage)
+        public void ChangeAttackDamage(int attackDamage)
         {
-            _attackDamage += attackDamage
+            _attackDamage += attackDamage;
         }
-        public void ChangeDexterity(double dexterity)
+        public void ChangeDexterity(int dexterity)
         {
             _dexterity = dexterity;
         }
@@ -72,19 +73,19 @@ namespace TextRpg.Models
         {
             return _experience;
         }
-        public double GetMaxHealth()
+        public int GetMaxHealth()
         {
             return _maxHealth;
         }
-        public double GetHealth()
+        public int GetHealth()
         {
             return _health;
         }
-        public double GetAttackDamage()
+        public int GetAttackDamage()
         {
             return _attackDamage;
         }
-        public double GetDexterity()
+        public int GetDexterity()
         {
             return _dexterity;
         }

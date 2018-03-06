@@ -82,7 +82,7 @@ namespace TextRpg.Models
         }
         public void ChangeAttackDamage(int attackDamage)
         {
-            _attackDamage += attackDamage
+            _attackDamage += attackDamage;
         }
         public void ChangeArmor(int armor)
         {
@@ -149,16 +149,16 @@ namespace TextRpg.Models
             _attackDamage = 66 + _level*25;
             _dexterity = 1 + _level;
             //Inventory Adjustment
-            this.UpdateInventoryStats();
+            _inventory.UpdateInventoryStats();
         }
         public int ExperienceForLevel(int inputLevel)
         {
-            double experienceRequiredForLevel = Math.Pow(2, (inputLevel+1)/2.5)
-            return Int32.Parse(experienceRequiredForLevel);
+            double experienceRequiredForLevel = Math.Pow(2, (inputLevel+1)/2.5);
+            return (int) (experienceRequiredForLevel);
         }
         public int GetExperienceForNextLevel()
         {
-            return Int32.Parse(ExperienceForLevel(_level+1));
+            return (int) (ExperienceForLevel(_level+1));
         }
         public void CheckForLevelUp()
         {
@@ -174,7 +174,7 @@ namespace TextRpg.Models
         {
             this.StatUpdate();
             int outputDamage = 1*_level + (_attackDamage/100)*_level;
-            return Int32.Parse(outputDamage);
+            return (int) (outputDamage);
         }
         //ATTACK FUNCTIONS END HERE ------------------------------------------------------------->
 
@@ -188,7 +188,7 @@ namespace TextRpg.Models
                 //Nice dodge
             } else {
                 outputDamage = this.ArmorDamageReduction(inputDamage);
-                _health = Int32.Parse(_health - outputDamage);
+                _health = (int) (_health - outputDamage);
             }
 
         }
@@ -197,7 +197,7 @@ namespace TextRpg.Models
         {
             int outputDamage = inputDamage;
             int damageMultiplier = 1;
-            int totalArmor = GetCharacterTotalArmor;
+            int totalArmor = _inventory.GetArmor();
 
             if(totalArmor >= 0)
             {
@@ -206,7 +206,7 @@ namespace TextRpg.Models
                 damageMultiplier = 1;
             }
 
-            return Int32.Parse(outputDamage*damageMultiplier);
+            return (int) (outputDamage*damageMultiplier);
         }
         public bool Dodge()
         {

@@ -28,7 +28,7 @@ namespace TextRpg.Models
             _luck = 0;
             _charisma = 0;
             _dexterity = 0;
-            MySqlConnector conn = DB.Connection();
+            MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"SELECT items.* FROM
@@ -45,7 +45,7 @@ namespace TextRpg.Models
                 string name = rdr.GetString(1);
                 string imgUrl = rdr.GetString(2);
                 int hp = rdr.GetInt32(3);
-                int armor = rdr.GetInt32(4)
+                int armor = rdr.GetInt32(4);
                 int ad = rdr.GetInt32(5);
                 int iq = rdr.GetInt32(6);
                 int luck = rdr.GetInt32(7);
@@ -129,11 +129,11 @@ namespace TextRpg.Models
 
         public void AddItem(int itemId)
         {
-            MySqlConnector conn = DB.Connection();
+            MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"INSERT INTO inventories (character_id, item_id) VALUES (@character_id, @item_id);";
-            MySqlParameter charIdPara = new MySqlParameter("@character_id", _charId);
+            MySqlParameter charIdPara = new MySqlParameter("@character_id", _characterId);
             MySqlParameter itemIdPara = new MySqlParameter("@item_id", itemId);
             cmd.Parameters.Add(charIdPara);
             cmd.Parameters.Add(itemIdPara);
@@ -144,11 +144,11 @@ namespace TextRpg.Models
 
         public void RemoveItem(int itemId)
         {
-            MySqlConnector conn = DB.Connection();
+            MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"REMOVE FROM inventories WHERE character_id = @character_id AND item_id = @item_id;";
-            MySqlParameter charIdPara = new MySqlParameter("@character_id", _charId);
+            MySqlParameter charIdPara = new MySqlParameter("@character_id", _characterId);
             MySqlParameter itemIdPara = new MySqlParameter("@item_id", itemId);
             cmd.Parameters.Add(charIdPara);
             cmd.Parameters.Add(itemIdPara);
@@ -159,11 +159,11 @@ namespace TextRpg.Models
 
         public void ClearInventory()
         {
-            MySqlConnector conn = DB.Connection();
+            MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"REMOVE FROM inventories WHERE character_id = @character_id;";
-            MySqlParameter charIdPara = new MySqlParameter("@character_id", _charId);
+            MySqlParameter charIdPara = new MySqlParameter("@character_id", _characterId);
             cmd.Parameters.Add(charIdPara);
             cmd.ExecuteNonQuery();
             conn.Dispose();
