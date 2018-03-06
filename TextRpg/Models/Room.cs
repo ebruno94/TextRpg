@@ -24,11 +24,11 @@ namespace TextRpg.Models
         }
         public void GiveExperience()
         {
-            //Open SQL connection add experience to Character based on Monsetr
+            _character.ChangeExperience(_monster.GetExperience());
         }
         public void Restart()
         {
-
+            _character.GetInventory().ClearInventory();
         }
         //Randomly generates an Item and gives it to the current Character
         public void TreasureChestEvent()
@@ -54,12 +54,16 @@ namespace TextRpg.Models
         public void FightEvent(){
             while(_character.CheckDeath() != true && _monster.CheckDeath() != true)
             {
+                //Need some listening event
                 _monster.Defend(_character.Attack());
                 if(_monster.CheckDeath()){
+                    GiveExperience();
                     _log += "You killed "+ _monster.GetName() + " with a " + _monster.Attack() + " damage attack.  <br>";
+                    _log += "You gained " + _monster.GetExperience() + ". <br>";
                 } else {
                     _log += "You attack " + _monster.GetName() + " for " + _character.Attack() + ". <br>";
                 }
+                //Need some delay before the monster attacks
                 if(_character.CheckDeath()){
                     _log += "You died... " + _monster.GetName() + " attacked you for " + _monster.Attack() +"<br>";
                 } else {
