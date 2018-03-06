@@ -1,0 +1,57 @@
+@using TextRpg.Models;
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simple Template Layout</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' href="~/css/styles.css">
+  </head>
+  <body>
+
+    <!-- Navbar  -->
+    <div class="container" id="navbar">
+      <div class="row">
+        @if (Game.GetUser() != null)
+        {
+        <div class="col-md-8">
+        </div>
+        <div class="col-md-2">
+          <a href="/User/Display"><p>@Game.GetUser().GetName()</p></a>
+        </div>
+        <div class="col-md-1">
+          <a href="/Game/Info"><p>Help</p></a>
+        </div>
+        <div class="col-md-1">
+          <a href="/User/Logout"><p>Logout</p></a>
+        </div>
+        }
+        else if (Game.GetUser() == null)
+        {
+        <div class="col-md-10">
+        </div>
+        <div class="col-md-1">
+          <a href="/Game/Info"><p>Help</p></a>
+        </div>
+        <div class="col-md-1">
+          <a href="/User/Login"><p>Login</p></a>
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- Jumbotron -->
+    <div class="container" id="jumbotronContainer">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Space X: Mission to Mars</h1>
+        </div>
+      </div>
+    </div>
+
+    @RenderBody()
+
+    <footer> Epicodus (C) Alex, Ernest, Justin, Victor 2018 </footer>
+  </body>
+</html>
