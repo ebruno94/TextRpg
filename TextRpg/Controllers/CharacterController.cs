@@ -18,6 +18,7 @@ namespace TextRpg.Controllers
             string name = Request.Form["name"];
             Character myCharacter = new Character(name, Game.GetGameUser().GetId());
             Game.GetGameUser().SetCharacter(myCharacter);
+            myCharacter.Save(); 
             return RedirectToAction("Display", "User");
         }
     }
