@@ -1,6 +1,7 @@
 @{
 Layout = "_PreGameLayout";
 }
+@using TextRpg.Models;
 
 <div id="indexBody">
   <div class="container">
@@ -42,7 +43,7 @@ Layout = "_PreGameLayout";
         </div>
       </div>
       }
-      else if (@Game.GetGameUser().GetCharacter() != null)
+      else if (@Game.GetGameUser().GetCharacter() == null)
       {
       <div class="row">
         <div class="col-md-12">

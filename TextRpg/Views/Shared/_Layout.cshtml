@@ -13,12 +13,12 @@
     <!-- Navbar  -->
     <div class="container" id="navbar">
       <div class="row">
-        @if (Game.GetUser() != null)
+        @if (Game.GetGameUser() != null)
         {
         <div class="col-md-8">
         </div>
         <div class="col-md-2">
-          <a href="/User/Display"><p>@Game.GetUser().GetName()</p></a>
+          <a href="/User/Display"><p>@Game.GetGameUser().GetName()</p></a>
         </div>
         <div class="col-md-1">
           <a href="/Game/Info"><p>Help</p></a>
@@ -27,7 +27,7 @@
           <a href="/User/Logout"><p>Logout</p></a>
         </div>
         }
-        else if (Game.GetUser() == null)
+        else if (Game.GetGameUser() == null)
         {
         <div class="col-md-10">
         </div>
@@ -66,7 +66,7 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <p id="characterHealth">@Game.GetGameUser().GetCharacter().GetHealth / @Game.GetGameUser().GetCharacter().GetMaxhealth()</p>
+                  <p id="characterHealth">@Game.GetGameUser().GetCharacter().GetHealth() / @Game.GetGameUser().GetCharacter().GetMaxHealth()</p>
                   <div id="characterHealthBar">
                   </div>
                 </div>
@@ -96,7 +96,7 @@
           <div class="row" id="equippableInventory">
             <div class="col-md-12">
               <div class="row">
-                @foreach (var item in Game.GetUser().GetCharacter().GetInventory().GetEquippables())
+                @foreach (var item in Game.GetGameUser().GetCharacter().GetInventory().GetEquippables())
                 {
                   <div class="col-md-3 itemCard">
                     <p class="itemName">@item.GetName()</p>
@@ -111,7 +111,7 @@
           <div class="row" id="disposableInventory">
             <div class="col-md-12">
               <div class="row">
-                @foreach (var item in Game.GetUser().GetCharacter().GetInventory().GetDisposibles())
+                @foreach (var item in Game.GetGameUser().GetCharacter().GetInventory().GetDisposables())
                 {
                   <div class="col-md-3 itemCard">
                     <p class="itemName">@item.GetName()</p>
@@ -138,8 +138,8 @@
           <!-- Monster Stats -->
           <div class="row" id="monsterStats">
             <p class="monsterName">@Game.GetRoom().GetMonster().GetName()</p>
-            <img src="@Game.Room.Monster.GetImgUrl()" />
-            <p class="monsterHealthInt"> @Game.GetRoom().GetMonster().GetHp() / @Game.GetRoom().GetMonster().GetMaxHp() </p>
+            <img src="@Game.GetRoom().GetMonster().GetImgUrl()" />
+            <p class="monsterHealthInt"> @Game.GetRoom().GetMonster().GetHealth() / @Game.GetRoom().GetMonster().GetMaxHealth() </p>
             <div id="monsterHealthBar">
               <!-- Input Monster Health Bar Here -->
             </div>
