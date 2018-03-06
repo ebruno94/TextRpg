@@ -7,6 +7,7 @@ namespace TextRpg.Models
 {
     public class Monster
     {
+        private string _name;
         private int _level;
         private int _experience;
         private int _health;
@@ -21,6 +22,7 @@ namespace TextRpg.Models
 
         public Monster()
         {
+            _name = "";
             _level = 1;
             _experience = 0;
             _health = 100;
@@ -55,10 +57,6 @@ namespace TextRpg.Models
         {
             _dexterity = dexterity;
         }
-        public void ChangeLuck(int luck)
-        {
-            _luck = luck;
-        }
         public void ChangeCharisma(int charisma)
         {
             _charisma = charisma;
@@ -68,7 +66,14 @@ namespace TextRpg.Models
         {
             return _level;
         }
-
+        public string GetName()
+        {
+            return _name;
+        }
+        public void SetName(string inputName)
+        {
+            _name = inputName;
+        }
         public string GetAudio()
         {
             return _audio;
@@ -133,7 +138,7 @@ namespace TextRpg.Models
         {
             int outputDamage = inputDamage;
             int damageMultiplier = 1;
-            int totalArmor = _inventory.GetArmor();
+            int totalArmor = _armor;
 
             if(totalArmor >= 0)
             {

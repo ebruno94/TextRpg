@@ -141,6 +141,10 @@ namespace TextRpg.Models
         {
             return _luck;
         }
+        public Inventory GetInventory()
+        {
+            return _inventory;
+        }
         //EXPERIENCE/LEVEL UPDATE FUNCTIONS BEGIN HERE ------------------------------------------------------------->
         public void StatUpdate()
         {
