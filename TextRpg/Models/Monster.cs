@@ -13,7 +13,6 @@ namespace TextRpg.Models
         private int _maxHealth;
         private int _attackDamage;
         private int _dexterity;
-        private int _luck;
         private int _charisma;
         private static Item _monsterItem;
         private string _imgUrl;
@@ -28,7 +27,6 @@ namespace TextRpg.Models
             _maxHealth = 100;
             _attackDamage = 1;
             _dexterity = 1;
-            _luck = 1;
             _charisma = 1;
             _armor = 0;
         }
@@ -94,10 +92,6 @@ namespace TextRpg.Models
         public int GetDexterity()
         {
             return _dexterity;
-        }
-        public int GetLuck()
-        {
-            return _luck;
         }
         public string GetImgUrl()
         {
