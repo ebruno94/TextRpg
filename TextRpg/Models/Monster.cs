@@ -9,13 +9,15 @@ namespace TextRpg.Models
     {
         private int _level;
         private int _experience;
-        private double _health;
-        private double _attackDamage;
-        private double _dexterity;
-        private int _luck;
+        private int _health;
+        private int _maxHealth;
+        private int _attackDamage;
+        private int _dexterity;
         private int _charisma;
         private static Item _monsterItem;
         private string _imgUrl;
+        private int _armor;
+        private string _audio;
 
         public Monster()
         {
@@ -24,11 +26,9 @@ namespace TextRpg.Models
             _health = 100;
             _maxHealth = 100;
             _attackDamage = 1;
-             = 1;
             _dexterity = 1;
-            _luck = 1;
             _charisma = 1;
-            _inventory = null;
+            _armor = 0;
         }
         //Change functions
         public void ChangeLevel(int level)
@@ -39,19 +39,19 @@ namespace TextRpg.Models
         {
             _experience += experience;
         }
-        public void ChangeMaxHealth(double health)
+        public void ChangeMaxHealth(int health)
         {
             _maxHealth += health;
         }
-        public void ChangeHealth(double health)
+        public void ChangeHealth(int health)
         {
             _health += health;
         }
-        public void ChangeAttackDamage(double attackDamage)
+        public void ChangeAttackDamage(int attackDamage)
         {
-            _attackDamage += attackDamage
+            _attackDamage += attackDamage;
         }
-        public void ChangeDexterity(double dexterity)
+        public void ChangeDexterity(int dexterity)
         {
             _dexterity = dexterity;
         }
@@ -68,46 +68,103 @@ namespace TextRpg.Models
         {
             return _level;
         }
+
+        public string GetAudio()
+        {
+            return _audio;
+        }
         public int GetExperience()
         {
             return _experience;
         }
-        public double GetMaxHealth()
+        public int GetMaxHealth()
         {
             return _maxHealth;
         }
-        public double GetHealth()
+        public int GetHealth()
         {
             return _health;
         }
-        public double GetAttackDamage()
+        public int GetAttackDamage()
         {
             return _attackDamage;
         }
-        public double GetDexterity()
+        public int GetDexterity()
         {
             return _dexterity;
-        }
-        public int GetLuck()
-        {
-            return _luck;
         }
         public string GetImgUrl()
         {
             return _imgUrl;
         }
-
+        //EXPERIENCE/LEVEL UPDATE FUNCTIONS BEGIN HERE ------------------------------------------------------------->
+        public void StatUpdate()
+        {
+            //Level Adjustment for monsters
+            _maxHealth = 500 + _level*25;
+            _attackDamage = 66 + _level*25;
+            _dexterity = 1 + _level;
+        }
+        //ATTACK FUNCTIONS BEGIN HERE ------------------------------------------------------------->
         public int Attack()
         {
-            int outputDamage = 0;
-
-            return outputDamage;
+            this.StatUpdate();
+            int outputDamage = 1*_level + (_attackDamage/100)*_level;
+            return (int) (outputDamage);
         }
-        public int Defend(int inputDamage)
-        {
-            int damageTaken = inputDamage;
+        //ATTACK FUNCTIONS END HERE ------------------------------------------------------------->
 
-            return damageTaken;
+        //DEFEND FUNCTIONS BEGIN HERE ------------------------------------------------------------->
+        public void Defend(int inputDamage)
+        {
+            this.StatUpdate();
+            int outputDamage = 0;
+            if(Dodge() == true)
+            {
+                //Nice dodge
+            } else {
+                outputDamage = this.ArmorDamageReduction(inputDamage);
+                _health = (int) (_health - outputDamage);
+            }
+
+        }
+        //
+        public int ArmorDamageReduction(int inputDamage)
+        {
+            int outputDamage = inputDamage;
+            int damageMultiplier = 1;
+            int totalArmor = _inventory.GetArmor();
+
+            if(totalArmor >= 0)
+            {
+                damageMultiplier = (100/(100+totalArmor));
+            } else {
+                damageMultiplier = 1;
+            }
+
+            return (int) (outputDamage*damageMultiplier);
+        }
+        public bool Dodge()
+        {
+            int baseDodgeChance = 10; //10%
+            int totalDodgeChance = baseDodgeChance + this.GetDexterity()*2;
+            Random random = new Random();
+            int dodge = random.Next(1,101);
+            if(dodge <= totalDodgeChance)
+            {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        //DEFEND FUNCTIONS END HERE ------------------------------------------------------------->
+        public bool CheckDeath()
+        {
+            if(_health <= 0){
+                return true;
+            } else {
+                return false;
+            }
         }
 
     }

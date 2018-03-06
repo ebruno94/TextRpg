@@ -11,7 +11,7 @@ namespace TextRpg.Models
 
         public Map()
         {
-            currentLocation = null;
+            // currentLocation = null;
         }
     }
 

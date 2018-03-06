@@ -7,14 +7,16 @@ namespace TextRpg.Models
 {
     public class Character
     {
+        private string _name;
         private int _id;
         private int _level;
         private int _experience;
-        private double _health;
-        private double _maxHealth;
-        private double _attackDamage;
+        private int _maxHealth;
+        private int _health;
+        private int _armor;
+        private int _attackDamage;
         private int _intelligence;
-        private double _dexterity;
+        private int _dexterity;
         private int _luck;
         private int _charisma;
         private static Inventory _inventory;
@@ -24,7 +26,8 @@ namespace TextRpg.Models
             _level = 1;
             _experience = 0;
             _health = 500;
-            maxHealth = 500;
+            _maxHealth = 500;
+            _armor = 0;
             _attackDamage = 66;
             _intelligence = 1;
             _dexterity = 1;
@@ -33,11 +36,14 @@ namespace TextRpg.Models
             _inventory = null;
         }
 
-        public Character(string name, int level, int exp, int hp, int ad, int iq, int dex, int lck, int charisma, int charId)
+        public Character(string name, int level, int exp, int maxhp, int hp, int armor, int ad, int iq, int dex, int lck, int charisma, int charId)
         {
+            _name = name;
             _level = level;
             _experience = exp;
+            _maxHealth = maxhp;
             _health = hp;
+            _armor = armor;
             _attackDamage = ad;
             _intelligence = iq;
             _dexterity = dex;
@@ -66,23 +72,27 @@ namespace TextRpg.Models
         {
             _experience += experience;
         }
-        public void ChangeMaxHealth(double health)
+        public void ChangeMaxHealth(int health)
         {
             _maxHealth += health;
         }
-        public void ChangeHealth(double health)
+        public void ChangeHealth(int health)
         {
             _health += health;
         }
-        public void ChangeAttackDamage(double attackDamage)
+        public void ChangeAttackDamage(int attackDamage)
         {
-            _attackDamage += attackDamage
+            _attackDamage += attackDamage;
+        }
+        public void ChangeArmor(int armor)
+        {
+            _armor += armor;
         }
         public void ChangeIntelligence(int intelligence)
         {
             _intelligence += intelligence;
         }
-        public void ChangeDexterity(double dexterity)
+        public void ChangeDexterity(int dexterity)
         {
             _dexterity = dexterity;
         }
@@ -103,15 +113,19 @@ namespace TextRpg.Models
         {
             return _experience;
         }
-        public double GetMaxHealth()
+        public int GetMaxHealth()
         {
             return _maxHealth;
         }
-        public double GetHealth()
+        public int GetHealth()
         {
             return _health;
         }
-        public double GetAttackDamage()
+        public int GetArmor()
+        {
+            return _armor;
+        }
+        public int GetAttackDamage()
         {
             return _attackDamage;
         }
@@ -119,7 +133,7 @@ namespace TextRpg.Models
         {
             return _intelligence;
         }
-        public double GetDexterity()
+        public int GetDexterity()
         {
             return _dexterity;
         }
@@ -134,50 +148,56 @@ namespace TextRpg.Models
             _maxHealth = 500 + _level*25;
             _attackDamage = 66 + _level*25;
             _dexterity = 1 + _level;
-
             //Inventory Adjustment
+            _inventory.UpdateInventoryStats();
         }
-        public void LevelFunction()
+        public int ExperienceForLevel(int inputLevel)
         {
-            if(ExperienceForLevel(_level+1) - ExperienceForLevel(_level) =< experience)
+            double experienceRequiredForLevel = Math.Pow(2, (inputLevel+1)/2.5);
+            return (int) (experienceRequiredForLevel);
+        }
+        public int GetExperienceForNextLevel()
+        {
+            return (int) (ExperienceForLevel(_level+1));
+        }
+        public void CheckForLevelUp()
+        {
+            if(_experience >= ExperienceForLevel(_level+1))
             {
                 _level += _level + 1;
             }
         }
-        public void ExperienceForLevel(int inputLevel)
-        {
-            double experienceRequiredForLevel = Math.Pow(2, (inputLevel+1)/2.5)
-            return experienceRequiredForLevel;
-
-        }
         //EXPERIENCE/LEVEL FUNCTIONS END HERE ------------------------------------------------------------->
 
         //ATTACK FUNCTIONS BEGIN HERE ------------------------------------------------------------->
-        public double Attack()
+        public int Attack()
         {
+            this.StatUpdate();
             int outputDamage = 1*_level + (_attackDamage/100)*_level;
-            return outputDamage;
+            return (int) (outputDamage);
         }
         //ATTACK FUNCTIONS END HERE ------------------------------------------------------------->
 
         //DEFEND FUNCTIONS BEGIN HERE ------------------------------------------------------------->
         public void Defend(int inputDamage)
         {
+            this.StatUpdate();
             int outputDamage = 0;
             if(Dodge() == true)
             {
                 //Nice dodge
             } else {
                 outputDamage = this.ArmorDamageReduction(inputDamage);
-                _health = _health - outputDamage;
+                _health = (int) (_health - outputDamage);
             }
+
         }
         //
-        public double ArmorDamageReduction(double inputDamage)
+        public int ArmorDamageReduction(int inputDamage)
         {
-            double outputDamage = inputDamage;
-            double damageMultiplier = 1;
-            double totalArmor = GetCharacterTotalArmor;
+            int outputDamage = inputDamage;
+            int damageMultiplier = 1;
+            int totalArmor = _inventory.GetArmor();
 
             if(totalArmor >= 0)
             {
@@ -186,18 +206,7 @@ namespace TextRpg.Models
                 damageMultiplier = 1;
             }
 
-            return outputDamage*damageMultiplier;
-        }
-        //Used with ArmorDamage Reduction to calculate how much damage one swing does.
-        public double GetCharacterTotalArmor()
-        {
-            totalArmor = 0;
-
-            for(int i = 0; i < _inventory.Count; i ++)
-            {
-                totalArmor += _inventory[i].GetArmor();
-            }
-            return totalArmor;
+            return (int) (outputDamage*damageMultiplier);
         }
         public bool Dodge()
         {
@@ -213,6 +222,14 @@ namespace TextRpg.Models
             }
         }
         //DEFEND FUNCTIONS END HERE ------------------------------------------------------------->
+        public bool CheckDeath()
+        {
+            if(_health <= 0){
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
 }
