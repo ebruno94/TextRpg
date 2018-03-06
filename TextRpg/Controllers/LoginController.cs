@@ -20,7 +20,7 @@ namespace TextRpg.Controllers
 
             Game.SetGameUser(GameUser.Find(GameUser.Login(username, password)));
 
-            return redirectToAction("Display", "User");
+            return RedirectToAction("Display", "User");
         }
     }
 }
