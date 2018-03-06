@@ -97,18 +97,74 @@ namespace TextRpg.Models
         {
             return _imgUrl;
         }
-
+        //EXPERIENCE/LEVEL UPDATE FUNCTIONS BEGIN HERE ------------------------------------------------------------->
+        public void StatUpdate()
+        {
+            //Level Adjustment for monsters
+            _maxHealth = 500 + _level*25;
+            _attackDamage = 66 + _level*25;
+            _dexterity = 1 + _level;
+        }
+        //ATTACK FUNCTIONS BEGIN HERE ------------------------------------------------------------->
         public int Attack()
         {
-            int outputDamage = 0;
-
-            return outputDamage;
+            this.StatUpdate();
+            int outputDamage = 1*_level + (_attackDamage/100)*_level;
+            return (int) (outputDamage);
         }
-        public int Defend(int inputDamage)
-        {
-            int damageTaken = inputDamage;
+        //ATTACK FUNCTIONS END HERE ------------------------------------------------------------->
 
-            return damageTaken;
+        //DEFEND FUNCTIONS BEGIN HERE ------------------------------------------------------------->
+        public void Defend(int inputDamage)
+        {
+            this.StatUpdate();
+            int outputDamage = 0;
+            if(Dodge() == true)
+            {
+                //Nice dodge
+            } else {
+                outputDamage = this.ArmorDamageReduction(inputDamage);
+                _health = (int) (_health - outputDamage);
+            }
+
+        }
+        //
+        public int ArmorDamageReduction(int inputDamage)
+        {
+            int outputDamage = inputDamage;
+            int damageMultiplier = 1;
+            int totalArmor = _inventory.GetArmor();
+
+            if(totalArmor >= 0)
+            {
+                damageMultiplier = (100/(100+totalArmor));
+            } else {
+                damageMultiplier = 1;
+            }
+
+            return (int) (outputDamage*damageMultiplier);
+        }
+        public bool Dodge()
+        {
+            int baseDodgeChance = 10; //10%
+            int totalDodgeChance = baseDodgeChance + this.GetDexterity()*2;
+            Random random = new Random();
+            int dodge = random.Next(1,101);
+            if(dodge <= totalDodgeChance)
+            {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        //DEFEND FUNCTIONS END HERE ------------------------------------------------------------->
+        public bool CheckDeath()
+        {
+            if(_health <= 0){
+                return true;
+            } else {
+                return false;
+            }
         }
 
     }

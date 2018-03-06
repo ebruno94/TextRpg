@@ -5,27 +5,21 @@ using System;
 
 namespace TextRpg.Models
 {
-    public class Game
+    public static class Game
     {
         private static GameUser _currentUser;
         private static Room _currentRoom;
         private static GameDisplay _gameDisplay;
 
-        public Game()
-        {
-            _currentUser = null;
-            _currentRoom = null;
-            _gameDisplay = null;
-        }
-        public GameUser GetGameUser()
+        public static GameUser GetGameUser()
         {
             return _currentUser;
         }
-        public Room GetRoom()
+        public static Room GetRoom()
         {
             return _currentRoom;
         }
-        public GameDisplay GetGameDisplay()
+        public static GameDisplay GetGameDisplay()
         {
             return _gameDisplay;
         }
@@ -35,16 +29,16 @@ namespace TextRpg.Models
 
         }
 
-        public void CheckEndGame()
+        public static void CheckEndGame()
         {
 
         }
-        public void Update()
+        public static void Update()
         {
 
         }
 
-        public void Save()
+        public static void Save()
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
@@ -60,7 +54,7 @@ namespace TextRpg.Models
             conn.Dispose();
         }
 
-        public void Restart()
+        public static void Restart()
         {
 
         }
