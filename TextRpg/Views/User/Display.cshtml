@@ -38,9 +38,18 @@ Layout = "_PreGameLayout";
         <div class="col-md-6">
           <a href="/Character/Form"><button type="button" class="btn">Restart</button></a>
         </div>
+        @if (Game.GetGameUser().GetCharacter().GetRoomNumber() == 1)
+        {
         <div class="col-md-6">
-            <a href="/Game/Continue/"><button type="button" class="btn">Continue Game!</button></a>
+            <a href="/Game/Create/"><button type="button" class="btn">Start Game!</button></a>
         </div>
+        }
+        else if (Game.GetGameUser().GetCharacter().GetRoomNumber() != 1)
+        {
+        <div class="col-md-6">
+            <a href="/Game/Continue/@Game.GetGameUser().GetCharacter().GetRoomNumber()"><button type="button" class="btn">Continue Game!</button></a>
+        </div>
+        }
       </div>
       }
       else if (@Game.GetGameUser().GetCharacter() == null)

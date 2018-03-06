@@ -16,7 +16,7 @@ namespace TextRpg.Controllers
         public ActionResult Create()
         {
             string name = Request.Form["name"];
-            Character myCharacter = new Character(name);
+            Character myCharacter = new Character(name, Game.GetGameUser().GetId());
             Game.GetGameUser().SetCharacter(myCharacter);
             return RedirectToAction("Display", "User");
         }

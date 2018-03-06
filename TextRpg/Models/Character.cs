@@ -21,7 +21,7 @@ namespace TextRpg.Models
         private int _charisma;
         private int _roomNumber;
         private int _userId;
-        private static Inventory _inventory;
+        private static Inventory _inventory = null;
 
         public Character(string name, int userId)
         {
