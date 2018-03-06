@@ -13,12 +13,12 @@
     <!-- Navbar  -->
     <div class="container" id="navbar">
       <div class="row">
-        @if (Game.GetUser() != null)
+        @if (Game.GetGameUser() != null)
         {
         <div class="col-md-8">
         </div>
         <div class="col-md-2">
-          <a href="/User/Display"><p>@Game.GetUser().GetName()</p></a>
+          <a href="/User/Display"><p>@Game.GetGameUser().GetName()</p></a>
         </div>
         <div class="col-md-1">
           <a href="/Game/Info"><p>Help</p></a>
@@ -27,7 +27,7 @@
           <a href="/User/Logout"><p>Logout</p></a>
         </div>
         }
-        else if (Game.GetUser() == null)
+        else if (Game.GetGameUser() == null)
         {
         <div class="col-md-10">
         </div>
