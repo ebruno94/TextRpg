@@ -1,0 +1,61 @@
+@{
+Layout = "_PreGameLayout";
+}
+@using TextRpg.Models;
+
+<div id="indexBody">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12"
+        <h2>Welcome Back @Game.GetGameUser().GetName()</h2>
+      </div>
+    </div>
+      @if (@Game.GetGameUser().GetCharacter() != null)
+      {
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Character Name: @Game.GetGameUser().GetCharacter().GetName()</h3>
+          <h4>Curent Room: @Game.GetGameUser().GetRoomNumber()</h4>
+        </div>
+      </div>
+      <div class="row" class="characterEquipment">
+        <div class="col-md-12">
+        </div>
+      </div>
+      <div class="row" class="characterStats">
+        <div class="col-md-6 characterStats">
+          <p>Armor: @Game.GetGameUser().GetCharacter().GetArmor()</p>
+          <p>Attack Damage: @Game.GetGameUser().GetCharacter().GetAttackDamage()</p>
+          <p>Intelligence: @Game.GetGameUser().GetCharacter().GetIntelligence()</p>
+        </div>
+        <div class="col-md-6 characterStats">
+          <p>Dexterity: @Game.GetGameUser().GetCharacter().GetDexterity()</p>
+          <p>Luck: @Game.GetGameUser().GetCharacter().GetLuck()</p>
+          <p>Charisma: @Game.GetGameUser().GetCharacter().GetCharisma()</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <a href="/Character/Form"><button type="button" class="btn">Restart</button></a>
+        </div>
+        <div class="col-md-6">
+            <a href="/Game/Continue/"><button type="button" class="btn">Continue Game!</button></a>
+        </div>
+      </div>
+      }
+      else if (@Game.GetGameUser().GetCharacter() == null)
+      {
+      <div class="row">
+        <div class="col-md-12">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <a href="/Character/Form"><button type="button" class="btn">Create New Character</button></a>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

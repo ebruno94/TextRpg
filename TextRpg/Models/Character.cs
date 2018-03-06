@@ -19,10 +19,14 @@ namespace TextRpg.Models
         private int _dexterity;
         private int _luck;
         private int _charisma;
+        private int _roomNumber;
+        private int _userId;
         private static Inventory _inventory;
+        private int _userId;
 
-        public Character()
+        public Character(string name, int userId)
         {
+            _name = name;
             _level = 1;
             _experience = 0;
             _health = 500;
@@ -33,10 +37,12 @@ namespace TextRpg.Models
             _dexterity = 1;
             _luck = 1;
             _charisma = 1;
+            _roomNumber = 1;
             _inventory = null;
+            _userId = userId;
         }
 
-        public Character(string name, int level, int exp, int maxhp, int hp, int armor, int ad, int iq, int dex, int lck, int charisma, int charId)
+        public Character(string name, int level, int exp, int maxhp, int hp, int armor, int ad, int iq, int dex, int lck, int charisma, int id, int roomNumber, int userId)
         {
             _name = name;
             _level = level;
@@ -49,8 +55,62 @@ namespace TextRpg.Models
             _dexterity = dex;
             _luck = lck;
             _charisma = charisma;
-            _inventory = new Inventory(charId);
+            _roomNumber = roomNumber;
+            _id = id;
+            _inventory = new Inventory(id);
             _inventory.UpdateInventoryStats();
+            _userId = userId;
+        }
+
+        public void Save()
+        {
+
+        }
+
+        public static Character Find(int characterId)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM characters WHERE user_id = @user_id;";
+            var userIdPara = new MySqlParameter("@user_id", characterId);
+            cmd.Parameters.Add(userIdPara);
+
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            int id =  0;
+            string name = "";
+            int level = 0;
+            int exp = 0;
+            int maxHp = 0;
+            int hp = 0;
+            int ad = 0;
+            int iq = 0;
+            int dex = 0;
+            int lck = 0;
+            int charisma = 0;
+            int roomNumber = 0;
+            int armor = 0;
+            int userId = 0;
+
+            while (rdr.Read())
+            {
+                id =  rdr.GetInt32(0);
+                name = rdr.GetString(1);
+                level = rdr.GetInt32(2);
+                exp = rdr.GetInt32(3);
+                maxHp = rdr.GetInt32(4);
+                hp = rdr.GetInt32(5);
+                armor = rdr.GetInt32(6);
+                ad = rdr.GetInt32(7);
+                iq = rdr.GetInt32(8);
+                dex = rdr.GetInt32(9);
+                lck = rdr.GetInt32(10);
+                charisma = rdr.GetInt32(11);
+                roomNumber = (int) rdr.GetInt32(12);
+                userId = (int) rdr.GetInt32(13);
+            }
+            Character thisCharacter = new Character(name, level, exp, maxHp, hp, armor, ad, iq, dex, lck, charisma, id, roomNumber, userId);
+            return thisCharacter;
         }
 
         public int GetId()
@@ -113,6 +173,10 @@ namespace TextRpg.Models
         {
             return _experience;
         }
+        public string GetName()
+        {
+            return _name;
+        }
         public int GetMaxHealth()
         {
             return _maxHealth;
@@ -140,6 +204,114 @@ namespace TextRpg.Models
         public int GetLuck()
         {
             return _luck;
+        }
+        public int GetCharisma()
+        {
+            return _charisma;
+        }
+        public int GetRoomNumber()
+        {
+            return _roomNumber;
+        }
+        public int GetUserId()
+        {
+            return _userId;
+        }
+        public Inventory GetInventory()
+        {
+            return _inventory;
+        }
+        private string _name;
+        private int _id;
+        private int _level;
+        private int _experience;
+        private int _maxHealth;
+        private int _health;
+        private int _armor;
+        private int _attackDamage;
+        private int _intelligence;
+        private int _dexterity;
+        private int _luck;
+        private int _charisma;
+        private static Inventory _inventory;
+        private int _userId;
+
+        public void Save()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO users (name, level, experience, maxHealth, health, armor, ad, iq, dexterity, luck, charisma, userId) VALUES (@name, @level, @experience, @maxHealth, @health, @armor, @ad, @iq, @dexterity, @luck, @charisma, @userId);";
+
+            MySqlParameter name = new MySqlParameter();
+            name.ParameterName = "@name";
+            name.Value = _name;
+            cmd.Parameters.Add(name);
+
+            MySqlParameter level = new MySqlParameter();
+            username.ParameterName = "@level";
+            username.Value = _level;
+            cmd.Parameters.Add(level);
+
+            MySqlParameter experience = new MySqlParameter();
+            experience.ParameterName = "@experience";
+            experience.Value = _experience;
+            cmd.Parameters.Add(experience);
+
+            MySqlParameter maxHealth = new MySqlParameter();
+            maxHealth.ParameterName = "@maxHealth";
+            maxHealth.Value = _maxHealth;
+            cmd.Parameters.Add(maxHealth);
+
+            MySqlParameter health = new MySqlParameter();
+            health.ParameterName = "@health";
+            health.Value = _health;
+            cmd.Parameters.Add(health);
+
+            MySqlParameter armor = new MySqlParameter();
+            armor.ParameterName = "@armor";
+            armor.Value = _armor;
+            cmd.Parameters.Add(armor);
+
+            MySqlParameter attackDamage = new MySqlParameter();
+            attackDamage.ParameterName = "@attackDamage";
+            attackDamage.Value = _attackDamage;
+            cmd.Parameters.Add(attackDamage);
+
+            MySqlParameter intelligence = new MySqlParameter();
+            intelligence.ParameterName = "@intelligence";
+            intelligence.Value = _intelligence;
+            cmd.Parameters.Add(intelligence);
+
+            MySqlParameter dexterity = new MySqlParameter();
+            dexterity.ParameterName = "@dexterity";
+            dexterity.Value = _dexterity;
+            cmd.Parameters.Add(dexterity);
+
+            MySqlParameter luck = new MySqlParameter();
+            luck.ParameterName = "@luck";
+            luck.Value = _luck;
+            cmd.Parameters.Add(luck);
+
+            MySqlParameter charisma = new MySqlParameter();
+            charisma.ParameterName = "@charisma";
+            charisma.Value = _charisma;
+            cmd.Parameters.Add(charisma);
+
+            MySqlParameter userId = new MySqlParameter();
+            userId.ParameterName = "@userId";
+            userId.Value = _userId;
+            cmd.Parameters.Add(userId);
+
+            cmd.ExecuteNonQuery();
+
+            _id = (int) cmd.LastInsertedId;
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
         }
         //EXPERIENCE/LEVEL UPDATE FUNCTIONS BEGIN HERE ------------------------------------------------------------->
         public void StatUpdate()

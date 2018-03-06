@@ -5,15 +5,29 @@ using System;
 
 namespace TextRpg.Models
 {
-    public static class Game
+    public class Game
     {
-        private static GameUser _currentUser;
-        private static Room _currentRoom;
-        private static GameDisplay _gameDisplay;
+        private static GameUser _currentGameUser = null;
+        private static Room _currentRoom = null;
+        private static GameDisplay _gameDisplay = null;
 
+        public static void SetGameUser(GameUser myGameUser)
+        {
+            _currentGameUser = myGameUser;
+        }
+
+        public static void SetCurrentRoom(Room currentRoom)
+        {
+            _currentRoom = currentRoom;
+        }
+
+        public static void SetGameDisplay(GameDisplay myGameDisplay)
+        {
+            _gameDisplay = myGameDisplay;
+        }
         public static GameUser GetGameUser()
         {
-            return _currentUser;
+            return _currentGameUser;
         }
         public static Room GetRoom()
         {
@@ -45,13 +59,18 @@ namespace TextRpg.Models
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"UPDATE users SET room_number = @room_number, character_id = @character_id WHERE id = @id;";
             var roomPara = new MySqlParameter("@room_number", _currentRoom);
-            var charIdPara = new MySqlParameter("@character_id", _currentUser.GetCharacter().GetId());
-            var userIdPara = new MySqlParameter("@id", _currentUser.GetId());
+            var charIdPara = new MySqlParameter("@character_id", _currentGameUser.GetCharacter().GetId());
+            var userIdPara = new MySqlParameter("@id", _currentGameUser.GetId());
             cmd.Parameters.Add(roomPara);
             cmd.Parameters.Add(charIdPara);
             cmd.Parameters.Add(userIdPara);
             cmd.ExecuteNonQuery();
             conn.Dispose();
+        }
+
+        public static void Logout()
+        {
+            _currentGameUser = null;
         }
 
         public static void Restart()

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using TextRpg;
 using System;
+using BCrypt.Net;
 
 namespace TextRpg.Models
 {
@@ -64,48 +65,196 @@ namespace TextRpg.Models
             return _email;
         }
 
+        public void SetCharacter(Character myCharacter)
+        {
+            _character = myCharacter;
+        }
+
         public Character GetCharacter()
+        {
+            return _character;
+        }
+
+        public static GameUser Find(int userId)
+        {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"SELECT * FROM users WHERE id=@userId;";
+
+          MySqlParameter searchId = new MySqlParameter();
+          searchId.ParameterName = "@userId";
+          searchId.Value = userId;
+          cmd.Parameters.Add(searchId);
+
+          MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+          int id = 0;
+          string name = "";
+          string username = "";
+          string password = "";
+          string email = "";
+          int roomNumber = 0;
+          while (rdr.Read())
+          {
+            id = rdr.GetInt32(0);
+            username = rdr.GetString(2);
+            password = rdr.GetString(3);
+            name = rdr.GetString(1);
+            email = rdr.GetString(4);
+            roomNumber = (int) rdr.GetInt32(5);
+          }
+
+          GameUser myUser = new GameUser(name, username, password, email, roomNumber);
+          myUser.SetId(id);
+
+          conn.Close();
+          if (!(conn == null))
+          {
+            conn.Dispose();
+          }
+          return myUser;
+        }
+        public static void Update(string name,string login,string password,string email, int roomNumber, int characterId, int userId)
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM characters WHERE user_id = @user_id;";
-            var userIdPara = new MySqlParameter("@user_id", _id);
-            cmd.Parameters.Add(userIdPara);
+            cmd.CommandText = @"UPDATE users SET login=@login, name = @name, password = @password, email = @email, room_number = @room, character_id = @ characterId WHERE id = @userId;";
 
-            var rdr = cmd.ExecuteReader() as MySqlDataReader;
-            int id =  0;
-            string name = "";
-            int level = 0;
-            int exp = 0;
-            int maxHp = 0;
-            int hp = 0;
-            int ad = 0;
-            int iq = 0;
-            int dex = 0;
-            int lck = 0;
-            int charisma = 0;
-            int armor = 0;
+            MySqlParameter tempName = new MySqlParameter("@name", name);
+            MySqlParameter tempLogin = new MySqlParameter("@login", login);
+            MySqlParameter tempPassword = new MySqlParameter("@password", password);
+            MySqlParameter tempEmail = new MySqlParameter("@email", email);
+            MySqlParameter tempRoom = new MySqlParameter("@room", roomNumber);
+            MySqlParameter tempCharacterId = new MySqlParameter("@characterId", characterId);
+            MySqlParameter tempUserId = new MySqlParameter("@userId", userId);
 
-            while (rdr.Read())
+            cmd.Parameters.Add(tempName);
+            cmd.Parameters.Add(tempLogin);
+            cmd.Parameters.Add(tempPassword);
+            cmd.Parameters.Add(tempEmail);
+            cmd.Parameters.Add(tempRoom);
+            cmd.Parameters.Add(tempCharacterId);
+            cmd.Parameters.Add(tempUserId);
+
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
             {
-                id =  rdr.GetInt32(0);
-                name = rdr.GetString(1);
-                level = rdr.GetInt32(2);
-                exp = rdr.GetInt32(3);
-                maxHp = rdr.GetInt32(4);
-                hp = rdr.GetInt32(5);
-                armor = rdr.GetInt32(6);
-                ad = rdr.GetInt32(7);
-                iq = rdr.GetInt32(8);
-                dex = rdr.GetInt32(9);
-                lck = rdr.GetInt32(10);
-                charisma = rdr.GetInt32(11);
+                conn.Dispose();
             }
-            Character thisCharacter = new Character(name, level, exp, maxHp, hp, armor, ad, iq, dex, lck, charisma, id);
-            thisCharacter.SetId(id);
-            return thisCharacter;
+        }
+        public static void Delete(int idDelete)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM users WHERE id = @searchId;";
 
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = idDelete;
+            cmd.Parameters.Add(searchId);
+
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
+        public bool Save()
+        {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"SELECT username FROM users WHERE username=@userLogin;";
+          MySqlParameter userLogin = new MySqlParameter("@userLogin", _username);
+          cmd.Parameters.Add(userLogin);
+
+          MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+          string tempLogin = "";
+
+          while(rdr.Read())
+          {
+            tempLogin = rdr.GetString(0);
+
+          }
+
+          conn.Close();
+          if (!(conn == null))
+          {
+            conn.Dispose();
+          }
+
+          if (tempLogin == "")
+          {
+            conn = DB.Connection();
+            conn.Open();
+            cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO users (name, username, password, email, room_number) VALUES (@userName, @userUsername, @userPassword, @userEmail, 1);";
+
+            MySqlParameter name = new MySqlParameter("@userName", _name);
+            MySqlParameter username = new MySqlParameter("@userUsername", _username);
+            MySqlParameter password = new MySqlParameter("@userPassword", BCrypt.Net.BCrypt.HashPassword(_password));
+            MySqlParameter email = new MySqlParameter ("@userEmail", _email);
+            cmd.Parameters.Add(name);
+            cmd.Parameters.Add(username);
+            cmd.Parameters.Add(password);
+            cmd.Parameters.Add(email);
+
+            cmd.ExecuteNonQuery();
+            _id = (int) cmd.LastInsertedId;
+
+            conn.Close();
+            if (!(conn == null))
+            {
+              conn.Dispose();
+            }
+            return true;
+          }
+          return false;
+        }
+
+        public static int Login(string login, string password)
+        {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"SELECT * FROM users WHERE username=@userLogin;";
+
+          MySqlParameter userLogin = new MySqlParameter("@userLogin", login);
+          cmd.Parameters.Add(userLogin);
+
+          MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+          bool flag = false;
+          int myUserId = 0;
+          string databasePassword = "";
+
+          while (rdr.Read())
+          {
+            flag = true;
+            myUserId = rdr.GetInt32(0);
+            databasePassword = rdr.GetString(3);
+          }
+
+          rdr.Dispose();
+          if (!(flag && BCrypt.Net.BCrypt.Verify(password, databasePassword) || password == databasePassword))
+          {
+            myUserId = 0;
+          }
+
+          conn.Close();
+          if (!(conn == null))
+          {
+            conn.Dispose();
+          }
+
+          return myUserId;
         }
     }
 }
