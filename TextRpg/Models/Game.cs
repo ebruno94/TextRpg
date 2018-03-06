@@ -7,10 +7,24 @@ namespace TextRpg.Models
 {
     public static class Game
     {
-        private static GameUser _currentUser;
+        private static GameUser _currentGameUser;
         private static Room _currentRoom;
         private static GameDisplay _gameDisplay;
 
+        public void SetGameUser(GameUser myGameUser)
+        {
+            _currentGameUser = myGameUser;
+        }
+
+        public void SetCurrentRoom(int currentRoom)
+        {
+            _currentRoom = currentRoom;
+        }
+
+        public void SetGameDisplay(GameDisplay myGameDisplay)
+        {
+            _gameDisplay = myGameDisplay; 
+        }
         public static GameUser GetGameUser()
         {
             return _currentUser;

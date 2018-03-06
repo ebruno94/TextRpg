@@ -234,7 +234,98 @@ namespace TextRpg.Models
             Character thisCharacter = new Character(name, level, exp, maxHp, hp, armor, ad, iq, dex, lck, charisma, id);
             thisCharacter.SetId(id);
             return thisCharacter;
+        }
 
+        public bool Save()
+        {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"SELECT username FROM users WHERE username=@userLogin;";
+          MySqlParameter userLogin = new MySqlParameter("@userLogin", _username);
+          cmd.Parameters.Add(userLogin);
+
+          MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+          string tempLogin = "";
+
+          while(rdr.Read())
+          {
+            tempLogin = rdr.GetString(0);
+
+          }
+
+          conn.Close();
+          if (!(conn == null))
+          {
+            conn.Dispose();
+          }
+
+          if (tempLogin == "")
+          {
+            conn = DB.Connection();
+            conn.Open();
+            cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO users (name, username, password, email, room_number) VALUES (@userName, @userUsername, @userPassword, @userEmail, 1);";
+
+            MySqlParameter name = new MySqlParameter("@userName", _name);
+            MySqlParameter username = new MySqlParameter("@userUsername", _username);
+            MySqlParameter password = new MySqlParameter("@userPassword", BCrypt.Net.BCrypt.HashPassword(_password));
+            MySqlParameter email = new MySqlParameter ("@userEmail", _email);
+            cmd.Parameters.Add(name);
+            cmd.Parameters.Add(username);
+            cmd.Parameters.Add(password);
+            cmd.Parameters.Add(email);
+
+            cmd.ExecuteNonQuery();
+            _id = (int) cmd.LastInsertedId;
+
+            conn.Close();
+            if (!(conn == null))
+            {
+              conn.Dispose();
+            }
+            return true;
+          }
+          return false;
+        }
+
+        public static int Login(string login, string password)
+        {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"SELECT * FROM users WHERE username=@userLogin;";
+
+          MySqlParameter userLogin = new MySqlParameter("@userLogin", login);
+          cmd.Parameters.Add(userLogin);
+
+          MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+          bool flag = false;
+          int myUserId = 0;
+          string databasePassword = "";
+
+          while (rdr.Read())
+          {
+            flag = true;
+            myUserId = rdr.GetInt32(0);
+            databasePassword = rdr.GetString(3);
+          }
+
+          rdr.Dispose();
+          if (!(flag && BCrypt.Net.BCrypt.Verify(password, databasePassword) || password == databasePassword))
+          {
+            myUserId = 0;
+          }
+
+          conn.Close();
+          if (!(conn == null))
+          {
+            conn.Dispose();
+          }
+
+          return myUserId;
         }
     }
 }

@@ -21,8 +21,9 @@ namespace TextRpg.Models
         private int _charisma;
         private static Inventory _inventory;
 
-        public Character()
+        public Character(string name)
         {
+            _name = name; 
             _level = 1;
             _experience = 0;
             _health = 500;
