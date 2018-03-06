@@ -221,7 +221,7 @@ namespace TextRpg.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO users (name, level, experience, max_hp, hp, armor, ad, iq, dexterity, luck, charisma, user_id, room_number) VALUES (@name, @level, @experience, @maxHealth, @health, @armor, @ad, @iq, @dexterity, @luck, @charisma, @userId, @roomNumber);";
+            cmd.CommandText = @"INSERT INTO users (name, level, experience, max_hp, hp, armor, ad, iq, dexterity, luck, charisma, user_id, room_number) VALUES (@name, @level, @experience, @maxHealth, @health, @armor, @attackDamage, @intelligence, @dexterity, @luck, @charisma, @userId, @roomNumber);";
 
             MySqlParameter name = new MySqlParameter();
             name.ParameterName = "@name";
@@ -229,8 +229,8 @@ namespace TextRpg.Models
             cmd.Parameters.Add(name);
 
             MySqlParameter level = new MySqlParameter();
-            username.ParameterName = "@level";
-            username.Value = _level;
+            level.ParameterName = "@level";
+            level.Value = _level;
             cmd.Parameters.Add(level);
 
             MySqlParameter experience = new MySqlParameter();
