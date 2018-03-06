@@ -220,6 +220,98 @@ namespace TextRpg.Models
         {
             return _inventory;
         }
+        private string _name;
+        private int _id;
+        private int _level;
+        private int _experience;
+        private int _maxHealth;
+        private int _health;
+        private int _armor;
+        private int _attackDamage;
+        private int _intelligence;
+        private int _dexterity;
+        private int _luck;
+        private int _charisma;
+        private static Inventory _inventory;
+        private int _userId;
+
+        public void Save()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO users (name, level, experience, maxHealth, health, armor, ad, iq, dexterity, luck, charisma, userId) VALUES (@name, @level, @experience, @maxHealth, @health, @armor, @ad, @iq, @dexterity, @luck, @charisma, @userId);";
+
+            MySqlParameter name = new MySqlParameter();
+            name.ParameterName = "@name";
+            name.Value = _name;
+            cmd.Parameters.Add(name);
+
+            MySqlParameter level = new MySqlParameter();
+            username.ParameterName = "@level";
+            username.Value = _level;
+            cmd.Parameters.Add(level);
+
+            MySqlParameter experience = new MySqlParameter();
+            experience.ParameterName = "@experience";
+            experience.Value = _experience;
+            cmd.Parameters.Add(experience);
+
+            MySqlParameter maxHealth = new MySqlParameter();
+            maxHealth.ParameterName = "@maxHealth";
+            maxHealth.Value = _maxHealth;
+            cmd.Parameters.Add(maxHealth);
+
+            MySqlParameter health = new MySqlParameter();
+            health.ParameterName = "@health";
+            health.Value = _health;
+            cmd.Parameters.Add(health);
+
+            MySqlParameter armor = new MySqlParameter();
+            armor.ParameterName = "@armor";
+            armor.Value = _armor;
+            cmd.Parameters.Add(armor);
+
+            MySqlParameter attackDamage = new MySqlParameter();
+            attackDamage.ParameterName = "@attackDamage";
+            attackDamage.Value = _attackDamage;
+            cmd.Parameters.Add(attackDamage);
+
+            MySqlParameter intelligence = new MySqlParameter();
+            intelligence.ParameterName = "@intelligence";
+            intelligence.Value = _intelligence;
+            cmd.Parameters.Add(intelligence);
+
+            MySqlParameter dexterity = new MySqlParameter();
+            dexterity.ParameterName = "@dexterity";
+            dexterity.Value = _dexterity;
+            cmd.Parameters.Add(dexterity);
+
+            MySqlParameter luck = new MySqlParameter();
+            luck.ParameterName = "@luck";
+            luck.Value = _luck;
+            cmd.Parameters.Add(luck);
+
+            MySqlParameter charisma = new MySqlParameter();
+            charisma.ParameterName = "@charisma";
+            charisma.Value = _charisma;
+            cmd.Parameters.Add(charisma);
+
+            MySqlParameter userId = new MySqlParameter();
+            userId.ParameterName = "@userId";
+            userId.Value = _userId;
+            cmd.Parameters.Add(userId);
+
+            cmd.ExecuteNonQuery();
+
+            _id = (int) cmd.LastInsertedId;
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
         //EXPERIENCE/LEVEL UPDATE FUNCTIONS BEGIN HERE ------------------------------------------------------------->
         public void StatUpdate()
         {
