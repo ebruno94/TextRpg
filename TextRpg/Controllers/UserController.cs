@@ -10,15 +10,15 @@ namespace TextRpg.Controllers
         public ActionResult Form(int messageId)
         {
             string message = "";
-            if (messageId = 1)
+            if (messageId == 1)
             {
                 message = "Please pick a new username. The username you submitted was already taken.";
             }
-            else if (messageId = 2)
+            else if (messageId == 2)
             {
                 message = "The password and confirmation passwords you submitted were not the same.";
             }
-            return View(message);
+            return View("Form", message);
         }
 
         [HttpPost("/User/Create")]
@@ -53,7 +53,7 @@ namespace TextRpg.Controllers
         public ActionResult Logout()
         {
             Game.Logout();
-            return RedirectToAction("Index", "Home"); 
+            return RedirectToAction("Index", "Home");
         }
     }
 }
