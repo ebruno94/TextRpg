@@ -195,7 +195,7 @@ namespace TextRpg.Models
             conn = DB.Connection();
             conn.Open();
             cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO users (name, username, password, email, room_number) VALUES (@userName, @userUsername, @userPassword, @userEmail, 1);";
+            cmd.CommandText = @"INSERT INTO users (name, username, password, email) VALUES (@userName, @userUsername, @userPassword, @userEmail);";
 
             MySqlParameter name = new MySqlParameter("@userName", _name);
             MySqlParameter username = new MySqlParameter("@userUsername", _username);

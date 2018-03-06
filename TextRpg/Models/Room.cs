@@ -8,15 +8,15 @@ namespace TextRpg.Models
     public class Room
     {
         private int _id;
-        private static Character _character;
-        private static Monster _monster;
+        private static Character _character = null;
+        private static Monster _monster = null;
         private string _log;
 
         public Room()
         {
             _id = 0;
             _character = null;
-            _monster = null;
+            _monster = new Monster();
         }
         public string GetLog()
         {
