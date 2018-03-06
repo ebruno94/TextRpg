@@ -61,11 +61,6 @@ namespace TextRpg.Models
             _userId = userId;
         }
 
-        public void Save()
-        {
-
-        }
-
         public static Character Find(int characterId)
         {
             MySqlConnection conn = DB.Connection();
@@ -220,27 +215,13 @@ namespace TextRpg.Models
         {
             return _inventory;
         }
-        private string _name;
-        private int _id;
-        private int _level;
-        private int _experience;
-        private int _maxHealth;
-        private int _health;
-        private int _armor;
-        private int _attackDamage;
-        private int _intelligence;
-        private int _dexterity;
-        private int _luck;
-        private int _charisma;
-        private static Inventory _inventory;
-        private int _userId;
 
         public void Save()
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO users (name, level, experience, maxHealth, health, armor, ad, iq, dexterity, luck, charisma, userId) VALUES (@name, @level, @experience, @maxHealth, @health, @armor, @ad, @iq, @dexterity, @luck, @charisma, @userId);";
+            cmd.CommandText = @"INSERT INTO users (name, level, experience, max_hp, hp, armor, ad, iq, dexterity, luck, charisma, user_id, room_number) VALUES (@name, @level, @experience, @maxHealth, @health, @armor, @attackDamage, @intelligence, @dexterity, @luck, @charisma, @userId, @roomNumber);";
 
             MySqlParameter name = new MySqlParameter();
             name.ParameterName = "@name";
@@ -248,8 +229,8 @@ namespace TextRpg.Models
             cmd.Parameters.Add(name);
 
             MySqlParameter level = new MySqlParameter();
-            username.ParameterName = "@level";
-            username.Value = _level;
+            level.ParameterName = "@level";
+            level.Value = _level;
             cmd.Parameters.Add(level);
 
             MySqlParameter experience = new MySqlParameter();
@@ -301,6 +282,9 @@ namespace TextRpg.Models
             userId.ParameterName = "@userId";
             userId.Value = _userId;
             cmd.Parameters.Add(userId);
+
+            MySqlParameter roomNumber = new MySqlParameter("@roomNumber", _roomNumber);
+            cmd.Parameters.Add(roomNumber);
 
             cmd.ExecuteNonQuery();
 
