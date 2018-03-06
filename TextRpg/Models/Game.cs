@@ -23,7 +23,7 @@ namespace TextRpg.Models
         }
         public Room GetRoom()
         {
-            return _room;
+            return _currentRoom;
         }
         public GameDisplay GetGameDisplay()
         {
@@ -46,7 +46,7 @@ namespace TextRpg.Models
 
         public void Save()
         {
-            MySqlConnector conn = DB.Connection();
+            MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"UPDATE users SET room_number = @room_number, character_id = @character_id WHERE id = @id;";
@@ -55,7 +55,7 @@ namespace TextRpg.Models
             var userIdPara = new MySqlParameter("@id", _currentUser.GetId());
             cmd.Parameters.Add(roomPara);
             cmd.Parameters.Add(charIdPara);
-            cmd.Parameters.Add(usedIdPara);
+            cmd.Parameters.Add(userIdPara);
             cmd.ExecuteNonQuery();
             conn.Dispose();
         }

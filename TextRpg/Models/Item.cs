@@ -9,7 +9,7 @@ namespace TextRpg.Models
     {
         private int _id;
         private string _name;
-        private string _url;
+        private string _imgUrl;
         private int _health;
         private int _armor;
         private int _attackDamage;
@@ -23,7 +23,7 @@ namespace TextRpg.Models
         public Item (string name, string imgUrl, int hp, int armor, int ad, int iq, int luck, int charisma, int dex, int equippable, string action)
         {
             _name = name;
-            _url = url;
+            _imgUrl = imgUrl;
             _health = hp;
             _armor = armor;
             _attackDamage = ad;
