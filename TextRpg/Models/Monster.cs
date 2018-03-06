@@ -18,6 +18,7 @@ namespace TextRpg.Models
         private static Item _monsterItem;
         private string _imgUrl;
         private int _armor;
+        private string _audio;
 
         public Monster()
         {
@@ -68,6 +69,11 @@ namespace TextRpg.Models
         public int GetLevel()
         {
             return _level;
+        }
+
+        public string GetAudio()
+        {
+            return _audio;
         }
         public int GetExperience()
         {

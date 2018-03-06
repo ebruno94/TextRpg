@@ -32,6 +32,7 @@ namespace TextRpg
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
             app.UseStaticFiles();
+            app.UseDeveloperExceptionPage();
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello world");
