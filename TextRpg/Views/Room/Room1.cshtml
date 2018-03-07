@@ -178,19 +178,11 @@
 
     $(".event3 .subevent1 #suboption2").click(function() {
       @Game.GameConsole.Append("<p>A set of basic armor has been added to your inventory. Click on the individual armor items in your inventory to equip them.</p>");
-<<<<<<< HEAD
       @Game.GetGameUser().GetCharacter(). GetInventory().AddItem(11);
       @Game.GetGameUser().GetCharacter(). GetInventory().AddItem(12);
       @Game.GetGameUser().GetCharacter(). GetInventory().AddItem(13);
       @Game.GetGameUser().GetCharacter(). GetInventory().AddItem(14);
       @Game.GetGameUser().GetCharacter(). GetInventory().AddItem(15);
-=======
-      @Game.GetUser().GetCharacter().GetInventory().AddItem(11);
-      @Game.GetUser().GetCharacter().GetInventory().AddItem(12);
-      @Game.GetUser().GetCharacter().GetInventory().AddItem(13);
-      @Game.GetUser().GetCharacter().GetInventory().AddItem(14);
-      @Game.GetUser().GetCharacter().GetInventory().AddItem(15);
->>>>>>> master
       $(this).remove();
     });
 
