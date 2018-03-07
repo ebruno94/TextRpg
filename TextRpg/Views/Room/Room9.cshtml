@@ -4,113 +4,32 @@
 @using TextRpg.Models;
 
 <div class="roomName">
-  <h3>CryoChamber A</h3>
+  <h3>Hallway Nine</h3>
 </div>
 
-<div class="event introduction">
-  <p>You open your eyes to see the glass in front of you slowly receding. A sudden wave of warm air overwhelms your entire body as you rack your mind to remember where you are. Your name's @Game.GetGameUser().GetCharacter().GetName(), and it's the year 2025. You've been sent with approximately 500 others on humanity's first attempt to colonize Mars. Beyond the confines of your own cryochamber, you see a large open expanse surrounded with approximately 100 other chambers. The room is fairly dark. If it weren't for the softly-glowing red light in the middle of the ceiling, you wouldn't be able to see anything.
-
-  You take in a deep breath, expecting the clean, slightly chemical smell all-too-familiar to anyone who's ever spent much time on a space vessel--or in a hospital. Instead, you notice something stronger. It reminds you of the last day you spent on Earth before embarking on this journey, nearly six months ago. Your family and friends surprised you with a barbecue. You can smell the smoldering coals from the grill ... or is that the smell of the bonfire you sat around with your significant other that evening planning all the things you would do together after you return? What you would give for a swig of that whiskey you two shared that night ...
-
-  Urged forward by the warmth of the outside air and the smell of home, you slowly peel off the sensors adhered to your chest  and step out of the chamber.
-
-  Around the room you see cryochambers, a computer terminal, an equipment locker, and--at the far-side of the room--two doors which presumably lead out of it.</p>
-
-  <div class="routes main">
-    <button class="route route1" type="button">Check out the other cryochambers in the room</button>
-    <button class="route route2" type="button">Check out the terminal in the middle of the CryoChamber Room</button>
-    <button class="route route3" type="button">Check out the equipment locker</button>
-    <button class="route route4" type="button">Walk towards the doors</button>
+<div class="room introduction">
+  <p>You hear the screeches of a terrifying creature. This is no lifeform you've ever studied in highschool biology class on planet Earth. Your adrenaline spikes. Prepare to enter MORTAL COMBAT with this terrifying beast</p>
+  <div class="routes">
+    <button class="route route1" type="button">Attack the Hydralisk before it attacks you</button>
   </div>
 </div>
 
-<div class="routes" id="routes">
-  <button class="route route1" type="button">Check out the other cryochambers in the room</button>
-  <button class="route route2" type="button">Check out the terminal in the middle of the CryoChamber Room</button>
-  <button class="route route3" type="button">Check out the equipment locker</button>
-  <button class="route route4" type="button">Walk towards the doors</button>
-</div>
-
 <div class="event initHidden" id="event1">
-  <p>You walk up to the nearest cryochamber off to your left. The glass is foggy. A placard at the bottom of the machine reads Elizabeth Dougherty. You remember her. Back at the academy, she graduated top of her class--which just so happened to also be yours. Though you never really liked her--she wasn't very approachable, to say the least--you could always depend on her to be able to solve the toughest of problems. There seemed to be no predicament that she couldn't reason her way out of.
+  <p>You enter mortal combat with the Alien Hydralisk.</p>
 
-  You place  your hand up against the glass to wipe away a patch of fog. Then you step up closer to peer through. Behind the glass you see only the soft, synthetic fabric used to cushion the interior and the dangling wires attached to the many sensors used to track the colonists' vitals as they remain in a state of suspended animation for the duration of the flight. Startled, you take a step back and look around the room again.
- </p>
-
- <div class="routes main">
-   <button class="route route2" type="button">Check out the terminal in the middle of the CryoChamber Room</button>
-   <button class="route route3" type="button">Check out the equipment locker</button>
-   <button class="route route4" type="button">Walk towards the doors</button>
+ <div class="options">
+   <button class="option option1" type="button">Attack</button>
+   <button class="option option2" type="button" id="flee">Flee from Fight</button>
  </div>
 </div>
 
 <div class="event initHidden" id="event2">
-  <p>You approach the terminal in the middle of the room. A single displayed line reads: "currently running emergency protocol". Below, are a list of options: <p>
+  <p>Choose a direction to move.</p>
 
-    <div class="terminalOptions">
-      <button class="option" id="option1">Click on [View Ship Vitals]</button>
-      <button class="option" id="option2">Click on [View Captains Log]</button>
-      <button class="option" id="option3">Click on [Remotely Access AirLock]</button>
-    </div>
-
-    <div class="routes main">
-      <button class="route route1" type="button">Check out the other cryochambers in the room</button>
-      <button class="route route3" type="button">Check out the equipment locker</button>
-      <button class="route route4" type="button">Walk towards the doors</button>
-    </div>
-</div>
-
-<div class="event initHidden" id="event3">
-  <p> Your equipment locker is at the far left-hand side of the room. Despite the modernity of all the technology available to SpaceX, they opted to secure each locker with a physical key. You recall having a discussion with your officer about funding cuts... You feel around in your pocket hoping to find your own key, but it's not there. Before backing away, you notice a locker near yours that is slightly ajar.
-
-    <div class="routes sub">
-      <button class="route" type="button" id="route5">Try to force the locker open</button>
-      <button class="route" type="button" id="route6">Walk away</button>
-    </div>
-
-    <div class="routes main">
-      <button class="route route1" type="button">Check out the other cryochambers in the room</button>
-      <button class="route route3" type="button">Check out the equipment locker</button>
-      <button class="route route4" type="button">Walk towards the doors</button>
-    </div>
-</div>
-
-<div class="event initHidden" id="event4">
-  <p> There are two doors leading out of the cryochamber room. The first room is clearly marked with a warning that reads, "AIR LOCK: ONLY OPEN REMOTELY IN ACCORDANCE WITH EMERGENCY PROTOCOL 150". There is a sign above the second door that reads, "This way to CANTINA and MEDICAL BAY". </p>
-
-  <div class="routes">
-    <button class="route route7" type="button">Approach the AIR LOCK</button>
-    <button class="route route8" type="button">Approach door to CANTINA and MEDICAL BAY</button>
-  </div>
-</div>
-
-<div class="event initHidden" id="event8">
-  <p> Beyond this door is a series of hallways that lead to the ship's cafeteria you and colonists are planning on using for your first several months on Mars and the ship's medical bay. You notice that as you stand near the door, the smell of smoke has grown stronger and noticeably less pleasant. It suddenly strikes you how out-of-place this smell is on a space vessel, and you begin to feel an overwhelming sense of discomfort. Something is definitely not right.
-
-  <div class="routes">
-    <button class="route route7" type="button">Back away from door</button>
-    <a href="/Room/Room2"><button class="exit route route8" type="button">Continue through the door into the hallway</button></a>
-  </div>
-</div>
-
-<div class="monster event event5">
-  <p> You see a squishy. It is wobbling threateningly at you. Do you engage in combat?</p>
-
-  <button type="button" class="option option1">Engage squishy in mortal combat</button>
-  <button type="button" class="option option2" id="flee">Flee from squishy like a little bitch</button>
-
-  <div class="monster subevent subevent1">
-    @* fight *@
-    <button type="button" class="option option1">Attack</button>
-  </div>
-  <div class="monster subevent subevent2">
-
-  </div>
-  <div class="routes main initHidden">
-    <button class="route route1" type="button">Check out the other cryochambers in the room</button>
-    <button class="route route3" type="button">Check out the equipment locker</button>
-    <button class="route route4" type="button">Walk towards the doors</button>
-  </div>
+ <div class="options">
+   <a href= "/Room/Room11"><button class="route route1" type="button">Enter Chamber B</button></a>
+   <a href= "/Room/Room13"><button class="route route2" type="button">Enter Hallway 13</button></a>
+ </div>
 </div>
 
 <script type="text/javascript">
@@ -127,39 +46,7 @@
     $(".route2").click(function() {
       $(this).parent().parent().addClass("hidden");
       $("#event2").removeClass("hidden");
+      @Game.GameConsole.Append("<p>You run past the Alienized Human. You notice the being is mostly unaware of its surroundings. Probably mostly reliant on smell to navigate through space time.</p>");
     });
-
-    $(".route3").click(function() {
-      $(this).parent().parent().addClass("hidden");
-      $("#event3").removeClass("hidden");
-    });
-
-    $(".route4").click(function() {
-      $(this).parent().parent().addClass("hidden");
-      $("#event4").removeClass("hidden");
-    });
-
-    $(".route5").click(function() {
-      $(this).parent().parent().addClass("hidden");
-      $("#event5").removeClass("hidden");
-    });
-
-    selector.click(function(){
-      Game.
-
-      console.AddLine()
-      this.remove();
-    })
-
-    $("#flee").click(function() {
-      if (true)
-      {
-        console.log("rerouting");
-        window.location.href = "localhost:5000/Room/Room2"
-      };
-      $(this).addClass("hidden");
-    });
-
   });
-
 </script>
