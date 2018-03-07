@@ -19,6 +19,7 @@ namespace TextRpg.Controllers
             string password = Request.Form["password"];
 
             Game.SetGameUser(GameUser.Find(GameUser.Login(username, password)));
+            Game.GetGameUser().SetCharacter(Character.Find(Game.GetGameUser().GetId()));
 
             return RedirectToAction("Display", "User");
         }

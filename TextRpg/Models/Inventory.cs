@@ -34,7 +34,7 @@ namespace TextRpg.Models
             cmd.CommandText = @"SELECT items.* FROM
                   characters JOIN inventories ON (characters.id = inventories.character_id)
                   JOIN items ON (inventories.item_id = items.id)
-                  WHERE characters.character_id = @character_id;";
+                  WHERE characters.id = @character_id;";
             MySqlParameter charIdParameter = new MySqlParameter("@character_id", charId);
             cmd.Parameters.Add(charIdParameter);
 
