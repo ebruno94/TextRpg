@@ -50,25 +50,22 @@ namespace TextRpg.Models
             cmd.ExecuteNonQuery();
             conn.Dispose();
         }
-
+        //Button Triggers Event
         public void FightEvent(){
-            while(_character.CheckDeath() != true && _monster.CheckDeath() != true)
-            {
-                //Need some listening event
-                _monster.Defend(_character.Attack());
-                if(_monster.CheckDeath()){
-                    GiveExperience();
-                    _log += "You killed "+ _monster.GetName() + " with a " + _monster.Attack() + " damage attack.  <br>";
-                    _log += "You gained " + _monster.GetExperience() + ". <br>";
-                } else {
-                    _log += "You attack " + _monster.GetName() + " for " + _character.Attack() + ". <br>";
-                }
-                //Need some delay before the monster attacks
-                if(_character.CheckDeath()){
-                    _log += "You died... " + _monster.GetName() + " attacked you for " + _monster.Attack() +"<br>";
-                } else {
-                    _log += _monster.GetName() + " attacks you for " + _monster.Attack() + " . <br>";
-                }
+            //Need some listening event
+            _monster.Defend(_character.Attack());
+            if(_monster.CheckDeath()){
+                GiveExperience();
+                Game.GetGameConsole().Append("<p>You killed "+ _monster.GetName() + " with a " + _monster.Attack() + " damage attack.  </p>");
+                Game.GetGameConsole().Append("<p>You gained " + _monster.GetExperience() + ". </p>");
+            } else {
+                Game.GetGameConsole().Append("<p>You attack " + _monster.GetName() + " for " + _character.Attack() + ". </p>");
+            }
+            //Need some delay before the monster attacks
+            if(_character.CheckDeath()){
+                Game.GetGameConsole().Append("<p>You died... " + _monster.GetName() + " attacked you for " + _monster.Attack() +"<p>");
+            } else {
+                Game.GetGameConsole().Append("<p>" + _monster.GetName() + " attacks you for " + _monster.Attack() + " . <p>");
             }
         }
         public int GetId()
