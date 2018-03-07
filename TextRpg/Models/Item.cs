@@ -98,5 +98,57 @@ namespace TextRpg.Models
         {
             return _audio;
         }
+        public static Item Find(int id)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM items WHERE id = (@searchId);";
+
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = id;
+            cmd.Parameters.Add(searchId);
+
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            int id = 0;
+            string name = "";
+            string imgUrl = "";
+            int health = 0;
+            int armor = 0;
+            int attackDamage = 0;
+            int intelligence = 0;
+            int luck = 0;
+            int charisma = 0;
+            int dexterity = 0;
+            int equippable = 0;
+            string action = "";
+            string audio = "";
+
+            while(rdr.Read())
+            {
+                id = (int) rdr.GetInt32(0);
+                name = rdr.GetString(1);
+                imgUrl = rdr.GetString(2);
+                health = (int) rdr.GetInt32(3);
+                armor = (int) rdr.GetInt32(4);
+                attackDamage = (int) rdr.GetInt32(5);
+                intelligence = (int) rdr.GetInt32(6);
+                luck = (int) rdr.GetInt32(7);
+                charisma = (int) rdr.GetInt32(8);
+                dexterity = (int) rdr.GetInt32(9);
+                equippable = (int) rdr.GetInt32(10);
+                action = rdr.GetString(11);
+                audio = rdr.GetString(12);
+
+            }
+            Speciality newSpeciality = new Speciality(name, specialityId);
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return newSpeciality;
+        }
     }
 }

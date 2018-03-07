@@ -42,5 +42,15 @@
       $("#event2").removeClass("hidden");
       @Game.GameConsole.Append("<p>You run past the Alienized Human. You notice the being is mostly unaware of its surroundings. Probably mostly reliant on smell to navigate through space time.</p>");
     });
+    $(".option option1").click(function() {
+        @Game.GetRoom().FightEvent();
+    });
+    $(".option option2").click(function() {
+        if(@Game.GetRoom().Run()){
+
+        } else {
+
+        }
+    });
   });
 </script>
