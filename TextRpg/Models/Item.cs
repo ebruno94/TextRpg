@@ -142,13 +142,13 @@ namespace TextRpg.Models
                 audio = rdr.GetString(12);
 
             }
-            Speciality newSpeciality = new Speciality(name, specialityId);
+            Item newItem = new Item(name, imgUrl, hp, armor, ad, iq, luck, charisma, dex, equippable, action, audio);
             conn.Close();
             if (conn != null)
             {
                 conn.Dispose();
             }
-            return newSpeciality;
+            return newItem;
         }
     }
 }
