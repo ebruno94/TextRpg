@@ -68,6 +68,17 @@ namespace TextRpg.Models
                 Game.GetGameConsole().Append("<p>" + _monster.GetName() + " attacks you for " + _monster.Attack() + " . <p>");
             }
         }
+
+        public bool Run(){
+            Random rnd = new Random();
+            int luck = rnd.Next(_character.GetCharisma(), 10); // creates a number between players charisma and 10;
+            if(luck >= 6){
+                return true;
+            } else {
+                return false;
+            }
+
+        }
         public int GetId()
         {
             return _id;
