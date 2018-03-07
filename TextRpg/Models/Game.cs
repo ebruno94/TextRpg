@@ -9,7 +9,7 @@ namespace TextRpg.Models
     {
         private static GameUser _currentGameUser = null;
         private static Room _currentRoom = new Room();
-        private static GameDisplay _gameDisplay = null;
+        private static GameConsole _gameConsole = null;
 
         public static void SetGameUser(GameUser myGameUser)
         {
@@ -21,9 +21,9 @@ namespace TextRpg.Models
             _currentRoom = currentRoom;
         }
 
-        public static void SetGameDisplay(GameDisplay myGameDisplay)
+        public static void SetGameConsole(GameConsole myGameConsole)
         {
-            _gameDisplay = myGameDisplay;
+            _gameConsole = myGameConsole;
         }
         public static GameUser GetGameUser()
         {
@@ -33,9 +33,9 @@ namespace TextRpg.Models
         {
             return _currentRoom;
         }
-        public static GameDisplay GetGameDisplay()
+        public static GameConsole GetGameConsole()
         {
-            return _gameDisplay;
+            return _gameConsole;
         }
 
         public static void LetThereBeLight()
