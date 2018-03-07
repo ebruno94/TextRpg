@@ -11,7 +11,7 @@
   <p>You walk into the hallway with the lights flickering probably due to the auxiliary power losing charge in the Power Core room. You smell something pungent and see the cafeteria sign to your right. On closer inspection you see a Humanoid being whose face seems to be covered in some alien life form..</p>
   <div class="routes">
     <button class="route route1" type="button">Fight the Alien Human</button>
-    <button class="route route2" type="button">Run to the Cafeteria</button>
+    <a href= "/Room/Room5"><button class="route route2 exit" type="button">Run to the Cafeteria</button></a>
   </div>
 </div>
 
@@ -24,9 +24,6 @@
  </div>
 </div>
 
-<div class="event initHidden" id="event2">
-  <p>You run past the Alienized Human. You notice the being is mostly unaware of its surroundings. Probably mostly reliant on smell to navigate through space time.<p>
-</div>
 
 
 <script type="text/javascript">
@@ -43,6 +40,7 @@
     $(".route2").click(function() {
       $(this).parent().parent().addClass("hidden");
       $("#event2").removeClass("hidden");
+      @Game.GameConsole.Append("<p>You run past the Alienized Human. You notice the being is mostly unaware of its surroundings. Probably mostly reliant on smell to navigate through space time.</p>");
     });
   });
 </script>
