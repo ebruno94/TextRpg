@@ -130,6 +130,31 @@
 
   $(document).ready(function() {
 
+    var updateGameLog = function(gameLogMessage) {
+      $.ajax({
+        url: "/GameConsole/Append",
+        type: "POST",
+        // dataType: "json",
+        data: {message: gameLogMessage},
+        success: function(data){
+          console.log("success");
+          $("#gameLog").html(data);
+        }
+      });
+    };
+
+    var inventoryAddItem = function(itemIndex){
+      $.ajax({
+        url: "/Inventory/AddItem",
+        type: "POST",
+        data: {index: itemIndex},
+        success: function(data){
+          console.log("item added");
+          $("#equippableInventory .col-md-12 .row").append('<div class="col-md-3 itemCard"><p class="itemName">' + data._name + '</p><a href="@item.GetAction()"><img class="itemImage" src="' + data._imgUrl + '"/></a></div>')
+        }
+      })
+    }
+
     $(".initHidden").addClass("hidden");
 
     $(".route1").click(function() {
@@ -153,36 +178,37 @@
     });
 
     $("#event2 .option1").click(function() {
-      @{Game.GetGameConsole().Append("<ul>Ship Vitals<li>Oxygen: 7%</li><li>Fuel: 10%</li><li>Main Power Status: Inactive</li><li>Auxillary Power Status: Active</li></ul>");};
+      updateGameLog("<ul>Ship Vitals<li>Oxygen: 7%</li><li>Fuel: 10%</li><li>Main Power Status: Inactive</li><li>Auxillary Power Status: Active</li></ul>");
     });
 
     $("#event2 .option2").click(function() {
-      @{Game.GetGameConsole().Append("<p>You do not have access to the Captain's Log</p>");};
+      updateGameLog("<p>You do not have access to the Captain's Log</p>");
     });
 
     $("#event2 .option3").click(function() {
-      @{Game.GetGameConsole().Append("<p>You do not have the authority to remotely access the airlock</p>");};
+      updateGameLog("<p>You do not have the authority to remotely access the airlock</p>");
     });
 
     $("#event3 .option1").click(function() {
-      @{Game.GetGameConsole().Append("<p>You kick the locker several times, breaking a toe in the process. Your effort pays off, however. You successfully open the locker. After searching through its contents, you find a few items that may be useful, including a crowbar and a set of basic, protective armor");};
+      updateGameLog("<p>You kick the locker several times, breaking a toe in the process. Your effort pays off, however. You successfully open the locker. After searching through its contents, you find a few items that may be useful, including a crowbar and a set of basic, protective armor");
       $(this).parent().parent().find("#subevent1").removeClass("hidden");
       $(this).remove();
     });
 
     $("#event3 .subevent1 #suboption1").click(function() {
-      @{Game.GetGameConsole().Append("<p>A crowbar has been added to your inventory. Click on the crowbar in your inventory to equip it.</p>");};
-      @{Game.GetGameUser().GetCharacter(). GetInventory().AddItem(10);};
+      updateGameLog("<p>A crowbar has been added to your inventory. Click on the crowbar in your inventory to equip it.</p>");
+      updateGameLog();
+      inventoryAddItem(10);
       $(this).remove();
     });
 
     $("#event3 .subevent1 #suboption2").click(function() {
-      @{Game.GetGameConsole().Append("<p>A set of basic armor has been added to your inventory. Click on the individual armor items in your inventory to equip them.</p>");};
-      @{Game.GetGameUser().GetCharacter().GetInventory().AddItem(11);};
-      @{Game.GetGameUser().GetCharacter().GetInventory().AddItem(12);};
-      @{Game.GetGameUser().GetCharacter().GetInventory().AddItem(13);};
-      @{Game.GetGameUser().GetCharacter().GetInventory().AddItem(14);};
-      @{Game.GetGameUser().GetCharacter().GetInventory().AddItem(15);};
+      updateGameLog("<p>A set of basic armor has been added to your inventory. Click on the individual armor items in your inventory to equip them.</p>");
+      inventoryAddItem(11);
+      inventoryAddItem(12);
+      inventoryAddItem(13);
+      inventoryAddItem(14);
+      inventoryAddItem(15);
       $(this).remove();
     });
 
@@ -192,7 +218,7 @@
     })
 
     $("#event4 .subevent1 .suboption1").click(function() {
-        @{Game.GetGameConsole().Append("<p>As you place the edge of the crowbar against the small opening between the AIR LOCK doors you can't help but think back to your family. The told you at the academy that the trip to Mars would be difficult, but you never anticipated the psychological impact being this significant. You throw your weight against the crowbar, but nothing happens. You reposition the crowbar and lean hard against the handle again. This time, you feel the door give away under your weight, and the airlock flies open. The next few seconds are a deluge of loud whooshing and intense physical sensations that could not possibly be communicated to anyone else. You feel a tremendous force push your body through the AIR LOCK. Before blacking out, you turn your head around to see the SpaceX colonial vessel slowly shrinking behind you. The name of the ship, LAST HOPE, is painted on its side.</p>");};
+      updateGameLog("<p>As you place the edge of the crowbar against the small opening between the AIR LOCK doors you can't help but think back to your family. The told you at the academy that the trip to Mars would be difficult, but you never anticipated the psychological impact being this significant. You throw your weight against the crowbar, but nothing happens. You reposition the crowbar and lean hard against the handle again. This time, you feel the door give away under your weight, and the airlock flies open. The next few seconds are a deluge of loud whooshing and intense physical sensations that could not possibly be communicated to anyone else. You feel a tremendous force push your body through the AIR LOCK. Before blacking out, you turn your head around to see the SpaceX colonial vessel slowly shrinking behind you. The name of the ship, LAST HOPE, is painted on its side.</p>");
         // Endgame Scenario
     });
 
