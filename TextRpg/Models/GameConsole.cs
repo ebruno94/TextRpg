@@ -17,6 +17,7 @@ namespace TextRpg.Models
         public void Append(string inputString)
         {
             _gameLog += inputString;
+            Console.WriteLine(inputString);
         }
 
         public void SetGameLog(string inputString)
