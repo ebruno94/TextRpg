@@ -10,7 +10,9 @@ namespace TextRpg.Controllers
         [HttpGet("/Game/Create")]
         public ActionResult Create()
         {
-            return RedirectToAction("Room1", "Room"); 
+            GameConsole myGameConsole = new GameConsole();
+            Game.SetGameConsole(myGameConsole);
+            return RedirectToAction("Room1", "Room");
         }
     }
 }

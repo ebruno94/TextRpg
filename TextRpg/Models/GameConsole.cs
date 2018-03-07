@@ -7,23 +7,23 @@ namespace TextRpg.Models
 {
     public class GameConsole
     {
-        private static string _gameLog;
+        private string _gameLog;
 
         public GameConsole()
         {
             _gameLog = "";
         }
 
-        public static void Append(string inputString)
+        public void Append(string inputString)
         {
             _gameLog += inputString;
         }
 
-        public static void SetGameLog(string inputString)
+        public void SetGameLog(string inputString)
         {
             _gameLog = inputString;
         }
-        public static String GetGameLog()
+        public String GetGameLog()
         {
             return _gameLog;
         }
