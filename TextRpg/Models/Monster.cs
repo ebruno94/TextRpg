@@ -33,17 +33,20 @@ namespace TextRpg.Models
             _armor = 0;
         }
 
-        public Monster()
+        public Monster (string name, string imgUrl, int level, int max_hp, int hp, int armor, int attackDamage,int charisma,int dexterity, int item_id, int experience, string audio)
         {
-            _name = "";
-            _level = 1;
-            _experience = 0;
-            _health = 100;
-            _maxHealth = 100;
-            _attackDamage = 1;
-            _dexterity = 1;
-            _charisma = 1;
-            _armor = 0;
+            _name = name;
+            _imgUrl = imgUrl,
+            _level = level;
+            _maxHealth = max_hp;
+            _health = hp;
+            _armor = armor;
+            _attackDamage = attackDamage;
+            _charisma = charisma;
+            _dexterity = dexterity;
+            _experience = experience;
+            _item_id = item_id;
+            _audio = audio;
         }
 
         //Change functions
