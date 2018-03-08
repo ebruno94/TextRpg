@@ -79,6 +79,11 @@
                   </div>
                 </div>
               </div>
+              <div class="row sidebarTitle">
+                <div class="col-md-12">
+                  <p>Character Stats</p>
+                </div>
+              </div>
               <div class="row">
                 <div class="col-md-6 characterStats">
                   <p>Armor: @Game.GetGameUser().GetCharacter().GetArmor()</p>
@@ -96,11 +101,23 @@
 
           <!-- Equipped Items -->
           <div class="row sidebarContainer" id="equippedItems">
+            <div class="col-md-12">
+              <div class="row sidebarTitle">
+                <div class="col-md-12">
+                  <p>Equipped Items</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Equippable Inventory -->
           <div class="row sidebarContainer" id="equippableInventory">
             <div class="col-md-12">
+              <div class="row sidebarTitle">
+                <div class="col-md-12">
+                  <p>Equippable Items</p>
+                </div>
+              </div>
               <div class="row">
                   @foreach (var item in Game.GetGameUser().GetCharacter().GetInventory().GetEquippables())
                   {
@@ -116,6 +133,11 @@
           <!-- Disposable Inventory  -->
           <div class="row sidebarContainer" id="disposableInventory">
             <div class="col-md-12">
+              <div class="row sidebarTitle">
+                <div class="col-md-12">
+                  <p>Usable Items</p>
+                </div>
+              </div>
               <div class="row">
                 @foreach (var item in Game.GetGameUser().GetCharacter().GetInventory().GetDisposables())
                 {
@@ -155,17 +177,34 @@
 
           <!-- Monster Stats -->
           <div class="row sidebarContainer" id="monsterStats">
-            <p class="monsterName center">@Game.GetRoom().GetMonster().GetName()</p>
-            <img src="@Game.GetRoom().GetMonster().GetImgUrl()" />
-            <p class="monsterHealthInt center"> @Game.GetRoom().GetMonster().GetHealth() / @Game.GetRoom().GetMonster().GetMaxHealth() </p>
-            <div id="monsterHealthBar">
-              <!-- Input Monster Health Bar Here -->
+            <div class="col-md-12">
+              <div class="row sidebarTitle">
+                <div class="col-md-12">
+                  <p>Monster</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="monsterName center">@Game.GetRoom().GetMonster().GetName()</p>
+                  <img src="@Game.GetRoom().GetMonster().GetImgUrl()" />
+                  <p class="monsterHealthInt center"> @Game.GetRoom().GetMonster().GetHealth() / @Game.GetRoom().GetMonster().GetMaxHealth() </p>
+                  <div id="monsterHealthBar">
+                    <!-- Input Monster Health Bar Here -->
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- Room Map -->
           <div class="row sidebarContainer" id="roomMap">
-
+            <div class="col-md-12">
+              <div class="row sidebarTitle">
+                <div class="col-md-12">
+                  <p>Game Map</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
