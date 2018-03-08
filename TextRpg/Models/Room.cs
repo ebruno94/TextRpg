@@ -85,7 +85,7 @@ namespace TextRpg.Models
             conn.Dispose();
         }
         //Button Triggers Event
-        public void FightEvent(){
+        public int FightEvent(){
             //Need some listening event
             _monster.Defend(_character.Attack());
             if(_monster.CheckDeath()){
@@ -94,6 +94,7 @@ namespace TextRpg.Models
                 GiveExperience();
                 Game.GetGameConsole().Append("<p>You gained " + _monster.GetItem().GetName() + ". </p>");
                 GiveItem();
+                return 1;
             } else {
                 Game.GetGameConsole().Append("<p>You attack " + _monster.GetName() + " for " + _character.Attack() + ". </p>");
             }
@@ -101,9 +102,11 @@ namespace TextRpg.Models
             if(_character.CheckDeath()){
                 Game.GetGameConsole().Append("<p>You died... " + _monster.GetName() + " attacked you for " + _monster.Attack() +"<p>");
                 Restart();
+                return -1;
             } else {
                 Game.GetGameConsole().Append("<p>" + _monster.GetName() + " attacks you for " + _monster.Attack() + " . <p>");
             }
+            return 0;
         }
 
         public bool Run(){
@@ -122,7 +125,7 @@ namespace TextRpg.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM rooms WHERE id = @searchId;";
+            cmd.CommandText = @"SELECT * FROM rooms WHERE number = @searchId;";
 
             MySqlParameter searchId = new MySqlParameter();
             searchId.ParameterName = "@searchId";
