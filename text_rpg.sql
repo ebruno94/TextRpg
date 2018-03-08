@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 08, 2018 at 04:59 PM
+-- Generation Time: Mar 08, 2018 at 06:05 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -153,12 +153,12 @@ CREATE TABLE `monsters` (
 --
 
 INSERT INTO `monsters` (`id`, `name`, `img_url`, `level`, `max_hp`, `hp`, `armor`, `ad`, `charisma`, `dexterity`, `item_id`, `experience`, `audio_source`) VALUES
-(1, 'Alien Critter', 'img/Monster/critter.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, 'audio/Monster/zergling.wav'),
-(2, 'Alien Humanoid', 'img/Monster/alien-humanoid-maybe.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, 'audio/Monster/humanoid.wav'),
-(3, 'Zombie Human', 'img/Monster/zombie-naut.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, 'audio/Monster/zombie-human.wav'),
-(4, 'Destroyer', 'img/Monster/hydralisk.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, 'audio/Monster/hydralisk.wav'),
-(5, 'Alien Queen', 'img/Monster/alien-queen2.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, 'audio/Monster/queen-attack.wav'),
-(6, 'The Alien Commander', 'img/Monster/u-knuck.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, 'audio/Monster/uganda-youdonotknow.mp3');
+(1, 'Alien Critter', '/img/Monster/critter.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, '/audio/Monster/zergling.wav'),
+(2, 'Alien Humanoid', '/img/Monster/alien-humanoid-maybe.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, '/audio/Monster/humanoid.wav'),
+(3, 'Zombie Human', '/img/Monster/zombie-naut.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, 'audio/Monster/zombie-human.wav'),
+(4, 'Hydralisk', '/img/Monster/hydralisk.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, '/audio/Monster/hydralisk.wav'),
+(5, 'Alien Queen', '/img/Monster/alien-queen2.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, '/audio/Monster/queen-attack.wav'),
+(6, 'The Alien Commander', '/img/Monster/u-knuck.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, '/audio/Monster/uganda-youdonotknow.mp3');
 
 -- --------------------------------------------------------
 
@@ -172,6 +172,32 @@ CREATE TABLE `rooms` (
   `monster_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`id`, `number`, `monster_id`, `item_id`) VALUES
+(1, 2, 3, 0),
+(2, 3, 1, 0),
+(3, 4, 1, 0),
+(4, 5, 3, 0),
+(5, 6, -1, -1),
+(6, 7, 4, 0),
+(7, 8, -1, 0),
+(8, 9, 4, 0),
+(9, 10, -1, -1),
+(10, 11, -1, -1),
+(11, 12, -1, -1),
+(12, 13, -1, -1),
+(13, 14, -1, -1),
+(14, 15, -1, -1),
+(15, 16, 4, -1),
+(16, 17, 2, 7),
+(17, 18, 2, -1),
+(18, 19, -1, -1),
+(19, 20, 5, -1),
+(20, 21, 6, -1);
 
 -- --------------------------------------------------------
 
@@ -263,7 +289,7 @@ ALTER TABLE `monsters`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `users`
 --
