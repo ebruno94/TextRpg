@@ -90,7 +90,7 @@ namespace TextRpg.Models
             _monster.Defend(_character.Attack());
             if(_monster.CheckDeath()){
                 Game.GetGameConsole().Append("<p>You killed "+ _monster.GetName() + " with a " + _monster.Attack() + " damage attack.  </p>");
-                Game.GetGameConsole().Append("<p>You gained " + _monster.GetExperience() + ". </p>");
+                Game.GetGameConsole().Append("<p>You gained " + _monster.GetExperience() + " experience. </p>");
                 GiveExperience();
                 Game.GetGameConsole().Append("<p>You gained " + _monster.GetItem().GetName() + ". </p>");
                 GiveItem();
