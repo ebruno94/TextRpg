@@ -94,17 +94,21 @@ namespace TextRpg.Models
                 GiveExperience();
                 Game.GetGameConsole().Append("<p>You gained " + _monster.GetItem().GetName() + ". </p>");
                 GiveItem();
+                // _monster.UpdateHealth();
                 return 1;
             } else {
                 Game.GetGameConsole().Append("<p>You attack " + _monster.GetName() + " for " + _character.Attack() + ". </p>");
+                // _monster.UpdateHealth();
             }
             //Need some delay before the monster attacks
             if(_character.CheckDeath()){
                 Game.GetGameConsole().Append("<p>You died... " + _monster.GetName() + " attacked you for " + _monster.Attack() +"<p>");
                 Restart();
                 return -1;
+                // _character.Update();
             } else {
                 Game.GetGameConsole().Append("<p>" + _monster.GetName() + " attacks you for " + _monster.Attack() + " . <p>");
+                // _character.Update();
             }
             return 0;
         }

@@ -395,10 +395,28 @@ namespace TextRpg.Models
         {
             //Level Adjustment
             _maxHealth = 500 + _level*25;
+            _armor = 1;
             _attackDamage = 50 + _level*25;
+            _intelligence = 1;
             _dexterity = 1 + _level;
+            _luck = 1;
+            _charisma = 1;
             //Inventory Adjustment
-            _inventory.UpdateInventoryStats();
+            AccountForEquippedItems();
+        }
+        public void AccountForEquippedItems()
+        {
+            for(int i = 0; i < 6; i ++)
+            {
+              _maxHealth += _equipped[i].GetHealth();
+              _armor += _equipped[i].GetArmor();
+              _attackDamage += _equipped[i].GetAttackDamage();
+              _intelligence += _equipped[i].GetIntelligence();
+              _dexterity += _equipped[i].GetDexterity();
+              _luck += _equipped[i].GetLuck();
+              _charisma += _equipped[i].GetCharisma();
+
+            }
         }
         public int ExperienceForLevel(int inputLevel)
         {
@@ -473,9 +491,12 @@ namespace TextRpg.Models
         //DEFEND FUNCTIONS END HERE ------------------------------------------------------------->
         public bool CheckDeath()
         {
+            Console.WriteLine("CheckDeath() _health : "  + _health);
             if(_health <= 0){
+                Console.WriteLine("CheckDeath() true");
                 return true;
             } else {
+                Console.WriteLine("CheckDeath() _health : "  + _health);
                 return false;
             }
         }
