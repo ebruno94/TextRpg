@@ -19,6 +19,7 @@ namespace TextRpg.Models
         public string _imgUrl;
         public int _armor;
         public string _audio;
+        public int _id;
 
         public Monster()
         {
@@ -36,7 +37,7 @@ namespace TextRpg.Models
         public Monster (string name, string imgUrl, int level, int max_hp, int hp, int armor, int attackDamage,int charisma,int dexterity, int item_id, int experience, string audio)
         {
             _name = name;
-            _imgUrl = imgUrl,
+            _imgUrl = imgUrl;
             _level = level;
             _maxHealth = max_hp;
             _health = hp;
@@ -45,7 +46,7 @@ namespace TextRpg.Models
             _charisma = charisma;
             _dexterity = dexterity;
             _experience = experience;
-            _item_id = item_id;
+            _monsterItem.SetId(item_id);
             _audio = audio;
         }
 
@@ -222,7 +223,7 @@ namespace TextRpg.Models
             int charisma = 0;
             int dexterity = 0;
             int item_id = 0;
-            int experience = "";
+            int experience = 0;
             string audio = "";
 
             while(rdr.Read())
@@ -242,14 +243,14 @@ namespace TextRpg.Models
                 audio = rdr.GetString(12);
 
             }
-            Monster monster = new Monster(name, imgUrl, level, max_hp, hp, armor, attackDamage, charisma, dexterity, item_id, experience, audio);
-            monster.SetId(id);
+            Monster newMonster = new Monster(name, imgUrl, level, max_hp, hp, armor, attackDamage, charisma, dexterity, item_id, experience, audio);
+            newMonster.SetId(id);
             conn.Close();
             if (conn != null)
             {
                 conn.Dispose();
             }
-            return newItem;
+            return newMonster;
         }
 
     }
