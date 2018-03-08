@@ -46,7 +46,7 @@ namespace TextRpg.Models
             _charisma = charisma;
             _dexterity = dexterity;
             _experience = experience;
-            _monsterItem.SetId(item_id);
+            _monsterItem = Item.Find(item_id);
             _audio = audio;
         }
 
