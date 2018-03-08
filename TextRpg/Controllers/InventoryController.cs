@@ -15,7 +15,8 @@ namespace TextRpg.Controllers
             Console.WriteLine("itemIndex: " + index);
             Item myItem = Item.Find(index);
             Console.WriteLine("My item is called a " + myItem.GetName());
-            string result = JsonConvert.SerializeObject(myItem);
+            Console.WriteLine("My Item Name on Controller Side: " + myItem.GetName() + " My Item img_url path on controller side: " + myItem.GetImgUrl());
+
 
             return Json(myItem);
         }

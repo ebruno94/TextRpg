@@ -35,50 +35,31 @@
 <script type="text/javascript">
 
   $(document).ready(function() {
+    var updateGameLog = function(gameLogMessage) {
+      $.ajax({
+        url: "/GameConsole/Append",
+        type: "POST",
+        dataType: "json",
+        data: {message: gameLogMessage},
+        success: function(data){
+          console.log("success");
+          // $("#gameLog").html(data);
+          console.log(data._name);
+        }
+      });
+    };
 
-    $(".initHidden").addClass("hidden");
-
-    $(".route1").click(function() {
-      $(this).parent().parent().addClass("hidden");
-      $("#event1").removeClass("hidden");
-    });
-
-    $(".route2").click(function() {
-      $(this).parent().parent().addClass("hidden");
-      $("#event2").removeClass("hidden");
-    });
-
-    $(".route3").click(function() {
-      $(this).parent().parent().addClass("hidden");
-      $("#event3").removeClass("hidden");
-    });
-
-    $(".route4").click(function() {
-      $(this).parent().parent().addClass("hidden");
-      $("#event4").removeClass("hidden");
-    });
-
-    $(".route5").click(function() {
-      $(this).parent().parent().addClass("hidden");
-      $("#event5").removeClass("hidden");
-    });
-
-    selector.click(function(){
-      Game.
-
-      console.AddLine()
-      this.remove();
-    })
-
-    $("#flee").click(function() {
-      if (true)
-      {
-        console.log("rerouting");
-        window.location.href = "localhost:5000/Room/Room2"
-      };
-      $(this).addClass("hidden");
-    });
-
+    var inventoryAddItem = function(itemIndex){
+      $.ajax({
+        url: "/Inventory/AddItem",
+        type: "POST",
+        data: {index: itemIndex},
+        success: function(data){
+          console.log("Monster: " + data._name);
+          $("#equippableInventory .col-md-12 .row").append('<div class="col-md-3 itemCard"><p class="itemName">' + data._name + '</p><img class="itemImage" src="' + data._imgUrl + '"/></div>')
+        }
+      })
+    }
   });
 
 </script>

@@ -97,13 +97,13 @@
           <div class="row" id="equippableInventory">
             <div class="col-md-12">
               <div class="row">
-                @foreach (var item in Game.GetGameUser().GetCharacter().GetInventory().GetEquippables())
-                {
-                  <div class="col-md-3 itemCard">
-                    <p class="itemName">@item.GetName()</p>
-                    <a href="@item.GetAction()"><img class="itemImage" src="@item.GetImgUrl()" /></a>
-                  </div>
-                }
+                  @foreach (var item in Game.GetGameUser().GetCharacter().GetInventory().GetEquippables())
+                  {
+                    <div class="col-md-3 itemCard">
+                      <p class="itemName">@item.GetName()</p>
+                      <a href="@item.GetAction()"><img class="itemImage" src="@item.GetImgUrl()"/></a>
+                    </div>
+                  }
               </div>
             </div>
           </div>
