@@ -7,103 +7,39 @@
   <h3>Cafe</h3>
 </div>
 
+@* //Introduction Event -------------------------------------------------------------- *@
+
 <div class="event introduction">
-  <p></p>
+  <p>As you enter the Cafe, the dimmed lights flickered. You notice in the corner of the room that there were people slumped over a body. Excited knowing that someone else is still alive, you run towards them and yelled "Hey, I'm so glad you guys are here!!". As you come closer you notice something wrong. The group of people was actually eating the dead corpse. One of them turns around. Eyes blood shot and blood dripping out of their mouth. It locked eyes with you and screamed a loud screech. The rest turns and start heading towards you. You turn around to try to leave but realized that you were surrounded. </p>
 
   <div class="routes main">
-    <button class="route route1" type="button"></button>
-    <button class="route route2" type="button"></button>
-    <button class="route route3" type="button"></button>
-    <button class="route route4" type="button"></button>
+    <button class="route route1" type="button">Fight Zombie Zerg</button>
+    <button class="route route2" type="button">Try to Flee the room</button>
   </div>
 </div>
 
-<div class="routes" id="routes">
-  <button class="route route1" type="button"></button>
-  <button class="route route2" type="button"></button>
-  <button class="route route3" type="button"></button>
-  <button class="route route4" type="button"></button>
-</div>
+@* Event 1 --------------------------------------------------------------------- *@
 
 <div class="event initHidden" id="event1">
-  <p>
- </p>
+  <p>After a long and grueling fight, you seach the bodies and find Keycard. </p>
 
  <div class="routes main">
-   <button class="route route2" type="button">Check out the terminal in the middle of the CryoChamber Room</button>
-   <button class="route route3" type="button">Check out the equipment locker</button>
-   <button class="route route4" type="button">Walk towards the doors</button>
+   <button class="route route3" type="button">Leave the room</button>
  </div>
 </div>
 
+@* Event 2 --------------------------------------------------------------------- *@
+
 <div class="event initHidden" id="event2">
-  <p>You approach the terminal in the middle of the room. A single displayed line reads: "currently running emergency protocol". Below, are a list of options: <p>
-
-    <div class="terminalOptions">
-      <button class="option" id="option1">Click on [View Ship Vitals]</button>
-      <button class="option" id="option2">Click on [View Captains Log]</button>
-      <button class="option" id="option3">Click on [Remotely Access AirLock]</button>
-    </div>
+  <p>As you try to flee the room, one of the zombie grabs your arm and takes a big bite. You scream as you pull your arm away, ripping flesh out of your arm. You stumble backwards and you fall helplessly to the ground. Another Zombie jumps at you and punctures your stomach. You watch as it pulls your intestines and starts to eat it. The rest follows and takes it share of flesh.<p>
 
     <div class="routes main">
-      <button class="route route1" type="button">Check out the other cryochambers in the room</button>
-      <button class="route route3" type="button">Check out the equipment locker</button>
-      <button class="route route4" type="button">Walk towards the doors</button>
+      <button class="route route1" type="button"></button>
+      <button class="route route3" type="button"></button>
+      <button class="route route4" type="button"></button>
     </div>
 </div>
 
-<div class="event initHidden" id="event3">
-  <p> Your equipment locker is at the far left-hand side of the room. Despite the modernity of all the technology available to SpaceX, they opted to secure each locker with a physical key. You recall having a discussion with your officer about funding cuts... You feel around in your pocket hoping to find your own key, but it's not there. Before backing away, you notice a locker near yours that is slightly ajar.
-
-    <div class="routes sub">
-      <button class="route" type="button" id="route5">Try to force the locker open</button>
-      <button class="route" type="button" id="route6">Walk away</button>
-    </div>
-
-    <div class="routes main">
-      <button class="route route1" type="button">Check out the other cryochambers in the room</button>
-      <button class="route route3" type="button">Check out the equipment locker</button>
-      <button class="route route4" type="button">Walk towards the doors</button>
-    </div>
-</div>
-
-<div class="event initHidden" id="event4">
-  <p> There are two doors leading out of the cryochamber room. The first room is clearly marked with a warning that reads, "AIR LOCK: ONLY OPEN REMOTELY IN ACCORDANCE WITH EMERGENCY PROTOCOL 150". There is a sign above the second door that reads, "This way to CANTINA and MEDICAL BAY". </p>
-
-  <div class="routes">
-    <button class="route route7" type="button">Approach the AIR LOCK</button>
-    <button class="route route8" type="button">Approach door to CANTINA and MEDICAL BAY</button>
-  </div>
-</div>
-
-<div class="event initHidden" id="event8">
-  <p> Beyond this door is a series of hallways that lead to the ship's cafeteria you and colonists are planning on using for your first several months on Mars and the ship's medical bay. You notice that as you stand near the door, the smell of smoke has grown stronger and noticeably less pleasant. It suddenly strikes you how out-of-place this smell is on a space vessel, and you begin to feel an overwhelming sense of discomfort. Something is definitely not right.
-
-  <div class="routes">
-    <button class="route route7" type="button">Back away from door</button>
-    <a href="/Room/Room2"><button class="exit route route8" type="button">Continue through the door into the hallway</button></a>
-  </div>
-</div>
-
-<div class="monster event event5">
-  <p> You see a squishy. It is wobbling threateningly at you. Do you engage in combat?</p>
-
-  <button type="button" class="option option1">Engage squishy in mortal combat</button>
-  <button type="button" class="option option2" id="flee">Flee from squishy like a little bitch</button>
-
-  <div class="monster subevent subevent1">
-    @* fight *@
-    <button type="button" class="option option1">Attack</button>
-  </div>
-  <div class="monster subevent subevent2">
-
-  </div>
-  <div class="routes main initHidden">
-    <button class="route route1" type="button">Check out the other cryochambers in the room</button>
-    <button class="route route3" type="button">Check out the equipment locker</button>
-    <button class="route route4" type="button">Walk towards the doors</button>
-  </div>
-</div>
 
 <script type="text/javascript">
 
