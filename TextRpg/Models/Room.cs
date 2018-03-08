@@ -32,9 +32,15 @@ namespace TextRpg.Models
         }
         public void Restart()
         {
-            //Set roomNumber back to start
-            Game.GetGameUser().SetRoomNumber(1);
-            //Clear inventory
+            if(Game.GetGameUser().GetId() < 8){
+                Game.GetGameUser().SetRoomNumber(1);
+            } else if(8 <= Game.GetGameUser().GetId() && Game.GetGameUser().GetId() < 14){
+                Game.GetGameUser().SetRoomNumber(8);
+            } else if(14 <= Game.GetGameUser().GetId() && Game.GetGameUser().GetId() < 20) {
+                Game.GetGameUser().SetRoomNumber(14);
+            } else {
+
+            }
             _character.GetInventory().ClearInventory();
         }
         //Randomly generates an Item and gives it to the current Character
@@ -73,6 +79,7 @@ namespace TextRpg.Models
             //Need some delay before the monster attacks
             if(_character.CheckDeath()){
                 Game.GetGameConsole().Append("<p>You died... " + _monster.GetName() + " attacked you for " + _monster.Attack() +"<p>");
+                Restart();
             } else {
                 Game.GetGameConsole().Append("<p>" + _monster.GetName() + " attacks you for " + _monster.Attack() + " . <p>");
             }
