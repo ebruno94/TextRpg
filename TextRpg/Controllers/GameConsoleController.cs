@@ -13,13 +13,7 @@ namespace TextRpg.Controllers
         {
             Game.GetGameConsole().Append(message);
             Console.WriteLine(Game.GetGameConsole().GetGameLog());
-            // return Game.GetGameConsole().GetGameLog();
-            Character newCharacter = new Character("Justin", 0);
-            var output = JsonConvert.SerializeObject(newCharacter);
-            // var output = Json(newCharacter) as string;
-            Console.WriteLine("CHARACTER JSON:");
-            Console.WriteLine(output);
-            return output;
+            return Game.GetGameConsole().GetGameLog();
         }
     }
 }

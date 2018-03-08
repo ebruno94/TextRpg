@@ -103,14 +103,15 @@ namespace TextRpg.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM items WHERE id = (@searchId);";
+            cmd.CommandText = @"SELECT * FROM items WHERE id = @searchId;";
 
             MySqlParameter searchId = new MySqlParameter();
             searchId.ParameterName = "@searchId";
             searchId.Value = myId;
             cmd.Parameters.Add(searchId);
 
-            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
             int id = 0;
             string name = "";
             string imgUrl = "";
