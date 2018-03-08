@@ -50,9 +50,9 @@ footer {
     min-width: 1400px;
 }
 
-.itemImage {
-    width: 75px;
-    height: 75px;
+.itemImage, .itemImage2 {
+    width: 75px !important;
+    height: 75px !important;
 }
 
 .sidebar {

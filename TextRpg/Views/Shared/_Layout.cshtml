@@ -113,7 +113,7 @@
                 {
                   <div class="col-md-4 itemCard2">
                     <p class="itemName">@item.GetName()</p>
-                    <a href="@item.GetAction()"><img class="itemImage2" src="@item.GetImgUrl()" onerror="this.style.display='none'"></a>
+                    <img class="itemImage2" src="@item.GetImgUrl()" >
                   </div>
                 }
               </div>
@@ -134,7 +134,8 @@
                   {
                     <div class="col-md-3 itemCard equippable">
                       <p class="itemName">@item.GetName()</p>
-                      <img class="itemImage" src="@item.GetImgUrl()">
+                      <img class="itemImage equippableItemImage" src="@item.GetImgUrl()">
+                      <input type="hidden" value="@item.GetId()">
                     </div>
                   }
               </div>
@@ -223,3 +224,11 @@
     <footer>Epicodus (C) Alex, Ernest, Justin, Victor 2018</footer>
   </body>
 </html>
+
+<script type="text/javascript">
+
+  $(".equippableItemImage").click(function(){
+    console.log("The item id you're trying to find is: " + $(this).parent().find("input").val());
+    characterAddItemToEquipped($(this).parent().find("input").val());
+  })
+</script>

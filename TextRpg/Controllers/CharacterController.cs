@@ -24,7 +24,7 @@ namespace TextRpg.Controllers
             return RedirectToAction("Display", "User");
         }
 
-        [HttpPost("/Character/AddItemToEquipped/{itemId}")]
+        [HttpGet("/Character/AddItemToEquipped/")]
         public IActionResult CharacterAddItemToEquipped(int itemId)
         {
             Item myItem = Item.Find(itemId);
