@@ -107,6 +107,7 @@ namespace TextRpg.Models
                 return -1;
                 // _character.Update();
             } else {
+                _character.Defend(_monster.Attack());
                 Game.GetGameConsole().Append("<p>" + _monster.GetName() + " attacks you for " + _monster.Attack() + " . <p>");
                 // _character.Update();
             }
