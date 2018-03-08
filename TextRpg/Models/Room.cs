@@ -26,8 +26,21 @@ namespace TextRpg.Models
         {
             _character.ChangeExperience(_monster.GetExperience());
         }
+        public void GiveItem()
+        {
+            _character.GetInventory().AddItem(_monster.GetItem().GetId());
+        }
         public void Restart()
         {
+            if(Game.GetGameUser().GetId() < 8){
+                Game.GetGameUser().SetRoomNumber(1);
+            } else if(8 <= Game.GetGameUser().GetId() && Game.GetGameUser().GetId() < 14){
+                Game.GetGameUser().SetRoomNumber(8);
+            } else if(14 <= Game.GetGameUser().GetId() && Game.GetGameUser().GetId() < 20) {
+                Game.GetGameUser().SetRoomNumber(14);
+            } else {
+
+            }
             _character.GetInventory().ClearInventory();
         }
         //Randomly generates an Item and gives it to the current Character
@@ -55,15 +68,18 @@ namespace TextRpg.Models
             //Need some listening event
             _monster.Defend(_character.Attack());
             if(_monster.CheckDeath()){
-                GiveExperience();
                 Game.GetGameConsole().Append("<p>You killed "+ _monster.GetName() + " with a " + _monster.Attack() + " damage attack.  </p>");
                 Game.GetGameConsole().Append("<p>You gained " + _monster.GetExperience() + ". </p>");
+                GiveExperience();
+                Game.GetGameConsole().Append("<p>You gained " + _monster.GetItem().GetName() + ". </p>");
+                GiveItem();
             } else {
                 Game.GetGameConsole().Append("<p>You attack " + _monster.GetName() + " for " + _character.Attack() + ". </p>");
             }
             //Need some delay before the monster attacks
             if(_character.CheckDeath()){
                 Game.GetGameConsole().Append("<p>You died... " + _monster.GetName() + " attacked you for " + _monster.Attack() +"<p>");
+                Restart();
             } else {
                 Game.GetGameConsole().Append("<p>" + _monster.GetName() + " attacks you for " + _monster.Attack() + " . <p>");
             }

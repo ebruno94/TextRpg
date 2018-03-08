@@ -19,6 +19,11 @@ namespace TextRpg.Controllers
             Console.WriteLine("Critter: " + myMonster.GetName());
             return View(myMonster);
         }
+        [HttpGet("/Room/3")]
+        public ActionResult Room3()
+        {
+            return View();
+        }
         [HttpGet("/Room/4")]
         public ActionResult Room4()
         {
