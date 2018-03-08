@@ -49,7 +49,37 @@ namespace TextRpg.Models
             _monsterItem = Item.Find(item_id);
             _audio = audio;
         }
+        public void UpdateHealth()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
 
+            cmd.CommandText = @"UPDATE monsters SET hp = @hp ,max_hp = @max_hp WHERE id = @monsterId;";
+
+            MySqlParameter health = new MySqlParameter();
+            health.ParameterName = "@hp";
+            health.Value = _health;
+            cmd.Parameters.Add(health);
+
+            MySqlParameter maxHealth = new MySqlParameter();
+            maxHealth.ParameterName = "@max_hp";
+            maxHealth.Value = _maxHealth;
+            cmd.Parameters.Add(maxHealth);
+
+            MySqlParameter monsterId = new MySqlParameter();
+            monsterId.ParameterName = "@monsterId";
+            monsterId.Value = _id;
+            cmd.Parameters.Add(monsterId);
+
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
         //Change functions
         public void ChangeLevel(int level)
         {
