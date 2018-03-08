@@ -16,7 +16,8 @@
   </div>
 </div>
 
-<div class="event initHidden" id="event1">
+<div class="event initHidden monsterEvent" id="event1">
+  <input type="hidden" id="fightFlag" value="0">
   <p>You enter mortal combat with the Zombie Human.</p>
 
   <div class="options">
@@ -24,7 +25,7 @@
   </div>
 </div>
 
-<div class="event initHidden" id="event2">
+<div class="event initHidden postMonsterEvent" id="event2">
   <p>You notice the signs on the wall as you defeat the stinkin' Zombie. The sign on the left reads "<= Cafe" and "Medical Bay =>"</p>
   <p>You choose where to go</p>
   <div class="options">
@@ -51,7 +52,6 @@
 
     $(".attackButton").click(function(){
       console.log(roomFightEvent());
-      monsterReady.Play();
       updateGameLog();
     });
 

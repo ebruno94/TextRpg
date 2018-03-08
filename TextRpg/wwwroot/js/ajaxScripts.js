@@ -21,25 +21,39 @@ var inventoryAddItem = function(itemIndex){
     console.log("item added: " + data._name);
     console.log(data["name"]);
     console.log(data[0]);
-    $("#equippableInventory .col-md-12 .row").append('<div class="col-md-3 itemCard"><p class="itemName">' + data._name + '</p><img class="itemImage" src="' + data._imgUrl + '"/></div>')
+    $("#equippableInventory .col-md-12 .row").append('<div class="col-md-3 itemCard"><p class="itemName">' + data._name + '</p><img class="itemImage" src="' + data._imgUrl + '"/></div>');
+
+    $(".equippableItemImage:last-of-type").click(function(){
+      console.log("The item id you're trying to find is: " + $(this).parent().find("input").val());
+      characterAddItemToEquipped($(this).parent().find("input").val());
+      });
+
     }
-  })
-}
+  });
+};
 
 var roomFightEvent = function(){
-  var route = -1;
   $.ajax({
     url: "/Room/FightEvent",
     type: "GET",
     success: function(data){
       console.log("current character health: " + data.character._health);
+      console.log(data);
       $("#characterHealth").text(data.character._health + "/" + data.character._maxHealth);
       $(".monsterHealthInt").text(data.monster._health + "/" + data.monster._maxHealth);
+      $("#fightFlag").val(data.roomRoute);
       route = data.roomRoute;
       console.log(data.roomRoute);
+      $("#fightFlag").val(data.roomRoute);
+      console.log("This is the value of the fight flag: " + $("#fightFlag").val());
+      if ($("#fightFlag").val() == 1)
+      {
+        console.log("I'm trying so hard to please you.");
+        $(".monsterEvent").addClass("hidden");
+        $(".postMonsterEvent").removeClass("hidden");
+      }
     }
   });
-  return route;
 };
 
 var characterAddItemToEquipped = function(thisItemId){
