@@ -11,10 +11,10 @@ namespace TextRpg.Controllers
         {
             return View("Room1");
         }
-        [HttpGet("/Room/3")]
-        public ActionResult Room3()
+
+        public IActionResult DisplayCritter()
         {
-            return View();
+        
         }
     }
 }
