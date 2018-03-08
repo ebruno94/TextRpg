@@ -8,6 +8,19 @@ namespace TextRpg.Controllers
 {
     public class RoomController: Controller
     {
+        [HttpGet("/Room/FightEvent")]
+        public IActionResult RoomFightEvent()
+        {
+            int route = Game.GetRoom().FightEvent();
+            Console.WriteLine("The route number: " + route);
+            Dictionary<string, object> myDictionary = new Dictionary<string, object>();
+            myDictionary.Add("character", Game.GetGameUser().GetCharacter());
+            myDictionary.Add("monster", Game.GetRoom().GetMonster());
+            myDictionary.Add("roomRoute", route);
+
+            return Json(myDictionary);
+        }
+
         [HttpGet("/Room/1")]
         public ActionResult Room1()
         {
@@ -33,32 +46,62 @@ namespace TextRpg.Controllers
         [HttpGet("/Room/3")]
         public ActionResult Room3()
         {
-            return View();
+          Room newRoom = Room.Find(3);
+          newRoom.SetCharacter(Game.GetGameUser().GetCharacter());
+          Game.GetGameUser().GetCharacter().SetRoomNumber(3);
+          Game.GetGameUser().GetCharacter().Update();
+          Game.GetGameUser().GetCharacter().GetInventory();
+          return View();
         }
         [HttpGet("/Room/4")]
         public ActionResult Room4()
         {
-            return View();
+          Room newRoom = Room.Find(4);
+          newRoom.SetCharacter(Game.GetGameUser().GetCharacter());
+          Game.GetGameUser().GetCharacter().SetRoomNumber(4);
+          Game.GetGameUser().GetCharacter().Update();
+          Game.GetGameUser().GetCharacter().GetInventory();
+          return View();
         }
         [HttpGet("/Room/5")]
         public ActionResult Room5()
         {
-            return View();
+          Room newRoom = Room.Find(5);
+          newRoom.SetCharacter(Game.GetGameUser().GetCharacter());
+          Game.GetGameUser().GetCharacter().SetRoomNumber(5);
+          Game.GetGameUser().GetCharacter().Update();
+          Game.GetGameUser().GetCharacter().GetInventory();
+          return View();
         }
         [HttpGet("/Room/6")]
         public ActionResult Room6()
         {
-            return View();
+          Room newRoom = Room.Find(6);
+          newRoom.SetCharacter(Game.GetGameUser().GetCharacter());
+          Game.GetGameUser().GetCharacter().SetRoomNumber(6);
+          Game.GetGameUser().GetCharacter().Update();
+          Game.GetGameUser().GetCharacter().GetInventory();
+          return View();
         }
         [HttpGet("/Room/7")]
         public ActionResult Room7()
         {
-            return View();
+          Room newRoom = Room.Find(7);
+          newRoom.SetCharacter(Game.GetGameUser().GetCharacter());
+          Game.GetGameUser().GetCharacter().SetRoomNumber(7);
+          Game.GetGameUser().GetCharacter().Update();
+          Game.GetGameUser().GetCharacter().GetInventory();
+          return View();
         }
         [HttpGet("/Room/8")]
         public ActionResult Room8()
         {
-            return View();
+          Room newRoom = Room.Find(8);
+          newRoom.SetCharacter(Game.GetGameUser().GetCharacter());
+          Game.GetGameUser().GetCharacter().SetRoomNumber(8);
+          Game.GetGameUser().GetCharacter().Update();
+          Game.GetGameUser().GetCharacter().GetInventory();
+          return View();
         }
         [HttpGet("/Room/9")]
         public ActionResult Room9()

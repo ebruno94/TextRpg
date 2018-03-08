@@ -136,9 +136,9 @@ namespace TextRpg.Models
         public void StatUpdate()
         {
             //Level Adjustment for monsters
-            _maxHealth = 500 + _level*25;
-            _attackDamage = 66 + _level*25;
-            _dexterity = 1 + _level;
+            _maxHealth = _maxHealth +  _level*10;
+            _attackDamage = _attackDamage + _level*10;
+            _dexterity = (int) .5 + _level;
         }
         //ATTACK FUNCTIONS BEGIN HERE ------------------------------------------------------------->
         public int Attack()
@@ -156,11 +156,12 @@ namespace TextRpg.Models
             int outputDamage = 0;
             if(Dodge() == true)
             {
-                //Nice dodge
+                Console.WriteLine("Dodge");
             } else {
                 outputDamage = this.ArmorDamageReduction(inputDamage);
                 _health = (int) (_health - outputDamage);
             }
+            Console.WriteLine("Monster Health: " + _health);
 
         }
         //
