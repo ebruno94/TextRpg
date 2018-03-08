@@ -45,6 +45,7 @@ namespace TextRpg.Models
         public void AddItemToEquipped(Item inputItem)
         {
             _equipped[inputItem.GetEquippable()] = inputItem;
+            this.StatUpdate();
         }
 
         public Character(string name, int level, int exp, int maxhp, int hp, int armor, int ad, int iq, int dex, int lck, int charisma, int id, int roomNumber, int userId)
@@ -406,6 +407,11 @@ namespace TextRpg.Models
         }
         public void AccountForEquippedItems()
         {
+          Console.WriteLine("1health: " + _health);
+          Console.WriteLine("1_maxHealth: " + _maxHealth);
+          Console.WriteLine("1armor: " + _armor);
+          Console.WriteLine("1attackDamage: " + _attackDamage);
+          Console.WriteLine("1intelligence: " + _intelligence);
             for(int i = 0; i < 6; i ++)
             {
               _maxHealth += _equipped[i].GetHealth();
@@ -415,8 +421,13 @@ namespace TextRpg.Models
               _dexterity += _equipped[i].GetDexterity();
               _luck += _equipped[i].GetLuck();
               _charisma += _equipped[i].GetCharisma();
-
             }
+            Console.WriteLine("health: " + _health);
+            Console.WriteLine("_maxHealth: " + _maxHealth);
+            Console.WriteLine("armor: " + _armor);
+            Console.WriteLine("attackDamage: " + _attackDamage);
+            Console.WriteLine("intelligence: " + _intelligence);
+
         }
         public int ExperienceForLevel(int inputLevel)
         {
@@ -440,7 +451,7 @@ namespace TextRpg.Models
         public int Attack()
         {
             this.StatUpdate();
-            int outputDamage = 1*_level + (_attackDamage/100)*_level;
+            int outputDamage = 1*_level + (_attackDamage);
             return (int) (outputDamage);
         }
         //ATTACK FUNCTIONS END HERE ------------------------------------------------------------->
@@ -462,7 +473,6 @@ namespace TextRpg.Models
         //
         public int ArmorDamageReduction(int inputDamage)
         {
-            int outputDamage = inputDamage;
             int damageMultiplier = 1;
             int totalArmor = _inventory.GetArmor();
 
@@ -473,7 +483,7 @@ namespace TextRpg.Models
                 damageMultiplier = 1;
             }
 
-            return (int) (outputDamage*damageMultiplier);
+            return (int) (inputDamage*damageMultiplier);
         }
         public bool Dodge()
         {

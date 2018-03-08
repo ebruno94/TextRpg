@@ -173,7 +173,7 @@ namespace TextRpg.Models
         public int Attack()
         {
             this.StatUpdate();
-            int outputDamage = 1*_level + (_attackDamage/100)*_level;
+            int outputDamage = 1*_level + (_attackDamage);
             return (int) (outputDamage);
         }
         //ATTACK FUNCTIONS END HERE ------------------------------------------------------------->
