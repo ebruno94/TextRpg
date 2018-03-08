@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 07, 2018 at 01:25 AM
+-- Generation Time: Mar 08, 2018 at 04:46 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -84,31 +84,31 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `name`, `img_url`, `hp`, `armor`, `ad`, `iq`, `luck`, `charisma`, `dexterity`, `equippable`, `action`, `audio_source`) VALUES
-(2, 'Med-Kit', 'img/Consumables/medkit.png', 1, 1, 1, 1, 1, 1, 1, -1, 'none', 'audio/Items/Consumables/medkit.wav'),
-(3, 'Adrenaline Shot', 'img/Consumables/adrenaline.png', 1, 1, 1, 1, 1, 1, 1, -1, 'none', 'audio/Items/Consumables/adrenaline-shot.wav'),
-(4, 'Alien Pistol', 'img/Weapons/alien-pistol.png', 1, 1, 1, 1, 1, 1, 1, 5, 'none', 'audio/Items/Weapons/a-pistol.wav'),
-(5, 'Alien Rifle', 'img/Weapons/alien-rifle.png', 1, 1, 1, 1, 1, 1, 1, 5, 'none', 'img/Items/Weapons/alien-rifle.png'),
-(6, 'Alien Sword', 'img/Weapons/alien-sword.png', 1, 1, 1, 1, 1, 1, 1, 5, 'none', 'audio/Items/Weapons/a-sword.wav'),
-(7, 'Machine Gun', 'img/Weapons/human-mg.png', 1, 1, 1, 1, 1, 1, 1, 5, 'none', 'audio/Items/Weapons/mg.wav'),
-(8, 'Pistol', 'img/Weapons/human-shotgun.png', 1, 1, 1, 1, 1, 1, 1, 5, 'none', 'audio/Items/Weapons/pistol.mp3'),
-(9, 'Shotgun', 'img/Weapons/human-shotgun.png', 1, 1, 1, 1, 1, 1, 1, 5, 'none', 'audio/Items/Weapons/shotgun.mp3'),
-(10, 'The Mighty Crowbar', 'img/Weapons/crowbar.png', 1, 1, 1, 1, 1, 1, 1, 5, 'none', 'audio/Items/Weapons/crowbar.mp3'),
-(11, 'Hide Helm', 'img/Armor/hide-helm.png\r\n', 1, 1, 1, 1, 1, 1, 1, 0, 'none', 'null'),
-(12, 'Hide Chest', 'img/Armor/hide-chest.png\r\n', 1, 1, 1, 1, 1, 1, 1, 1, 'none', 'null'),
-(13, 'Hide Gauntlets', 'img/Armor/hide-gaunts.png\r\n', 1, 1, 1, 1, 1, 1, 1, 2, 'none', 'null'),
-(14, 'Hide Leggings', 'img/Armor/hide-legs.png\r\n', 1, 1, 1, 1, 1, 1, 1, 3, 'none', 'null'),
-(15, 'Hide Boots', 'img/Armor/hide-boots.png\r\n', 1, 1, 1, 1, 1, 1, 1, 4, 'none', 'null'),
-(16, 'Guard Helm', 'img/Armor/riot-helm.png\r\n', 1, 1, 1, 1, 1, 1, 1, 0, 'none', 'null'),
-(17, 'Guard Chestpiece', 'img/Armor/riot-chest.png\r\n', 1, 1, 1, 1, 1, 1, 1, 1, 'none', 'null'),
-(18, 'Guard Gauntlets', 'img/Armor/riot-gaunts.png\r\n', 1, 1, 1, 1, 1, 1, 1, 2, 'none', 'null'),
-(19, 'Guard Legs', 'img/Armor/riot-legs.png\r\n', 1, 1, 1, 1, 1, 1, 1, 3, 'none', 'null'),
-(20, 'Guard Boots', 'img/Armor/riot-boots.png\r\n', 1, 1, 1, 1, 1, 1, 1, 4, 'none', 'null'),
-(21, 'Hi-Tech Helm', 'img/Armor/tek-helm.png\r\n', 1, 1, 1, 1, 1, 1, 1, 0, 'none', 'null'),
-(22, 'Hi-Tech Chestpiece', 'img/Armor/tek-chest.png\r\n', 1, 1, 1, 1, 1, 1, 1, 1, 'none', 'null'),
-(23, 'Hi-Tech Gauntlets', 'img/Armor/tek-gaunts.png\r\n', 1, 1, 1, 1, 1, 1, 1, 2, 'none', 'null'),
-(24, 'Hi-Tech Leggins', 'img/Armor/tek-legs.png\r\n', 1, 1, 1, 1, 1, 1, 1, 3, 'none', 'null'),
-(25, 'Hi-Tech Boots', 'img/Armor/tek-boots.png\r\n', 1, 1, 1, 1, 1, 1, 1, 4, 'none', 'null'),
-(26, 'Key Card', 'img/Consumables/keycard.png', 1, 1, 1, 1, 1, 1, 1, 1, 'none', 'audio/Items/Consumables/keycard-success.WAV');
+(2, 'Med-Kit', '/img/Consumables/medkit.png', 200, 1, 1, 1, 1, 1, 1, -1, 'none', '/audio/Items/Consumables/medkit.wav'),
+(3, 'Adrenaline Shot', '/img/Consumables/adrenaline.png', 1, 1, 50, 1, 1, 1, 1, -1, 'none', '/audio/Items/Consumables/adrenaline-shot.wav'),
+(4, 'Alien Pistol', '/img/Weapons/alien-pistol.png', 1, 1, 40, 1, 1, 1, 1, 5, 'none', '/audio/Items/Weapons/a-pistol.wav'),
+(5, 'Alien Rifle', '/img/Weapons/alien-rifle.png', 1, 1, 80, 1, 1, 1, 1, 5, 'none', '/audio/Items/Weapons/a-rifle.mp3'),
+(6, 'Alien Sword', 'img/Weapons/alien-sword.png', 1, 1, 100, 1, 1, 1, 1, 5, 'none', '/audio/Items/Weapons/a-sword.wav'),
+(7, 'Machine Gun', '/img/Weapons/human-mg.png', 1, 1, 160, 1, 1, 1, 1, 5, 'none', '/audio/Items/Weapons/mg.wav'),
+(8, 'Pistol', '/img/Weapons/human-pistol.png', 1, 1, 40, 1, 1, 1, 1, 5, 'none', '/audio/Items/Weapons/pistol.mp3'),
+(9, 'Shotgun', '/img/Weapons/human-shotgun.png', 1, 1, 120, 1, 1, 1, 1, 5, 'none', '/audio/Items/Weapons/shotgun.mp3'),
+(10, '/The Mighty Crowbar', '/img/Weapons/crowbar.png', 1, 1, 20, 1, 1, 1, 1, 5, 'none', '/audio/Items/Weapons/crowbar.mp3'),
+(11, 'Hide Helm', '/img/Armor/hide-helm.png\r\n', 50, 10, 1, 1, 1, 1, 2, 0, 'none', 'null'),
+(12, 'Hide Chest', '/img/Armor/hide-chest.png\r\n', 50, 10, 1, 1, 1, 1, 2, 1, 'none', 'null'),
+(13, 'Hide Gauntlets', '/img/Armor/hide-gaunts.png\r\n', 50, 10, 1, 1, 1, 1, 2, 2, 'none', 'null'),
+(14, 'Hide Leggings', '/img/Armor/hide-legs.png\r\n', 50, 10, 1, 1, 1, 1, 2, 3, 'none', 'null'),
+(15, 'Hide Boots', '/img/Armor/hide-boots.png\r\n', 50, 10, 1, 1, 1, 1, 2, 4, 'none', 'null'),
+(16, 'Guard Helm', '/img/Armor/riot-helm.png\r\n', 100, 20, 5, 1, 1, 2, 2, 0, 'none', 'null'),
+(17, 'Guard Chestpiece', '/img/Armor/riot-chest.png\r\n', 100, 20, 5, 1, 1, 2, 2, 1, 'none', 'null'),
+(18, 'Guard Gauntlets', '/img/Armor/riot-gaunts.png\r\n', 100, 20, 5, 1, 1, 2, 2, 2, 'none', ''),
+(19, 'Guard Legs', '/img/Armor/riot-legs.png\r\n', 100, 20, 5, 1, 1, 2, 2, 3, 'none', 'null'),
+(20, 'Guard Boots', '/img/Armor/riot-boots.png\r\n', 100, 20, 5, 1, 1, 2, 2, 4, 'none', 'null'),
+(21, 'Hi-Tech Helm', '/img/Armor/tek-helm.png\r\n', 200, 30, 20, 4, 1, 10, 2, 0, 'none', 'null'),
+(22, 'Hi-Tech Chestpiece', '/img/Armor/tek-chest.png\r\n', 200, 30, 20, 4, 1, 10, 2, 1, 'none', 'null'),
+(23, 'Hi-Tech Gauntlets', '/img/Armor/tek-gaunts.png\r\n', 200, 30, 20, 4, 1, 10, 2, 2, 'none', 'null'),
+(24, 'Hi-Tech Leggins', '/img/Armor/tek-legs.png\r\n', 200, 30, 20, 4, 1, 10, 2, 3, 'none', 'null'),
+(25, 'Hi-Tech Boots', '/img/Armor/tek-boots.png\r\n', 200, 30, 20, 4, 1, 10, 2, 4, 'none', 'null'),
+(26, 'Key Card', '/img/Consumables/keycard.png', 1, 1, 1, 1, 1, 1, 1, 1, 'none', '/audio/Items/Consumables/keycard-success.WAV');
 
 -- --------------------------------------------------------
 
