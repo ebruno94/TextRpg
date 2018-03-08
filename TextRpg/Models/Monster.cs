@@ -252,7 +252,6 @@ namespace TextRpg.Models
             }
             return newMonster;
         }
-
     }
 
 }
