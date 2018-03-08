@@ -8,6 +8,19 @@ namespace TextRpg.Controllers
 {
     public class RoomController: Controller
     {
+        [HttpGet("/Room/FightEvent")]
+        public IActionResult RoomFightEvent()
+        {
+            int route = Game.GetRoom().FightEvent();
+            Console.WriteLine("The route number: " + route);
+            Dictionary<string, object> myDictionary = new Dictionary<string, object>();
+            myDictionary.Add("character", Game.GetGameUser().GetCharacter());
+            myDictionary.Add("monster", Game.GetRoom().GetMonster());
+            myDictionary.Add("roomRoute", route);
+
+            return Json(myDictionary);
+        }
+
         [HttpGet("/Room/1")]
         public ActionResult Room1()
         {
