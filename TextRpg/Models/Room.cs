@@ -19,6 +19,13 @@ namespace TextRpg.Models
             _character = null;
             _monster = new Monster();
         }
+        public Room(int id, int number, Character character, Monster newMonster)
+        {
+            _id = id;
+            _number = number;
+            _character = character;
+            _monster = newMonster;
+        }
         public void SetCharacter(Character inputCharacter){
             _character = inputCharacter;
         }

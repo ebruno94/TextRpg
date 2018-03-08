@@ -120,7 +120,7 @@ namespace TextRpg.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"UPDATE users SET login=@login, name = @name, password = @password, email = @email, room_number = @room, character_id = @ characterId WHERE id = @userId;";
+            cmd.CommandText = @"UPDATE users SET login=@login, name = @name, password = @password, email = @email, room_number = @room, character_id = @characterId WHERE id = @userId;";
 
             MySqlParameter tempName = new MySqlParameter("@name", name);
             MySqlParameter tempLogin = new MySqlParameter("@login", login);
