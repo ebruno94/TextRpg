@@ -48,9 +48,11 @@ var characterAddItemToEquipped = function(thisItemId){
     type: "GET",
     data: {itemId: thisItemId},
     success: function(data){
+      console.log(data);
       console.log("Your equipped item name is: " + data._name);
-      $("#equippablesRow .itemCard:eq(" + data._equippable + ") .itemName").text(data._name);
-      $("#equippablesRow .itemCard:eq(" + data._equippable + ") img").attr("src", data._imgUrl);
+      $(".equippedItems .itemCard2:eq(" + data._equippable + ") .itemName").text(data._name);
+      $(".equippedItems .itemCard2:eq(" + data._equippable + ") img").attr("src", data._imgUrl);
+      updateGameLog("You have equipped " + data._name);
     }
   })
 }

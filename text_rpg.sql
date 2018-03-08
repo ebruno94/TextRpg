@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 08, 2018 at 06:05 PM
+-- Generation Time: Mar 08, 2018 at 11:00 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -50,7 +50,7 @@ CREATE TABLE `characters` (
 --
 
 INSERT INTO `characters` (`id`, `name`, `level`, `experience`, `max_hp`, `hp`, `armor`, `ad`, `iq`, `dexterity`, `luck`, `charisma`, `user_id`, `room_number`) VALUES
-(1, 'Noobler', 1, 0, 500, 500, 0, 66, 1, 1, 1, 1, 1, 1),
+(1, 'Noobler', 1, 6, 500, 500, 1, 50, 1, 1, 1, 1, 1, 2),
 (2, 'Nooblered', 1, 0, 500, 500, 0, 66, 1, 1, 1, 1, 1, 1),
 (3, 'Noobler', 1, 0, 500, 500, 0, 66, 1, 1, 1, 1, 1, 1);
 
@@ -71,7 +71,20 @@ CREATE TABLE `inventories` (
 --
 
 INSERT INTO `inventories` (`id`, `character_id`, `item_id`) VALUES
-(1, 3, 10);
+(1, 3, 10),
+(2, 3, 0),
+(3, 3, 0),
+(4, 3, 0),
+(5, 3, 0),
+(6, 3, 0),
+(7, 3, 0),
+(8, 3, 0),
+(9, 3, 0),
+(10, 3, 0),
+(11, 3, 0),
+(12, 3, 0),
+(13, 3, 0),
+(14, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -153,11 +166,11 @@ CREATE TABLE `monsters` (
 --
 
 INSERT INTO `monsters` (`id`, `name`, `img_url`, `level`, `max_hp`, `hp`, `armor`, `ad`, `charisma`, `dexterity`, `item_id`, `experience`, `audio_source`) VALUES
-(1, 'Alien Critter', '/img/Monster/critter.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, '/audio/Monster/zergling.wav'),
-(2, 'Alien Humanoid', '/img/Monster/alien-humanoid-maybe.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, '/audio/Monster/humanoid.wav'),
-(3, 'Zombie Human', '/img/Monster/zombie-naut.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, 'audio/Monster/zombie-human.wav'),
-(4, 'Hydralisk', '/img/Monster/hydralisk.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, '/audio/Monster/hydralisk.wav'),
-(5, 'Alien Queen', '/img/Monster/alien-queen2.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, '/audio/Monster/queen-attack.wav'),
+(1, 'Alien Critter', '/img/Monster/critter.png', 1, 100, 100, 1, 20, 2, 1, 1, 1, '/audio/Monster/zergling.wav'),
+(2, 'Alien Humanoid', '/img/Monster/alien-humanoid-maybe.png', 1, 150, 150, 10, 40, 1, 5, 1, 1, '/audio/Monster/humanoid.wav'),
+(3, 'Zombie Human', '/img/Monster/zombie-naut.png', 1, 150, 150, 40, 40, 1, 1, 1, 1, 'audio/Monster/zombie-human.wav'),
+(4, 'Hydralisk', '/img/Monster/hydralisk.png', 1, 300, 300, 20, 100, 1, 4, 1, 1, '/audio/Monster/hydralisk.wav'),
+(5, 'Alien Queen', '/img/Monster/alien-queen2.png', 1, 1000, 1000, 40, 100, 1, 0, 1, 1, '/audio/Monster/queen-attack.wav'),
 (6, 'The Alien Commander', '/img/Monster/u-knuck.png', 1, 1, 1, 1, 1, 1, 1, 1, 1, '/audio/Monster/uganda-youdonotknow.mp3');
 
 -- --------------------------------------------------------
@@ -274,7 +287,7 @@ ALTER TABLE `characters`
 -- AUTO_INCREMENT for table `inventories`
 --
 ALTER TABLE `inventories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `items`
 --

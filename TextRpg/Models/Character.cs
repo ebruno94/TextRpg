@@ -394,11 +394,11 @@ namespace TextRpg.Models
         public void StatUpdate()
         {
             //Level Adjustment
-            _maxHealth = 500 + _level*25;
+            _maxHealth = 500 + (_level-1)*25;
             _armor = 1;
-            _attackDamage = 50 + _level*25;
+            _attackDamage = 50 + (_level-1)*25;
             _intelligence = 1;
-            _dexterity = 1 + _level;
+            _dexterity = 1 + (_level-1);
             _luck = 1;
             _charisma = 1;
             //Inventory Adjustment
@@ -455,7 +455,7 @@ namespace TextRpg.Models
                 //Nice dodge
             } else {
                 outputDamage = this.ArmorDamageReduction(inputDamage);
-                _health = (int) (_health - outputDamage);
+                _health = (int) (_health - inputDamage);
             }
 
         }
