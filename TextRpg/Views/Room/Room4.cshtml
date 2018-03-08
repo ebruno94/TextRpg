@@ -35,12 +35,31 @@
 <script type="text/javascript">
 
   $(document).ready(function() {
-    $(".route1").click(function(){
+    var updateGameLog = function(gameLogMessage) {
       $.ajax({
-        type: 'GET',
-        dataType: 'json',
+        url: "/GameConsole/Append",
+        type: "POST",
+        dataType: "json",
+        data: {message: gameLogMessage},
+        success: function(data){
+          console.log("success");
+          // $("#gameLog").html(data);
+          console.log(data._name);
+        }
+      });
+    };
+
+    var inventoryAddItem = function(itemIndex){
+      $.ajax({
+        url: "/Inventory/AddItem",
+        type: "POST",
+        data: {index: itemIndex},
+        success: function(data){
+          console.log("Monster: " + data._name);
+          $("#equippableInventory .col-md-12 .row").append('<div class="col-md-3 itemCard"><p class="itemName">' + data._name + '</p><img class="itemImage" src="' + data._imgUrl + '"/></div>')
+        }
       })
-    });
+    }
   });
 
 </script>
