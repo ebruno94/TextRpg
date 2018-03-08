@@ -12,7 +12,7 @@
 <div class="event introduction">
   <p>You slowly enter Medical Bay and the stench of death overwhelms you. Blood smeared all over the room, and you notice the bodies on the operating tables.
   You check the first body and notice that the body is still warm. You check for vitals... nothing. As you move on, you hear a cry. "Please.... it hurts..."
-  You run towards the cry and you notice that its your friend Mackey. You guys have been friends ever since you were kids and joined the academy together. Mackey cried as blood sputtered out of his mouth "Please "Character"... help me." You looked look closer and took off the blanket covering his body and noticed that his other half is gone.
+  You run towards the cry and you notice that its your friend Mackey. You guys have been friends ever since you were kids and joined the academy together. Mackey cried as blood sputtered out of his mouth "Please @Game.GetGameUser().GetCharacter().GetName()... help me." You looked look closer and took off the blanket covering his body and noticed that his other half is gone.
   You grab his bloody hand as he shivers from pain. Tears flowing out of you as you say "It's going to be okay Mackey, it's going to be okay." You look around the room and notice a Doctor's Desk and Medicine Cabinet.</p>
 
   <div class="routes main">
@@ -24,38 +24,44 @@
 @* Event 1 ------------------------------------------------------ *@
 
 <div class="event initHidden" id="event1">
-  <p>You run to the Medicine Cabinet. You find Morphine, Oxicodon, and Fentanyl. You take all the meds and grabbed a few syringe.</p>
+  <p>You head over to the Drs. Desk and you find a person slumped on the desk from self inflicted wound. You search the desk and you find a gun, that was used. You take the gun and carefully place it in your bag.
 
- <div class="routes main">
-   <button class="route route1" type="button">Check Doctor's Desk</button>
-   <button class="route route3" type="button">Give Mackey Morphine</button>
-   <button class="route route4" type="button">Leave, You can't do anything else for Mackey</button>
- </div>
+    <div class="routes main">
+      <button class="route route2" type="button">Check Medicine Cabinet</button>
+      <button class="/Room/7" type="button">Move to the Hallway</button>
+    </div>
 </div>
 
 @* Event 2 ------------------------------------------------------ *@
 
 <div class="event initHidden" id="event2">
-  <p>Trembling, You tell Mackey "This is going to make you feel better." As He shivers from pain, you insert the syringe of morphine in his arm.
-     You see his body relax instantaneously, and he calmly whispers "stay with me okay?..." You tell him "I'll be right here." You grab his hand as his breath starts to slow down. As he takes his last breath, tears fall from your face and you whisper "I will miss you..."<p>
+  <p>You run to the Medicine Cabinet. You find Morphine, Oxicodon, and Fentanyl. You take all the meds and grabbed a few syringe.</p>
 
-    <div class="routes main">
-      <button class="route route1" type="button">Check Doctor's Desk</button>
-      <button class="route route5" type="button">Take Oxicodon</button>
-      <button class="route route4" type="button">Leave the room</button>
-    </div>
+ <div class="routes main">
+   <button class="route route1" type="button">Check Doctor's Desk</button>
+   <button class="route route3" type="button">Give Mackey Morphine</button>
+   <button class="/Room/7" type="button">Leave, You can't do anything else for Mackey</button>
+ </div>
 </div>
 
 @* Event 3 ------------------------------------------------------ *@
 
 <div class="event initHidden" id="event3">
-  <p>You head over to the Drs. Desk and you find a person slumped on the desk from self inflicted wound. You search the desk and you find a gun, that was used. You take the gun and carefully place it in your bag.
+  <p>Trembling, You tell Mackey "This is going to make you feel better." As He shivers from pain, you insert the syringe of morphine in his arm.
+     You see his body relax instantaneously, and he calmly whispers "stay with me okay?..." You tell him "I'll be right here." You grab his hand as his breath starts to slow down. As he takes his last breath, tears fall from your face and you whisper "I'll miss you..."<p>
 
     <div class="routes main">
-      <button class="route route5" type="button">Take Oxicodon</button>
-      <button class="route route4" type="button">Leave the room</button>
+      <button class="route route1" type="button">Check Doctor's Desk</button>
+      <button class="route route4" type="button">Take Oxicodon</button>
+      <button class="/Room/7" type="button">Move to Hallway</button>
     </div>
 </div>
+
+@* Event 4 --------------------------------------------------------- *@
+
+<div class="event initHidden" id="event4">
+  <p>Filled with anxiety and deppression, you pull out the bottle of oxicodon. You say to yourself "I can't do this anymore..." Tears flowing as you swallow every single pill. Your heart starts to slow down, You feel this over relaxed sensation. You take a last glance at Mackey, and you close you eyes as your heart stops.<p>
+
 
 <script type="text/javascript">
 
