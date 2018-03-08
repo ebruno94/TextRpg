@@ -21,7 +21,7 @@ namespace TextRpg.Models
         public int _charisma;
         public int _roomNumber;
         public int _userId;
-        Item[] _equipped = new Item[6];
+        public Item[] _equipped = new Item[6];
         public static Inventory _inventory;
 
         public Character(string name, int userId)
