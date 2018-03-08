@@ -117,10 +117,6 @@ namespace TextRpg.Models
         {
             return _id;
         }
-        public void SetRoomNumber(int roomNum)
-        {
-            _roomNumber = roomNum;
-        }
 
         public void SetId(int id)
         {
@@ -225,6 +221,18 @@ namespace TextRpg.Models
         {
             return _inventory;
         }
+<<<<<<< HEAD
+=======
+        public void SetInventory(Inventory myInventory)
+        {
+            _inventory = myInventory;
+        }
+
+        public void SetRoomNumber(int roomNumber)
+        {
+            _roomNumber = roomNumber;
+        }
+>>>>>>> c8cbb153d6fa24f9b5e717c7a014ccffb8b1a15c
 
         public void Save()
         {

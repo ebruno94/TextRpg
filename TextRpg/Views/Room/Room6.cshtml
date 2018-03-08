@@ -8,108 +8,72 @@
 </div>
 
 <div class="event introduction">
-  <p>You open your eyes to see the glass in front of you slowly receding. A sudden wave of warm air overwhelms your entire body as you rack your mind to remember where you are. Your name's @Game.GetGameUser().GetCharacter().GetName(), and it's the year 2025. You've been sent with approximately 500 others on humanity's first attempt to colonize Mars. Beyond the confines of your own cryochamber, you see a large open expanse surrounded with approximately 100 other chambers. The room is fairly dark. If it weren't for the softly-glowing red light in the middle of the ceiling, you wouldn't be able to see anything.
-
-  You take in a deep breath, expecting the clean, slightly chemical smell all-too-familiar to anyone who's ever spent much time on a space vessel--or in a hospital. Instead, you notice something stronger. It reminds you of the last day you spent on Earth before embarking on this journey, nearly six months ago. Your family and friends surprised you with a barbecue. You can smell the smoldering coals from the grill ... or is that the smell of the bonfire you sat around with your significant other that evening planning all the things you would do together after you return? What you would give for a swig of that whiskey you two shared that night ...
-
-  Urged forward by the warmth of the outside air and the smell of home, you slowly peel off the sensors adhered to your chest  and step out of the chamber.
-
-  Around the room you see cryochambers, a computer terminal, an equipment locker, and--at the far-side of the room--two doors which presumably lead out of it.</p>
+  <p>You slowly enter Medical Bay and the stench of death overwhelms you. Blood smeared all over the room, and you notice the bodies on the operating tables.
+  You check the first body and notice that the body is still warm. You check for vitals... nothing. As you move on checking the bodies, you hear a cry. "Please.... it hurts..."
+  You run towards the cry and you notice that its your friend Mackey. You guys have been friends ever since you were kids and was always there to protect you. Mackey cried as blood sputtered out of his mouth "Please "Character"... you have to help me." You looked look closer and took off the blanket covering his body and noticed that his other half is gone.
+  You grab his bloody hand as he shivers from pain. Tears come flowing out of you as you say "It's going to be okay Mackey, it's going to be okay." You look around the room and notice a Doctor's Desk and Medicine Cabinet.</p>
 
   <div class="routes main">
-    <button class="route route1" type="button">Check out the other cryochambers in the room</button>
-    <button class="route route2" type="button">Check out the terminal in the middle of the CryoChamber Room</button>
-    <button class="route route3" type="button">Check out the equipment locker</button>
-    <button class="route route4" type="button">Walk towards the doors</button>
+    <button class="route route1" type="button">Check Doctor's Desk</button>
+    <button class="route route2" type="button">Check Medicine Cabinet</button>
+
   </div>
 </div>
 
 <div class="routes" id="routes">
-  <button class="route route1" type="button">Check out the other cryochambers in the room</button>
-  <button class="route route2" type="button">Check out the terminal in the middle of the CryoChamber Room</button>
-  <button class="route route3" type="button">Check out the equipment locker</button>
-  <button class="route route4" type="button">Walk towards the doors</button>
+  <button class="route route1" type="button"></button>
+  <button class="route route2" type="button"></button>
+  <button class="route route3" type="button"></button>
+  <button class="route route4" type="button"></button>
 </div>
 
 <div class="event initHidden" id="event1">
-  <p>You walk up to the nearest cryochamber off to your left. The glass is foggy. A placard at the bottom of the machine reads Elizabeth Dougherty. You remember her. Back at the academy, she graduated top of her class--which just so happened to also be yours. Though you never really liked her--she wasn't very approachable, to say the least--you could always depend on her to be able to solve the toughest of problems. There seemed to be no predicament that she couldn't reason her way out of.
-
-  You place  your hand up against the glass to wipe away a patch of fog. Then you step up closer to peer through. Behind the glass you see only the soft, synthetic fabric used to cushion the interior and the dangling wires attached to the many sensors used to track the colonists' vitals as they remain in a state of suspended animation for the duration of the flight. Startled, you take a step back and look around the room again.
- </p>
+  <p>You run to the Medicine Cabinet. You find Morphine, Oxicodon, and Fentanyl. You take all the meds and grabbed a few syringe.</p>
 
  <div class="routes main">
-   <button class="route route2" type="button">Check out the terminal in the middle of the CryoChamber Room</button>
-   <button class="route route3" type="button">Check out the equipment locker</button>
-   <button class="route route4" type="button">Walk towards the doors</button>
+   <button class="route route2" type="button">Give Mackey Morphine</button>
+   <button class="route route3" type="button">Check Doctor's Desk</button>
+   <button class="route route4" type="button">Leave, You can't do anything else for Mackey</button>
  </div>
 </div>
 
 <div class="event initHidden" id="event2">
-  <p>You approach the terminal in the middle of the room. A single displayed line reads: "currently running emergency protocol". Below, are a list of options: <p>
+  <p>Trembling, You tell Mackey "This is going to make you feel better." As He shivers from pain, you insert the syringe of morphine in his arm.
+     You see his body relax instantaneously and he calmly whispers "stay with me okay?..." You tell him "I'll be right here." You grab his hand as his breath starts to slow down. As he takes his last breath, tears fall from your face and you whisper "I will miss you my friend..." <p>
 
     <div class="terminalOptions">
-      <button class="option" id="option1">Click on [View Ship Vitals]</button>
-      <button class="option" id="option2">Click on [View Captains Log]</button>
-      <button class="option" id="option3">Click on [Remotely Access AirLock]</button>
+      <button class="option" id="option1">Check Doctor's Desk</button>
+      <button class="option" id="option2">Take Oxicodon</button>
+      <button class="option" id="option3">Leave the room</button>
     </div>
 
     <div class="routes main">
-      <button class="route route1" type="button">Check out the other cryochambers in the room</button>
-      <button class="route route3" type="button">Check out the equipment locker</button>
-      <button class="route route4" type="button">Walk towards the doors</button>
+      <button class="route route1" type="button"></button>
+      <button class="route route3" type="button"></button>
+      <button class="route route4" type="button"></button>
     </div>
 </div>
 
 <div class="event initHidden" id="event3">
-  <p> Your equipment locker is at the far left-hand side of the room. Despite the modernity of all the technology available to SpaceX, they opted to secure each locker with a physical key. You recall having a discussion with your officer about funding cuts... You feel around in your pocket hoping to find your own key, but it's not there. Before backing away, you notice a locker near yours that is slightly ajar.
+  <p>You head over to the Drs. Desk and you find a person slumped on the desk from self inflicted wound. You search the desk and you find a gun, that was used. You take the gun and carefully place it in your bag.
 
     <div class="routes sub">
-      <button class="route" type="button" id="route5">Try to force the locker open</button>
-      <button class="route" type="button" id="route6">Walk away</button>
+      <button class="route" type="button" id="route5">Take Oxicodon</button>
+      <button class="route" type="button" id="route6">Leave Room</button>
     </div>
 
     <div class="routes main">
-      <button class="route route1" type="button">Check out the other cryochambers in the room</button>
-      <button class="route route3" type="button">Check out the equipment locker</button>
-      <button class="route route4" type="button">Walk towards the doors</button>
+      <button class="route route1" type="button"></button>
+      <button class="route route3" type="button"></button>
+      <button class="route route4" type="button"></button>
     </div>
 </div>
 
-<div class="event initHidden" id="event4">
-  <p> There are two doors leading out of the cryochamber room. The first room is clearly marked with a warning that reads, "AIR LOCK: ONLY OPEN REMOTELY IN ACCORDANCE WITH EMERGENCY PROTOCOL 150". There is a sign above the second door that reads, "This way to CANTINA and MEDICAL BAY". </p>
-
-  <div class="routes">
-    <button class="route route7" type="button">Approach the AIR LOCK</button>
-    <button class="route route8" type="button">Approach door to CANTINA and MEDICAL BAY</button>
-  </div>
-</div>
-
-<div class="event initHidden" id="event8">
-  <p> Beyond this door is a series of hallways that lead to the ship's cafeteria you and colonists are planning on using for your first several months on Mars and the ship's medical bay. You notice that as you stand near the door, the smell of smoke has grown stronger and noticeably less pleasant. It suddenly strikes you how out-of-place this smell is on a space vessel, and you begin to feel an overwhelming sense of discomfort. Something is definitely not right.
-
-  <div class="routes">
-    <button class="route route7" type="button">Back away from door</button>
-    <a href="/Room/Room2"><button class="exit route route8" type="button">Continue through the door into the hallway</button></a>
-  </div>
-</div>
-
-<div class="monster event event5">
-  <p> You see a squishy. It is wobbling threateningly at you. Do you engage in combat?</p>
-
-  <button type="button" class="option option1">Engage squishy in mortal combat</button>
-  <button type="button" class="option option2" id="flee">Flee from squishy like a little bitch</button>
-
-  <div class="monster subevent subevent1">
-    @* fight *@
-    <button type="button" class="option option1">Attack</button>
-  </div>
-  <div class="monster subevent subevent2">
-
   </div>
   <div class="routes main initHidden">
-    <button class="route route1" type="button">Check out the other cryochambers in the room</button>
-    <button class="route route3" type="button">Check out the equipment locker</button>
-    <button class="route route4" type="button">Walk towards the doors</button>
+    <button class="route route1" type="button"></button>
+    <button class="route route3" type="button"></button>
+    <button class="route route4" type="button"></button>
   </div>
 </div>
 

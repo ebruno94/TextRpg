@@ -12,6 +12,7 @@ namespace TextRpg.Controllers
         public ActionResult Room1()
         {
             Room newRoom = Room.Find(1);
+            Game.SetCurrentRoom(newRoom);
             newRoom.SetCharacter(Game.GetGameUser().GetCharacter());
             Game.GetGameUser().GetCharacter().SetRoomNumber(1);
             Game.GetGameUser().GetCharacter().GetInventory();
@@ -22,10 +23,11 @@ namespace TextRpg.Controllers
         public ActionResult Room2(int monsterId)
         {
             Room newRoom = Room.Find(2);
+            Game.SetCurrentRoom(newRoom);
             newRoom.SetCharacter(Game.GetGameUser().GetCharacter());
             Game.GetGameUser().GetCharacter().SetRoomNumber(2);
+            Game.GetGameUser().GetCharacter().SetInventory(new Inventory(Game.GetGameUser().GetCharacter().GetId()));
             Game.GetGameUser().GetCharacter().Update();
-            Game.GetGameUser().GetCharacter().GetInventory();
             return View();
         }
         [HttpGet("/Room/3")]
