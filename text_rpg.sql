@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 08, 2018 at 04:46 PM
+-- Generation Time: Mar 08, 2018 at 04:59 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -45,6 +45,15 @@ CREATE TABLE `characters` (
   `room_number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `characters`
+--
+
+INSERT INTO `characters` (`id`, `name`, `level`, `experience`, `max_hp`, `hp`, `armor`, `ad`, `iq`, `dexterity`, `luck`, `charisma`, `user_id`, `room_number`) VALUES
+(1, 'Noobler', 1, 0, 500, 500, 0, 66, 1, 1, 1, 1, 1, 1),
+(2, 'Nooblered', 1, 0, 500, 500, 0, 66, 1, 1, 1, 1, 1, 1),
+(3, 'Noobler', 1, 0, 500, 500, 0, 66, 1, 1, 1, 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -56,6 +65,13 @@ CREATE TABLE `inventories` (
   `character_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `inventories`
+--
+
+INSERT INTO `inventories` (`id`, `character_id`, `item_id`) VALUES
+(1, 3, 10);
 
 -- --------------------------------------------------------
 
@@ -92,7 +108,7 @@ INSERT INTO `items` (`id`, `name`, `img_url`, `hp`, `armor`, `ad`, `iq`, `luck`,
 (7, 'Machine Gun', '/img/Weapons/human-mg.png', 1, 1, 160, 1, 1, 1, 1, 5, 'none', '/audio/Items/Weapons/mg.wav'),
 (8, 'Pistol', '/img/Weapons/human-pistol.png', 1, 1, 40, 1, 1, 1, 1, 5, 'none', '/audio/Items/Weapons/pistol.mp3'),
 (9, 'Shotgun', '/img/Weapons/human-shotgun.png', 1, 1, 120, 1, 1, 1, 1, 5, 'none', '/audio/Items/Weapons/shotgun.mp3'),
-(10, '/The Mighty Crowbar', '/img/Weapons/crowbar.png', 1, 1, 20, 1, 1, 1, 1, 5, 'none', '/audio/Items/Weapons/crowbar.mp3'),
+(10, 'The Mighty Crowbar', '/img/Weapons/crowbar.png', 1, 1, 20, 1, 1, 1, 1, 5, 'none', '/audio/Items/Weapons/crowbar.mp3'),
 (11, 'Hide Helm', '/img/Armor/hide-helm.png\r\n', 50, 10, 1, 1, 1, 1, 2, 0, 'none', 'null'),
 (12, 'Hide Chest', '/img/Armor/hide-chest.png\r\n', 50, 10, 1, 1, 1, 1, 2, 1, 'none', 'null'),
 (13, 'Hide Gauntlets', '/img/Armor/hide-gaunts.png\r\n', 50, 10, 1, 1, 1, 1, 2, 2, 'none', 'null'),
@@ -173,6 +189,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `character_id`) VALUES
+(1, 'Alex', 'Alex', '$2a$10$LEw7bMZbMeO9LDruzYOoQ.tv6gb7UxpJyWG8cUvpq41FuPLYlc6ei', 'Alex', 0);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -220,12 +243,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `characters`
 --
 ALTER TABLE `characters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `inventories`
 --
 ALTER TABLE `inventories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `items`
 --
@@ -245,7 +268,7 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
