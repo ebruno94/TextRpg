@@ -17,7 +17,7 @@ namespace TextRpg.Controllers
         {
             Monster myMonster = Monster.Find(monsterId);
             Console.WriteLine("Critter: " + myMonster.GetName());
-            return Json(myMonster);
+            return View(myMonster);
         }
         [HttpGet("/Room/4")]
         public ActionResult Room4()
