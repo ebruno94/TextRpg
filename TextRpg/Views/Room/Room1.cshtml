@@ -102,7 +102,6 @@
   <div class="options">
     <button class="option option1" type="button">Approach the AIR LOCK</button>
     <button class="option option2" type="button">Approach door to CANTINA and MEDICAL BAY</button>
-    <a href="/Room/2"><button class="exit suboption suboption2" type="button">Continue through the door into the hallway</button></a>
   </div>
 
 
@@ -233,7 +232,7 @@
 
     $("#event4 .option2").click(function() {
       $(this).parent().addClass("hidden");
-      $(".event4 .subevent2").removeClass("hidden");
+      $("#event4 .subevent2").removeClass("hidden");
     });
 
     $("#event4 .subevent2 .suboptions .suboption1").click(function() {

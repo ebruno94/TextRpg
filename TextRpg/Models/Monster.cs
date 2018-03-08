@@ -55,6 +55,10 @@ namespace TextRpg.Models
         {
             _level += level;
         }
+        public Item GetItem()
+        {
+            return _monsterItem;
+        }
         public void ChangeExperience(int experience)
         {
             _experience += experience;
