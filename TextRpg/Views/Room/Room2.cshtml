@@ -34,6 +34,11 @@
 </div>
 
 <script type="text/javascript">
+Audio charDeath = new Audio("/audio/Player/death.wav");
+Audio monsterDeath = new Audio("/audio/Monster/death.wav");
+Audio charAttack = new Audio(@Game.GetRoom().GetCharacter()._equipped[5].GetAudio());
+Audio monsterAttack = new Audio(@Game.GetRoom().GetMonster().GetAudio());
+Audio monsterReady = new Audio("/audio/Monster/hydralisk-ready.wav");
 
   $(document).ready(function() {
 
@@ -46,6 +51,7 @@
 
     $(".attackButton").click(function(){
       console.log(roomFightEvent());
+      monsterReady.Play();
       updateGameLog();
     });
 
