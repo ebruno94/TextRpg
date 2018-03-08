@@ -3,6 +3,7 @@ using TextRpg.Models;
 using System.Collections.Generic;
 using System;
 
+
 namespace TextRpg.Controllers
 {
     public class RoomController: Controller
@@ -10,14 +11,22 @@ namespace TextRpg.Controllers
         [HttpGet("/Room/1")]
         public ActionResult Room1()
         {
+            Room newRoom = Room.Find(1);
+            newRoom.SetCharacter(Game.GetGameUser().GetCharacter());
+            Game.GetGameUser().GetCharacter().SetRoomNumber(1);
+            Game.GetGameUser().GetCharacter().GetInventory();
+
             return View();
         }
         [HttpGet("/Room/2")]
         public ActionResult Room2(int monsterId)
         {
-            Monster myMonster = Monster.Find(monsterId);
-            Console.WriteLine("Critter: " + myMonster.GetName());
-            return View(myMonster);
+            Room newRoom = Room.Find(2);
+            newRoom.SetCharacter(Game.GetGameUser().GetCharacter());
+            Game.GetGameUser().GetCharacter().SetRoomNumber(2);
+            Game.GetGameUser().GetCharacter().Update();
+            Game.GetGameUser().GetCharacter().GetInventory();
+            return View();
         }
         [HttpGet("/Room/3")]
         public ActionResult Room3()
