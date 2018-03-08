@@ -77,6 +77,18 @@ footer {
     margin: 0;
 }
 
+.sidebarTitle {
+    border: 1px solid black;
+    background-color: #914b00;
+    text-align: center;
+    box-shadow: 0 0 2px black;
+}
+
+.sidebarTitle p {
+    color: white;
+    font-weight: bold;
+}
+
 #eventRow {
     height: 600px;
     overflow-y: auto;
