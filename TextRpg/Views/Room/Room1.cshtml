@@ -150,7 +150,10 @@
         type: "POST",
         data: {index: itemIndex},
         success: function(data){
+          console.log(data);
           console.log("item added: " + data._name);
+          console.log(data["name"]);
+          console.log(data[0]);
           $("#equippableInventory .col-md-12 .row").append('<div class="col-md-3 itemCard"><p class="itemName">' + data._name + '</p><img class="itemImage" src="' + data._imgUrl + '"/></div>')
         }
       })

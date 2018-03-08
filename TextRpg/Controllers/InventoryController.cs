@@ -9,15 +9,15 @@ namespace TextRpg.Controllers
     public class InventoryController : Controller
     {
         [HttpPost("/Inventory/AddItem")]
-        public string AddItem(int index)
+        public IActionResult AddItem(int index)
         {
             Game.GetGameUser().GetCharacter().GetInventory().AddItem(index);
             Console.WriteLine("itemIndex: " + index);
             Item myItem = Item.Find(index);
             Console.WriteLine("My item is called a " + myItem.GetName());
-            var result = JsonConvert.SerializeObject(myItem);
+            string result = JsonConvert.SerializeObject(myItem);
 
-            return result;
+            return Json(myItem);
         }
     }
 }
