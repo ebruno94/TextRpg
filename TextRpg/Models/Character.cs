@@ -219,7 +219,7 @@ namespace TextRpg.Models
         public Inventory GetInventory()
         {
             return _inventory;
-        }s
+        }
 
         public void Save()
         {

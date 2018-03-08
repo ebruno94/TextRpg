@@ -4,23 +4,22 @@
 @using TextRpg.Models;
 
 <div class="roomName">
-  <h3>Hallway Three</h3>
+  <h3>Hallyway Three</h3>
 </div>
 
 <div class="room introduction">
-  <p>You walk into the hallway with the lights flickering probably due to the auxiliary power losing charge in the Power Core room. You smell something pungent and see the cafeteria sign to your right. On closer inspection you see a Humanoid being whose face seems to be covered in some alien life form..</p>
+  <p>You walk into the hallway with the lights flickering probably due to the auxiliary power losing charge in the Power Core room. You smell something pungent and see the cafeteria sign to your right. On closer inspection you see a Critter alien that just noticed your presence.. Act fast..</p>
   <div class="routes">
-    <button class="route route1" type="button">Fight the Alien Human</button>
+    <button class="route route1" type="button">Fight the Critter</button>
     <a href="/Room/5"><button class="route route2 exit" type="button">Run to the Cafeteria</button></a>
   </div>
 </div>
 
 <div class="event initHidden" id="event1">
-  <p>You enter mortal combat with the Alienized Human.</p>
+  <p>You enter mortal combat with the Critter.</p>
 
  <div class="options">
    <button class="option option1" type="button">Attack</button>
-   <button class="option option2" type="button" id="flee">Flee from Fight</button>
  </div>
 </div>
 
@@ -40,8 +39,7 @@
     $(".route2").click(function() {
       $(this).parent().parent().addClass("hidden");
       $("#event2").removeClass("hidden");
-      // @Game.GameConsole.Append("<p>You run past the Alienized Human. You notice the being is mostly unaware of its surroundings. Probably mostly reliant on smell to navigate through space time.</p>");
-    });
+      "<p>You run past the Alienized Human. You notice the being is mostly unaware of its surroundings. Probably mostly reliant on smell to navigate through space time.</p>";
     $(".option option1").click(function() {
         // @Game.GetRoom().FightEvent();
     });
