@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TextRpg.Models;
 using System.Collections.Generic;
+using System;
 
 namespace TextRpg.Controllers
 {
@@ -12,9 +13,11 @@ namespace TextRpg.Controllers
             return View();
         }
         [HttpGet("/Room/2")]
-        public ActionResult Room2()
+        public ActionResult Room2(int monsterId)
         {
-            return View("Room2");
+            Monster myMonster = Monster.Find(monsterId);
+            Console.WriteLine("Critter: " + myMonster.GetName());
+            return Json(myMonster);
         }
         [HttpGet("/Room/4")]
         public ActionResult Room4()
