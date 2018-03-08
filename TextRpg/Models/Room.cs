@@ -102,6 +102,7 @@ namespace TextRpg.Models
             }
             //Need some delay before the monster attacks
             if(_character.CheckDeath()){
+                _character.Defend(_monster.Attack());
                 Game.GetGameConsole().Append("<p>You died... " + _monster.GetName() + " attacked you for " + _monster.Attack() +"<p>");
                 Restart();
                 return -1;

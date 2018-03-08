@@ -16,7 +16,8 @@
   </div>
 </div>
 
-<div class="event initHidden" id="event1">
+<div class="event initHidden monsterEvent" id="event1">
+  <input type="hidden" id="fightFlag" value="0">
   <p>You enter mortal combat with the Zombie Human.</p>
 
   <div class="options">
@@ -24,7 +25,7 @@
   </div>
 </div>
 
-<div class="event initHidden" id="event2">
+<div class="event initHidden postMonsterEvent" id="event2">
   <p>You notice the signs on the wall as you defeat the stinkin' Zombie. The sign on the left reads "<= Cafe" and "Medical Bay =>"</p>
   <p>You choose where to go</p>
   <div class="options">
@@ -34,11 +35,11 @@
 </div>
 
 <script type="text/javascript">
-Audio charDeath = new Audio("/audio/Player/death.wav");
-Audio monsterDeath = new Audio("/audio/Monster/death.wav");
-Audio charAttack = new Audio(@Game.GetRoom().GetCharacter()._equipped[5].GetAudio());
-Audio monsterAttack = new Audio(@Game.GetRoom().GetMonster().GetAudio());
-Audio monsterReady = new Audio("/audio/Monster/hydralisk-ready.wav");
+// Audio charDeath = new Audio("/audio/Player/death.wav");
+// Audio monsterDeath = new Audio("/audio/Monster/death.wav");
+// Audio charAttack = new Audio(@Game.GetRoom().GetCharacter()._equipped[5].GetAudio());
+// Audio monsterAttack = new Audio(@Game.GetRoom().GetMonster().GetAudio());
+// Audio monsterReady = new Audio("/audio/Monster/hydralisk-ready.wav");
 
   $(document).ready(function() {
 
@@ -51,7 +52,6 @@ Audio monsterReady = new Audio("/audio/Monster/hydralisk-ready.wav");
 
     $(".attackButton").click(function(){
       console.log(roomFightEvent());
-      monsterReady.Play();
       updateGameLog();
     });
 
