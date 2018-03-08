@@ -27,7 +27,7 @@ var inventoryAddItem = function(itemIndex){
 }
 
 var roomFightEvent = function(){
-  var route;
+  var route = -1;
   $.ajax({
     url: "/Room/FightEvent",
     type: "GET",
@@ -36,7 +36,21 @@ var roomFightEvent = function(){
       $("#characterHealth").text(data.character._health + "/" + data.character._maxHealth);
       $(".monsterHealthInt").text(data.monster._health + "/" + data.monster._maxHealth);
       route = data.roomRoute;
+      console.log(data.roomRoute);
     }
   });
-  return route; 
+  return route;
 };
+
+var characterAddItemToEquipped = function(thisItemId){
+  $.ajax({
+    url: "/Character/AddItemToEquipped/",
+    type: "GET",
+    data: {itemId: thisItemId},
+    success: function(data){
+      console.log("Your equipped item name is: " + data._name);
+      $("#equippablesRow .itemCard:eq(" + data._equippable + ") .itemName").text(data._name);
+      $("#equippablesRow .itemCard:eq(" + data._equippable + ") img").attr("src", data._imgUrl);
+    }
+  })
+}

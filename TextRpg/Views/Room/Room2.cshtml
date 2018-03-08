@@ -42,8 +42,6 @@ Audio monsterReady = new Audio("/audio/Monster/hydralisk-ready.wav");
 
   $(document).ready(function() {
 
-
-
     $(".initHidden").addClass("hidden");
 
     $(".route1").click(function() {
@@ -54,6 +52,7 @@ Audio monsterReady = new Audio("/audio/Monster/hydralisk-ready.wav");
     $(".attackButton").click(function(){
       console.log(roomFightEvent());
       monsterReady.Play();
+      updateGameLog();
     });
 
   });
