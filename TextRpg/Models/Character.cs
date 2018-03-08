@@ -221,8 +221,6 @@ namespace TextRpg.Models
         {
             return _inventory;
         }
-<<<<<<< HEAD
-=======
         public void SetInventory(Inventory myInventory)
         {
             _inventory = myInventory;
@@ -232,7 +230,6 @@ namespace TextRpg.Models
         {
             _roomNumber = roomNumber;
         }
->>>>>>> c8cbb153d6fa24f9b5e717c7a014ccffb8b1a15c
 
         public void Save()
         {
@@ -398,7 +395,7 @@ namespace TextRpg.Models
         {
             //Level Adjustment
             _maxHealth = 500 + _level*25;
-            _attackDamage = 66 + _level*25;
+            _attackDamage = 50 + _level*25;
             _dexterity = 1 + _level;
             //Inventory Adjustment
             _inventory.UpdateInventoryStats();
