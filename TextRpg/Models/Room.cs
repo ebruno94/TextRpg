@@ -8,6 +8,7 @@ namespace TextRpg.Models
     public class Room
     {
         public int _id;
+        public int _number;
         public static Character _character = null;
         public static Monster _monster = null;
         public string _log;
@@ -17,6 +18,19 @@ namespace TextRpg.Models
             _id = 0;
             _character = null;
             _monster = new Monster();
+        }
+        public void SetCharacter(Character inputCharacter){
+            _character = inputCharacter;
+        }
+        public void SetMonster(Monster inputMonster){
+            _monster = inputMonster;
+        }
+        public void SetId(int inputId){
+            _id = inputId;
+        }
+        public void SetRoomNumber(int inputNumber)
+        {
+            _number = inputNumber;
         }
         public string GetLog()
         {
@@ -94,6 +108,44 @@ namespace TextRpg.Models
                 return false;
             }
 
+        }
+
+        public static Room Find(int myId)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM rooms WHERE id = @searchId;";
+
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = myId;
+            cmd.Parameters.Add(searchId);
+
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+            int id = 0;
+            int number = 0;
+            int monster_id = 0;
+
+            while(rdr.Read())
+            {
+                id = (int) rdr.GetInt32(0);
+                number = (int) rdr.GetInt32(1);
+                monster_id = (int) rdr.GetInt32(2);
+
+
+            }
+            Room newRoom = new Room();
+            newRoom.SetId(id);
+            newRoom.SetRoomNumber(number);
+            newRoom.SetMonster(Monster.Find(monster_id));
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return newRoom;
         }
         public int GetId()
         {
