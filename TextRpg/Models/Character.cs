@@ -219,12 +219,7 @@ namespace TextRpg.Models
         public Inventory GetInventory()
         {
             return _inventory;
-        }
-
-        public void SetRoomNumber(int roomNumber)
-        {
-            _roomNumber = roomNumber;
-        }
+        }s
 
         public void Save()
         {
