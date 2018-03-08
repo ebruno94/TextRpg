@@ -138,3 +138,8 @@ footer {
 #gameContainer .row {
     /*padding: 20px;*/
 }
+
+.spacexpicture {
+    height: 75%;
+    width: auto;
+}
