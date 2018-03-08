@@ -83,7 +83,7 @@ namespace TextRpg.Models
             int dex = 0;
             int lck = 0;
             int charisma = 0;
-            int roomNumber = 0;
+            int roomNumber = 1;
             int armor = 0;
             int userId = 0;
 
@@ -101,8 +101,8 @@ namespace TextRpg.Models
                 dex = rdr.GetInt32(9);
                 lck = rdr.GetInt32(10);
                 charisma = rdr.GetInt32(11);
-                roomNumber = (int) rdr.GetInt32(12);
-                userId = (int) rdr.GetInt32(13);
+                roomNumber = (int) rdr.GetInt32(13);
+                userId = (int) rdr.GetInt32(12);
             }
             Character thisCharacter = new Character(name, level, exp, maxHp, hp, armor, ad, iq, dex, lck, charisma, id, roomNumber, userId);
             return thisCharacter;
@@ -215,6 +215,11 @@ namespace TextRpg.Models
         public Inventory GetInventory()
         {
             return _inventory;
+        }
+
+        public void SetRoomNumber(int roomNumber)
+        {
+            _roomNumber = roomNumber;
         }
 
         public void Save()
