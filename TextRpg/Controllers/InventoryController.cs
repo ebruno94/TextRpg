@@ -11,7 +11,11 @@ namespace TextRpg.Controllers
         public IActionResult AddItem(int index)
         {
             Game.GetGameUser().GetCharacter().GetInventory().AddItem(index);
-            return Json(Item.Find(itemIndex));
+            Console.WriteLine("itemIndex: " + index);
+
+            Monster newMonster = new Monster();
+
+            return Json(newMonster);
         }
     }
 }

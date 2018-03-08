@@ -7,10 +7,10 @@ namespace TextRpg.Models
 {
     public class Room
     {
-        private int _id;
-        private static Character _character = null;
-        private static Monster _monster = null;
-        private string _log;
+        public int _id;
+        public static Character _character = null;
+        public static Monster _monster = null;
+        public string _log;
 
         public Room()
         {

@@ -8,13 +8,13 @@ namespace TextRpg.Models
 {
     public class GameUser
     {
-        private int _id;
-        private string _name;
-        private string _username;
-        private string _password;
-        private string _email;
-        private int _roomNumber;
-        private static Character _character;
+        public int _id;
+        public string _name;
+        public string _username;
+        public string _password;
+        public string _email;
+        public int _roomNumber;
+        public static Character _character;
 
         public GameUser(string name, string username, string password, string email, int roomNumber)
         {

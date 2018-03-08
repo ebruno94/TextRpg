@@ -7,18 +7,18 @@ namespace TextRpg.Models
 {
     public class Monster
     {
-        private string _name;
-        private int _level;
-        private int _experience;
-        private int _health;
-        private int _maxHealth;
-        private int _attackDamage;
-        private int _dexterity;
-        private int _charisma;
-        private static Item _monsterItem;
-        private string _imgUrl;
-        private int _armor;
-        private string _audio;
+        public string _name;
+        public int _level;
+        public int _experience;
+        public int _health;
+        public int _maxHealth;
+        public int _attackDamage;
+        public int _dexterity;
+        public int _charisma;
+        public static Item _monsterItem;
+        public string _imgUrl;
+        public int _armor;
+        public string _audio;
 
         public Monster()
         {

@@ -83,8 +83,8 @@
     </div>
 
     <div class="subevent subevent1 initHidden">
-      <button type="suboption suboption1" type="button">Pick up crowbar</button>
-      <button type="suboption suboption2" type="button">Pick up armor</button>
+      <button class="suboption suboption1" type="button">Pick up crowbar</button>
+      <button class="suboption suboption2" type="button">Pick up armor</button>
     </div>
 
     <div class="routes main">
@@ -134,11 +134,12 @@
       $.ajax({
         url: "/GameConsole/Append",
         type: "POST",
-        // dataType: "json",
+        dataType: "json",
         data: {message: gameLogMessage},
         success: function(data){
           console.log("success");
-          $("#gameLog").html(data);
+          // $("#gameLog").html(data);
+          console.log(data._name);
         }
       });
     };
@@ -149,8 +150,8 @@
         type: "POST",
         data: {index: itemIndex},
         success: function(data){
-          console.log("item added");
-          $("#equippableInventory .col-md-12 .row").append('<div class="col-md-3 itemCard"><p class="itemName">' + data._name + '</p><a href="@item.GetAction()"><img class="itemImage" src="' + data._imgUrl + '"/></a></div>')
+          console.log("item added: " + data.GetLevel());
+          $("#equippableInventory .col-md-12 .row").append('<div class="col-md-3 itemCard"><p class="itemName">' + data._name + '</p><img class="itemImage" src="' + data._imgUrl + '"/></div>')
         }
       })
     }
@@ -191,11 +192,11 @@
 
     $("#event3 .option1").click(function() {
       updateGameLog("<p>You kick the locker several times, breaking a toe in the process. Your effort pays off, however. You successfully open the locker. After searching through its contents, you find a few items that may be useful, including a crowbar and a set of basic, protective armor");
-      $(this).parent().parent().find("#subevent1").removeClass("hidden");
+      $(this).parent().parent().find(".subevent1").removeClass("hidden");
       $(this).remove();
     });
 
-    $("#event3 .subevent1 #suboption1").click(function() {
+    $("#event3 .subevent1 .suboption1").click(function() {
       updateGameLog("<p>A crowbar has been added to your inventory. Click on the crowbar in your inventory to equip it.</p>");
       updateGameLog();
       inventoryAddItem(10);
