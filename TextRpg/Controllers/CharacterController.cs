@@ -23,5 +23,14 @@ namespace TextRpg.Controllers
             myCharacter.Save();
             return RedirectToAction("Display", "User");
         }
+
+        [HttpPost("/Character/AddItemToEquipped/{itemId}")]
+        public IActionResult CharacterAddItemToEquipped(int itemId)
+        {
+            Item myItem = Item.Find(itemId);
+            Console.WriteLine("Adding Equipped Item");
+            Game.GetGameUser().GetCharacter().AddItemToEquipped(myItem);
+            return Json(myItem);
+        }
     }
 }

@@ -108,8 +108,18 @@
                   <p>Equipped Items</p>
                 </div>
               </div>
+              <div class="row equippedItems">
+                @foreach (var item in Game.GetGameUser().GetCharacter()._equipped)
+                {
+                  <div class="col-md-4 itemCard2">
+                    <p class="itemName">@item.GetName()</p>
+                    <a href="@item.GetAction()"><img class="itemImage2" src="@item.GetImgUrl()" onerror="this.style.display='none'"></a>
+                  </div>
+                }
+              </div>
             </div>
           </div>
+
 
           <!-- Equippable Inventory -->
           <div class="row sidebarContainer" id="equippableInventory">
@@ -119,12 +129,12 @@
                   <p>Equippable Items</p>
                 </div>
               </div>
-              <div class="row">
+              <div class="row" id="equippablesRow">
                   @foreach (var item in Game.GetGameUser().GetCharacter().GetInventory().GetEquippables())
                   {
-                    <div class="col-md-3 itemCard">
+                    <div class="col-md-3 itemCard equippable">
                       <p class="itemName">@item.GetName()</p>
-                      <a href="@item.GetAction()"><img class="itemImage" src="@item.GetImgUrl()"></a>
+                      <img class="itemImage" src="@item.GetImgUrl()">
                     </div>
                   }
               </div>
@@ -187,7 +197,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <p class="monsterName center">@Game.GetRoom().GetMonster().GetName()</p>
-                  <img class="monsterImage" src="@Game.GetRoom().GetMonster().GetImgUrl()" />
+                  <img class="monsterImage" src="@Game.GetRoom().GetMonster().GetImgUrl()" onerror="this.style.display='none'" />
                   <p class="monsterHealthInt center"> @Game.GetRoom().GetMonster().GetHealth() / @Game.GetRoom().GetMonster().GetMaxHealth() </p>
                   <div id="monsterHealthBar">
                     <!-- Input Monster Health Bar Here -->

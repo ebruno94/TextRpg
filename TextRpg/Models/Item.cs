@@ -37,6 +37,22 @@ namespace TextRpg.Models
             _audio = audio;
         }
 
+        public Item()
+        {
+            _name = "";
+            _imgUrl = "#";
+            _health = 0;
+            _armor = 0;
+            _attackDamage = 0;
+            _intelligence = 0;
+            _luck = 0;
+            _charisma = 0;
+            _dexterity = 0;
+            _equippable = 0;
+            _action = "";
+            _audio = "";
+        }
+
         public void SetId(int id)
         {
             _id = id;

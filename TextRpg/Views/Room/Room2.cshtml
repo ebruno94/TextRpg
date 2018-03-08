@@ -37,8 +37,6 @@
 
   $(document).ready(function() {
 
-
-
     $(".initHidden").addClass("hidden");
 
     $(".route1").click(function() {
@@ -48,6 +46,7 @@
 
     $(".attackButton").click(function(){
       console.log(roomFightEvent());
+      updateGameLog();
     });
 
   });
