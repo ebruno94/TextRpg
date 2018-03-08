@@ -21,6 +21,7 @@ namespace TextRpg.Models
         public int _charisma;
         public int _roomNumber;
         public int _userId;
+        Item[] _equipped = new Item[6];
         public static Inventory _inventory;
 
         public Character(string name, int userId)
@@ -40,6 +41,10 @@ namespace TextRpg.Models
             _inventory = null;
             _userId = userId;
             _inventory = new Inventory(_id);
+        }
+        public void AddItemToEquipped(Item inputItem)
+        {
+            _equipped[inputItem.GetEquippable()] = inputItem;
         }
 
         public Character(string name, int level, int exp, int maxhp, int hp, int armor, int ad, int iq, int dex, int lck, int charisma, int id, int roomNumber, int userId)
@@ -390,7 +395,7 @@ namespace TextRpg.Models
         {
             //Level Adjustment
             _maxHealth = 500 + _level*25;
-            _attackDamage = 66 + _level*25;
+            _attackDamage = 50 + _level*25;
             _dexterity = 1 + _level;
             //Inventory Adjustment
             _inventory.UpdateInventoryStats();
