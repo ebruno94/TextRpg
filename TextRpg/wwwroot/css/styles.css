@@ -1,3 +1,71 @@
+body {
+    padding: 50px;
+    background-image: url("/img/background.jpg");
+}
+
+button {
+    border: 1px solid black;
+    box-shadow: 0 0 5px black;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    display: block !important;
+    margin-bottom: 20px !important;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #e57d0d;
+    text-align: center;
+    color: black;
+    opacity: 0.8;
+    box-shadow: 0 0 5px black;
+    font-size: 25px;
+    font-weight: bold;
+}
+
 .hidden {
-  display: none; 
+    display: none;
+}
+
+.container {
+    border: 3px solid black;
+    background-color: white;
+    border-radius: 15px;
+}
+
+#jumbotronContainer.container {
+    text-align: center;
+    background-color: #914b00;
+    border-radius: 15px;
+    border: 3px solid black;
+}
+
+#gameContainer {
+    border: 3px solid black;
+
+}
+
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #e57d0d;
+}
+
+#navbar p {
+    font-size: 25px;
 }
