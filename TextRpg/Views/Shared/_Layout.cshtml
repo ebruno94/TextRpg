@@ -16,9 +16,9 @@
       <div class="row">
         @if (Game.GetGameUser() != null)
         {
-        <div class="col-md-8">
+        <div class="col-md-9">
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
           <a href="/User/Display"><p>@Game.GetGameUser().GetName()</p></a>
         </div>
         <div class="col-md-1">
@@ -56,27 +56,28 @@
       <div class="row">
 
           <!-- Character Stats -->
-        <div class="col-md-3">
-          <div class="row" id="characterStats">
+        <div class="col-md-3 sidebar">
+          <div class="row sidebarContainer" id="characterStats">
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-12">
-                  <p id="characterName">@Game.GetGameUser().GetCharacter().GetName()</p>
-                  <p id="characterLevel">@Game.GetGameUser().GetCharacter().GetLevel()</p>
+                  <p id="characterName" style="text-align: center;">@Game.GetGameUser().GetCharacter().GetName()</p>
+                  <p id="characterLevel" style="text-align: center;">@Game.GetGameUser().GetCharacter().GetLevel()</p>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <p id="characterHealth">@Game.GetGameUser().GetCharacter().GetHealth() / @Game.GetGameUser().GetCharacter().GetMaxHealth()</p>
+                  <p id="characterHealth" class="center">@Game.GetGameUser().GetCharacter().GetHealth() / @Game.GetGameUser().GetCharacter().GetMaxHealth()</p>
                   <div id="characterHealthBar">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <p id="characterExperience">@Game.GetGameUser().GetCharacter().GetExperience() / @Game.GetGameUser().GetCharacter().GetExperienceForNextLevel()</p>
+                  <p id="characterExperience" class="center">@Game.GetGameUser().GetCharacter().GetExperience() / @Game.GetGameUser().GetCharacter().GetExperienceForNextLevel()</p>
                   <div id="characterExperienceBar">
                   </div>
+                </div>
               </div>
               <div class="row">
                 <div class="col-md-6 characterStats">
@@ -93,8 +94,12 @@
             </div>
           </div>
 
+          <!-- Equipped Items -->
+          <div class="row sidebarContainer" id="equippedItems">
+          </div>
+
           <!-- Equippable Inventory -->
-          <div class="row" id="equippableInventory">
+          <div class="row sidebarContainer" id="equippableInventory">
             <div class="col-md-12">
               <div class="row">
                   @foreach (var item in Game.GetGameUser().GetCharacter().GetInventory().GetEquippables())
@@ -109,7 +114,7 @@
           </div>
 
           <!-- Disposable Inventory  -->
-          <div class="row" id="disposableInventory">
+          <div class="row sidebarContainer" id="disposableInventory">
             <div class="col-md-12">
               <div class="row">
                 @foreach (var item in Game.GetGameUser().GetCharacter().GetInventory().GetDisposables())
@@ -123,20 +128,19 @@
             </div>
           </div>
         </div>
-      </div>
 
         <!-- Event Container -->
         <div class="col-md-6" id="eventContainer">
           <div class="row">
             <div class="col-md-12">
-              <div class="row">
+              <div class="row" id="eventRow">
                 <div class="col-md-12">
                   @RenderBody()
                 </div>
               </div>
-              <div class="row">
+              <div class="row" id="gameConsoleRow">
                 <div class="col-md-12">
-                  <div id="GameConsole">
+                  <div id="gameConsole">
                   </div>
                 </div>
               </div>
@@ -147,20 +151,20 @@
           </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 sidebar">
 
           <!-- Monster Stats -->
-          <div class="row" id="monsterStats">
-            <p class="monsterName">@Game.GetRoom().GetMonster().GetName()</p>
+          <div class="row sidebarContainer" id="monsterStats">
+            <p class="monsterName center">@Game.GetRoom().GetMonster().GetName()</p>
             <img src="@Game.GetRoom().GetMonster().GetImgUrl()" />
-            <p class="monsterHealthInt"> @Game.GetRoom().GetMonster().GetHealth() / @Game.GetRoom().GetMonster().GetMaxHealth() </p>
+            <p class="monsterHealthInt center"> @Game.GetRoom().GetMonster().GetHealth() / @Game.GetRoom().GetMonster().GetMaxHealth() </p>
             <div id="monsterHealthBar">
               <!-- Input Monster Health Bar Here -->
             </div>
           </div>
 
           <!-- Room Map -->
-          <div class="row" id="roomMap">
+          <div class="row sidebarContainer" id="roomMap">
 
           </div>
         </div>

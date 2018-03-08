@@ -11,10 +11,5 @@ namespace TextRpg.Controllers
         {
             return View("Room1");
         }
-
-        public IActionResult DisplayCritter()
-        {
-        
-        }
     }
 }
