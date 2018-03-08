@@ -32,7 +32,7 @@ var roomFightEvent = function(){
     url: "/Room/FightEvent",
     type: "GET",
     success: function(data){
-      console.log(data);
+      console.log("current character health: " + data.character._health);
       $("#characterHealth").text(data.character._health + "/" + data.character._maxHealth);
       $(".monsterHealthInt").text(data.monster._health + "/" + data.monster._maxHealth);
       route = data.roomRoute;
