@@ -7,7 +7,7 @@ namespace TextRpg.Models
 {
     public class GameConsole
     {
-        private string _gameLog;
+        public string _gameLog;
 
         public GameConsole()
         {

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using TextRpg.Models;
 using System.Collections.Generic;
 using System;
+using Newtonsoft.Json;
 
 namespace TextRpg.Controllers
 {

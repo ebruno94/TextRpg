@@ -7,19 +7,19 @@ namespace TextRpg.Models
 {
     public class Item
     {
-        private int _id;
-        private string _name;
-        private string _imgUrl;
-        private int _health;
-        private int _armor;
-        private int _attackDamage;
-        private int _intelligence;
-        private int _luck;
-        private int _charisma;
-        private int _dexterity;
-        private int _equippable;
-        private string _action;
-        private string _audio;
+        public int _id;
+        public string _name;
+        public string _imgUrl;
+        public int _health;
+        public int _armor;
+        public int _attackDamage;
+        public int _intelligence;
+        public int _luck;
+        public int _charisma;
+        public int _dexterity;
+        public int _equippable;
+        public string _action;
+        public string _audio;
 
         public Item (string name, string imgUrl, int hp, int armor, int ad, int iq, int luck, int charisma, int dex, int equippable, string action, string audio)
         {
@@ -98,19 +98,20 @@ namespace TextRpg.Models
         {
             return _audio;
         }
-        public static Item Find(int id)
+        public static Item Find(int myId)
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM items WHERE id = (@searchId);";
+            cmd.CommandText = @"SELECT * FROM items WHERE id = @searchId;";
 
             MySqlParameter searchId = new MySqlParameter();
             searchId.ParameterName = "@searchId";
-            searchId.Value = id;
+            searchId.Value = myId;
             cmd.Parameters.Add(searchId);
 
-            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
             int id = 0;
             string name = "";
             string imgUrl = "";
@@ -142,13 +143,13 @@ namespace TextRpg.Models
                 audio = rdr.GetString(12);
 
             }
-            Speciality newSpeciality = new Speciality(name, specialityId);
+            Item newItem = new Item(name, imgUrl, health, armor, attackDamage, intelligence, luck, charisma, dexterity, equippable, action, audio);
             conn.Close();
             if (conn != null)
             {
                 conn.Dispose();
             }
-            return newSpeciality;
+            return newItem;
         }
     }
 }

@@ -7,21 +7,21 @@ namespace TextRpg.Models
 {
     public class Character
     {
-        private string _name;
-        private int _id;
-        private int _level;
-        private int _experience;
-        private int _maxHealth;
-        private int _health;
-        private int _armor;
-        private int _attackDamage;
-        private int _intelligence;
-        private int _dexterity;
-        private int _luck;
-        private int _charisma;
-        private int _roomNumber;
-        private int _userId;
-        private static Inventory _inventory = null;
+        public string _name;
+        public int _id;
+        public int _level;
+        public int _experience;
+        public int _maxHealth;
+        public int _health;
+        public int _armor;
+        public int _attackDamage;
+        public int _intelligence;
+        public int _dexterity;
+        public int _luck;
+        public int _charisma;
+        public int _roomNumber;
+        public int _userId;
+        public static Inventory _inventory = null;
 
         public Character(string name, int userId)
         {

@@ -8,9 +8,9 @@ namespace TextRpg.Models
     public class Game
     {
 
-        private static GameUser _currentGameUser = null;
-        private static Room _currentRoom = new Room();
-        private static GameConsole _gameConsole = new GameConsole();
+        public static GameUser _currentGameUser = null;
+        public static Room _currentRoom = new Room();
+        public static GameConsole _gameConsole = new GameConsole();
 
         public static void SetGameUser(GameUser myGameUser)
         {

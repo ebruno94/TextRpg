@@ -7,16 +7,16 @@ namespace TextRpg.Models
 {
     public class Inventory
     {
-        private int _characterId;
-        private int _health;
-        private int _armor;
-        private int _attackDamage;
-        private int _intelligence;
-        private int _luck;
-        private int _charisma;
-        private int _dexterity;
-        private List<Item> _equippables = new List<Item>{};
-        private List<Item> _disposables = new List<Item>{};
+        public int _characterId;
+        public int _health;
+        public int _armor;
+        public int _attackDamage;
+        public int _intelligence;
+        public int _luck;
+        public int _charisma;
+        public int _dexterity;
+        public List<Item> _equippables = new List<Item>{};
+        public List<Item> _disposables = new List<Item>{};
 
         public Inventory(int charId)
         {
