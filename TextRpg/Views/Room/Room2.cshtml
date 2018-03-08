@@ -28,29 +28,47 @@
   <p>You notice the signs on the wall as you defeat the stinkin' Zombie. The sign on the left reads "<= Cafe" and "Medical Bay =>"</p>
   <p>You choose where to go</p>
   <div class="options">
-    <button class="option option1" type="button">Head left [Cafe]</button>
-    <button class="option option2" type="button">Head right [Medical Bay]</button>
+    <a href="/Room/3"><button class="option option1" type="button">Head left [Cafe]</button></a>
+    <a href="/Room/4"><button class="option option2" type="button">Head right [Medical Bay]</button></a>
   </div>
 </div>
 
 <script type="text/javascript">
 
   $(document).ready(function() {
+    $(document).ready(function() {
+
+      var updateGameLog = function(gameLogMessage) {
+        $.ajax({
+          url: "/GameConsole/Append",
+          type: "POST",
+          dataType: "json",
+          data: {message: gameLogMessage},
+          success: function(data){
+            console.log("success");
+            // $("#gameLog").html(data);
+            console.log(data._name);
+          }
+        });
+      };
+
+      var displayCritter = function(critterId){
+        $.ajax({
+          url: "/Room/2",
+          type: "POST",
+          data: {index: critterId},
+          success: function(data){
+            console.log("item added: " + data._name + " item imgPath = " + data._imgUrl);
+            $("#monsterStats").append('<p class="monsterName">' + data.GetName());
+          }
+        })
+      }
 
     $(".initHidden").addClass("hidden");
 
     $(".route1").click(function() {
       $(this).parent().parent().addClass("hidden");
       $("#event1").removeClass("hidden");
-    });
-
-    $("#flee").click(function() {
-      if (true)
-      {
-        console.log("rerouting");
-        window.location.href = "localhost:5000/Room/Room2"
-      };
-      $(this).addClass("hidden");
     });
 
   });

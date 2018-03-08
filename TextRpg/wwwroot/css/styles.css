@@ -1,3 +1,140 @@
+body {
+    padding: 50px;
+    background-image: url("/img/background.jpg");
+}
+
+button {
+    border: 1px solid black;
+    box-shadow: 0 0 5px black;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    display: block !important;
+    margin-bottom: 20px !important;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #e57d0d;
+    text-align: center;
+    color: black;
+    opacity: 0.8;
+    box-shadow: 0 0 5px black;
+    font-size: 25px;
+    font-weight: bold;
+}
+
 .hidden {
-  display: none; 
+    display: none;
+}
+
+.center {
+    text-align: center;
+}
+
+.container {
+    border: 3px solid black;
+    background-color: white;
+    border-radius: 15px;
+    min-width: 1400px;
+}
+
+.itemImage {
+    width: 75px;
+    height: 75px;
+}
+
+.sidebar {
+    border: 3px solid black;
+    height: 1000px;
+    padding: 10px;
+    background-color: bisque;
+}
+
+.sidebarContainer {
+    border: 2px solid black;
+    margin-bottom: 25px;
+    height: 225px;
+    background-color: white;
+    box-shadow: 0 0 5px black inset;
+    margin-left: 5px;
+    margin-right: 5px;
+    overflow-y: auto;
+}
+
+.sidebarContainer p {
+    margin: 0;
+}
+
+.sidebarTitle {
+    border: 1px solid black;
+    background-color: #914b00;
+    text-align: center;
+    box-shadow: 0 0 2px black;
+}
+
+.sidebarTitle p {
+    color: white;
+    font-weight: bold;
+}
+
+.monsterImage {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    height: 100px;
+    width: 100px;
+}
+
+#eventRow {
+    height: 600px;
+    overflow-y: auto;
+}
+
+#gameConsoleRow {
+    border: 3px solid black;
+    height: 400px;
+    overflow-y: auto;
+    background-color: #012800;
+    color: #028c00;
+    font-family: monospace;
+}
+
+#jumbotronContainer.container {
+    text-align: center;
+    background-color: #914b00;
+    border-radius: 15px;
+    border: 3px solid black;
+}
+
+#gameContainer {
+    border: 3px solid black;
+}
+
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #e57d0d;
+}
+
+#navbar p {
+    font-size: 25px;
+}
+
+#gameContainer .row {
+    /*padding: 20px;*/
 }

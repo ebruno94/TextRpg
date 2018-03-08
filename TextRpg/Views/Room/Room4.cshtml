@@ -28,19 +28,38 @@
 <div class="event initHidden" id="event2">
   <p>A tricky fight, but the Critter is no more. You walk towards the Medical Bay, hoping to find something to heal your wounds.</p>
   <div class="options">
-    <button class="option option1" type="button">Enter the Medical Bay.</button>
+    <a href="/Room/6"><button class="option option1" type="button">Enter the Medical Bay.</button></a>
   </div>
 </div>
 
 <script type="text/javascript">
 
   $(document).ready(function() {
-    $(".route1").click(function(){
+    var updateGameLog = function(gameLogMessage) {
       $.ajax({
-        type: 'GET',
-        dataType: 'json',
+        url: "/GameConsole/Append",
+        type: "POST",
+        dataType: "json",
+        data: {message: gameLogMessage},
+        success: function(data){
+          console.log("success");
+          // $("#gameLog").html(data);
+          console.log(data._name);
+        }
+      });
+    };
+
+    var inventoryAddItem = function(itemIndex){
+      $.ajax({
+        url: "/Inventory/AddItem",
+        type: "POST",
+        data: {index: itemIndex},
+        success: function(data){
+          console.log("Monster: " + data._name);
+          $("#equippableInventory .col-md-12 .row").append('<div class="col-md-3 itemCard"><p class="itemName">' + data._name + '</p><img class="itemImage" src="' + data._imgUrl + '"/></div>')
+        }
       })
-    });
+    }
   });
 
 </script>

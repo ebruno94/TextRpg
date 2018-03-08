@@ -119,7 +119,7 @@
 
     <div class="suboptions">
       <button class="suboption suboption1" type="button">Back away from door</button>
-      <a href="/Room/Room2"><button class="exit suboption suboption2" type="button">Continue through the door into the hallway</button></a>
+      <a href="/Room/2"><button class="exit suboption suboption2" type="button">Continue through the door into the hallway</button></a>
     </div>
   </div>
 </div>
@@ -134,12 +134,11 @@
       $.ajax({
         url: "/GameConsole/Append",
         type: "POST",
-        dataType: "json",
         data: {message: gameLogMessage},
         success: function(data){
           console.log("success");
-          // $("#gameLog").html(data);
-          console.log(data._name);
+          $("#gameConsole").html(data);
+          console.log(data);
         }
       });
     };
@@ -150,7 +149,10 @@
         type: "POST",
         data: {index: itemIndex},
         success: function(data){
+          console.log(data);
           console.log("item added: " + data._name);
+          console.log(data["name"]);
+          console.log(data[0]);
           $("#equippableInventory .col-md-12 .row").append('<div class="col-md-3 itemCard"><p class="itemName">' + data._name + '</p><img class="itemImage" src="' + data._imgUrl + '"/></div>')
         }
       })
@@ -230,7 +232,7 @@
 
     $("#event4 .option2").click(function() {
       $(this).parent().addClass("hidden");
-      $(".event4 .subevent2").removeClass("hidden");
+      $("#event4 .subevent2").removeClass("hidden");
     });
 
     $("#event4 .subevent2 .suboptions .suboption1").click(function() {

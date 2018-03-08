@@ -19,6 +19,7 @@ namespace TextRpg.Models
         public string _imgUrl;
         public int _armor;
         public string _audio;
+        public int _id;
 
         public Monster()
         {
@@ -32,10 +33,31 @@ namespace TextRpg.Models
             _charisma = 1;
             _armor = 0;
         }
+
+        public Monster (string name, string imgUrl, int level, int max_hp, int hp, int armor, int attackDamage,int charisma,int dexterity, int item_id, int experience, string audio)
+        {
+            _name = name;
+            _imgUrl = imgUrl;
+            _level = level;
+            _maxHealth = max_hp;
+            _health = hp;
+            _armor = armor;
+            _attackDamage = attackDamage;
+            _charisma = charisma;
+            _dexterity = dexterity;
+            _experience = experience;
+            _monsterItem = Item.Find(item_id);
+            _audio = audio;
+        }
+
         //Change functions
         public void ChangeLevel(int level)
         {
             _level += level;
+        }
+        public Item GetItem()
+        {
+            return _monsterItem;
         }
         public void ChangeExperience(int experience)
         {
@@ -101,6 +123,14 @@ namespace TextRpg.Models
         public string GetImgUrl()
         {
             return _imgUrl;
+        }
+        public void SetId(int id)
+        {
+          _id = id;
+        }
+        public int GetId()
+        {
+          return _id;
         }
         //EXPERIENCE/LEVEL UPDATE FUNCTIONS BEGIN HERE ------------------------------------------------------------->
         public void StatUpdate()
@@ -172,6 +202,60 @@ namespace TextRpg.Models
             }
         }
 
+        public static Monster Find(int myId)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM monsters WHERE id = @searchId;";
+
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = myId;
+            cmd.Parameters.Add(searchId);
+
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+            int id = 0;
+            string name = "";
+            string imgUrl = "";
+            int level = 0;
+            int max_hp = 0;
+            int hp = 0;
+            int armor = 0;
+            int attackDamage = 0;
+            int charisma = 0;
+            int dexterity = 0;
+            int item_id = 0;
+            int experience = 0;
+            string audio = "";
+
+            while(rdr.Read())
+            {
+                id = (int) rdr.GetInt32(0);
+                name = rdr.GetString(1);
+                imgUrl = rdr.GetString(2);
+                level = (int) rdr.GetInt32(3);
+                max_hp = (int) rdr.GetInt32(4);
+                hp = (int) rdr.GetInt32(5);
+                armor = (int) rdr.GetInt32(6);
+                attackDamage = (int) rdr.GetInt32(7);
+                charisma = (int) rdr.GetInt32(8);
+                dexterity = (int) rdr.GetInt32(9);
+                item_id = (int) rdr.GetInt32(10);
+                experience = (int) rdr.GetInt32(11);
+                audio = rdr.GetString(12);
+
+            }
+            Monster newMonster = new Monster(name, imgUrl, level, max_hp, hp, armor, attackDamage, charisma, dexterity, item_id, experience, audio);
+            newMonster.SetId(id);
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return newMonster;
+        }
     }
 
 }

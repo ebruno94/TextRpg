@@ -21,7 +21,7 @@ namespace TextRpg.Models
         public int _charisma;
         public int _roomNumber;
         public int _userId;
-        public static Inventory _inventory = null;
+        public static Inventory _inventory;
 
         public Character(string name, int userId)
         {
@@ -39,6 +39,7 @@ namespace TextRpg.Models
             _roomNumber = 1;
             _inventory = null;
             _userId = userId;
+            _inventory = new Inventory(_id);
         }
 
         public Character(string name, int level, int exp, int maxhp, int hp, int armor, int ad, int iq, int dex, int lck, int charisma, int id, int roomNumber, int userId)
@@ -82,7 +83,7 @@ namespace TextRpg.Models
             int dex = 0;
             int lck = 0;
             int charisma = 0;
-            int roomNumber = 0;
+            int roomNumber = 1;
             int armor = 0;
             int userId = 0;
 
@@ -100,8 +101,8 @@ namespace TextRpg.Models
                 dex = rdr.GetInt32(9);
                 lck = rdr.GetInt32(10);
                 charisma = rdr.GetInt32(11);
-                roomNumber = (int) rdr.GetInt32(12);
-                userId = (int) rdr.GetInt32(13);
+                roomNumber = (int) rdr.GetInt32(13);
+                userId = (int) rdr.GetInt32(12);
             }
             Character thisCharacter = new Character(name, level, exp, maxHp, hp, armor, ad, iq, dex, lck, charisma, id, roomNumber, userId);
             return thisCharacter;
@@ -215,6 +216,15 @@ namespace TextRpg.Models
         {
             return _inventory;
         }
+        public void SetInventory(Inventory myInventory)
+        {
+            _inventory = myInventory;
+        }
+
+        public void SetRoomNumber(int roomNumber)
+        {
+            _roomNumber = roomNumber;
+        }
 
         public void Save()
         {
@@ -289,6 +299,85 @@ namespace TextRpg.Models
             cmd.ExecuteNonQuery();
 
             _id = (int) cmd.LastInsertedId;
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+        public void Update()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+
+            cmd.CommandText = @"UPDATE characters SET name = @name ,level = @level,experience = @experience,max_hp = @maxHealth,hp = @health,armor = @armor, ad = @attackDamage, iq = @intelligence, dexterity = @dexterity, luck = @luck, charisma = @charisma, user_id = @userId, room_number = @roomNumber WHERE id = @userId;";
+
+            MySqlParameter name = new MySqlParameter();
+            name.ParameterName = "@name";
+            name.Value = _name;
+            cmd.Parameters.Add(name);
+
+            MySqlParameter level = new MySqlParameter();
+            level.ParameterName = "@level";
+            level.Value = _level;
+            cmd.Parameters.Add(level);
+
+            MySqlParameter experience = new MySqlParameter();
+            experience.ParameterName = "@experience";
+            experience.Value = _experience;
+            cmd.Parameters.Add(experience);
+
+            MySqlParameter maxHealth = new MySqlParameter();
+            maxHealth.ParameterName = "@maxHealth";
+            maxHealth.Value = _maxHealth;
+            cmd.Parameters.Add(maxHealth);
+
+            MySqlParameter health = new MySqlParameter();
+            health.ParameterName = "@health";
+            health.Value = _health;
+            cmd.Parameters.Add(health);
+
+            MySqlParameter armor = new MySqlParameter();
+            armor.ParameterName = "@armor";
+            armor.Value = _armor;
+            cmd.Parameters.Add(armor);
+
+            MySqlParameter attackDamage = new MySqlParameter();
+            attackDamage.ParameterName = "@attackDamage";
+            attackDamage.Value = _attackDamage;
+            cmd.Parameters.Add(attackDamage);
+
+            MySqlParameter intelligence = new MySqlParameter();
+            intelligence.ParameterName = "@intelligence";
+            intelligence.Value = _intelligence;
+            cmd.Parameters.Add(intelligence);
+
+            MySqlParameter dexterity = new MySqlParameter();
+            dexterity.ParameterName = "@dexterity";
+            dexterity.Value = _dexterity;
+            cmd.Parameters.Add(dexterity);
+
+            MySqlParameter luck = new MySqlParameter();
+            luck.ParameterName = "@luck";
+            luck.Value = _luck;
+            cmd.Parameters.Add(luck);
+
+            MySqlParameter charisma = new MySqlParameter();
+            charisma.ParameterName = "@charisma";
+            charisma.Value = _charisma;
+            cmd.Parameters.Add(charisma);
+
+            MySqlParameter userId = new MySqlParameter();
+            userId.ParameterName = "@userId";
+            userId.Value = _userId;
+            cmd.Parameters.Add(userId);
+
+            MySqlParameter roomNumber = new MySqlParameter("@roomNumber", _roomNumber);
+            cmd.Parameters.Add(roomNumber);
+
+            cmd.ExecuteNonQuery();
 
             conn.Close();
             if (conn != null)
