@@ -26,8 +26,15 @@ namespace TextRpg.Models
         {
             _character.ChangeExperience(_monster.GetExperience());
         }
+        public void GiveItem()
+        {
+            _character.GetInventory().AddItem(_monster.GetItem().GetId());
+        }
         public void Restart()
         {
+            //Set roomNumber back to start
+            Game.GetGameUser().SetRoomNumber(1);
+            //Clear inventory
             _character.GetInventory().ClearInventory();
         }
         //Randomly generates an Item and gives it to the current Character
@@ -55,9 +62,11 @@ namespace TextRpg.Models
             //Need some listening event
             _monster.Defend(_character.Attack());
             if(_monster.CheckDeath()){
-                GiveExperience();
                 Game.GetGameConsole().Append("<p>You killed "+ _monster.GetName() + " with a " + _monster.Attack() + " damage attack.  </p>");
                 Game.GetGameConsole().Append("<p>You gained " + _monster.GetExperience() + ". </p>");
+                GiveExperience();
+                Game.GetGameConsole().Append("<p>You gained " + _monster.GetItem().GetName() + ". </p>");
+                GiveItem();
             } else {
                 Game.GetGameConsole().Append("<p>You attack " + _monster.GetName() + " for " + _character.Attack() + ". </p>");
             }
